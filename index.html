@@ -125,6 +125,20 @@
             border-radius: 2px;
         }
 
+        /* รูปโปรไฟล์ขนาดพอดี สุภาพ สไตล์มืออาชีพ */
+        .profile-avatar-container {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #1e3a8a;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.15);
+        }
+
         /* ตารางข้อมูลส่วนตัวหน้าแรก */
         .info-grid {
             display: grid;
@@ -263,6 +277,11 @@
         <div id="home" class="page active">
             <h1>ข้อมูลส่วนตัว (Profile)</h1>
             
+            <!-- รูปส่วนตัวขนาดพอดี -->
+            <div class="profile-avatar-container">
+                <img src="IMG_20260907_130228.png" alt="รูปโปรไฟล์ พีรพัฒน์" class="profile-avatar">
+            </div>
+
             <div class="info-grid">
                 <div class="info-item">
                     <strong>ชื่อ-นามสกุล:</strong> นายพีรพัฒน์ ถาวรวัฒนเจริญ
