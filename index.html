@@ -298,6 +298,10 @@
             background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
             color: white;
         }
+        .badge-teal-bg {
+            background: linear-gradient(90deg, #0d9488 0%, #0f766e 100%);
+            color: white;
+        }
         
         .card-content {
             padding: 20px;
@@ -475,7 +479,21 @@
 
                 <!-- หน้าเกียรติบัตรอบรม -->
                 <div id="trainTab" class="sub-tab-content">
-                    <p style="color: #64748b; font-size: 15px; text-align: center; padding: 40px 0;">ยังไม่มีข้อมูลเกียรติบัตรการอบรม</p>
+                    <div class="portfolio-card">
+                        <div class="card-header-badge badge-teal-bg">
+                            <span>📜 CERTIFICATE OF ATTENDANCE</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Fabrication Laboratory: CiRA CORE (7 Hours)</h3>
+                            <p class="card-details"><strong>หน่วยงานที่จัด:</strong> EEC AUTOMATION PARK (มหาวิทยาลัยบูรพา)</p>
+                            <p class="card-details"><strong>สถานที่:</strong> EEC Automation Park</p>
+                            <p class="card-details"><strong>วันที่:</strong> 23 สิงหาคม 2025</p>
+
+                            <div class="cert-frame" onclick="openModal('44 Mr. Peerapat Thawornwattanacharoen.pdf_20260416_132908_0000.png')">
+                                <img src="44 Mr. Peerapat Thawornwattanacharoen.pdf_20260416_132908_0000.png" alt="เกียรติบัตร EEC AUTOMATION PARK - CiRA CORE">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -565,28 +583,4 @@
             }, 30);
         }
 
-        // ฟังก์ชันดูเกียรติบัตรรูปใหญ่
-        function openModal(imgSrc) {
-            var img = document.getElementById('modalImage');
-            var modal = document.getElementById('imgModal');
-            if(img && modal) {
-                img.src = imgSrc;
-                modal.classList.add('active');
-            }
-        }
-
-        function closeModal() {
-            var modal = document.getElementById('imgModal');
-            if(modal) {
-                modal.classList.remove('active');
-            }
-        }
-
-        // เริ่มต้นนับเกรดเมื่อโหลดหน้าเว็บ
-        window.onload = function() {
-            animateGPAX();
-        };
-    </script>
-
-</body>
-</html>
+        //
