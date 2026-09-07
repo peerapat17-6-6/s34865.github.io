@@ -5,61 +5,173 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>โปรไฟล์ของพีรพัฒน์</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #e3f2fd; color: #333; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
 
-        /* Navbar & Menu */
-        .navbar { background: #1565c0; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1000; }
-        .logo { font-size: 20px; font-weight: bold; }
-        .menu-btn { font-size: 24px; cursor: pointer; background: none; border: none; color: white; }
-        .nav-links { display: none; position: absolute; top: 100%; right: 0; background: #0d47a1; width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        body { 
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%); 
+            color: #1e293b; 
+            min-height: 100vh;
+        }
+
+        /* Navbar แบบกระจกฝ้า (Glassmorphism) มีแสงเงา */
+        .navbar { 
+            background: rgba(21, 101, 192, 0.95); 
+            backdrop-filter: blur(10px);
+            color: white; 
+            padding: 16px 24px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: sticky; 
+            top: 0;
+            z-index: 1000; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+        }
+        .logo { 
+            font-size: 22px; 
+            font-weight: 700; 
+            letter-spacing: 0.5px;
+        }
+        .menu-btn { 
+            font-size: 26px; 
+            cursor: pointer; 
+            background: none; 
+            border: none; 
+            color: white; 
+            transition: transform 0.2s ease;
+        }
+        .menu-btn:active {
+            transform: scale(0.9);
+        }
+        .nav-links { 
+            display: none; 
+            position: absolute; 
+            top: 100%; 
+            right: 15px; 
+            background: #0d47a1; 
+            width: 220px; 
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
+            transform-origin: top right;
+            animation: fadeIn 0.3s ease;
+        }
         .nav-links.active { display: block; }
-        .nav-links a { color: white; padding: 12px 20px; display: block; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-links a { 
+            color: white; 
+            padding: 14px 20px; 
+            display: block; 
+            text-decoration: none; 
+            border-bottom: 1px solid rgba(255,255,255,0.08); 
+            transition: background 0.2s ease;
+        }
         .nav-links a:hover { background: #1565c0; }
 
-        /* Container & Page Views */
-        .container { padding: 30px 15px; max-width: 800px; margin: 0 auto; }
-        .page { display: none; background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 30px; text-align: center; }
-        .page.active { display: block; }
-
-        /* General Styling */
-        h1 { color: #1565c0; margin-bottom: 15px; }
-        h2 { color: #0d47a1; margin-bottom: 20px; }
-        p { font-size: 18px; line-height: 1.6; margin-bottom: 10px; }
-        
-        /* Portfolio Card Style */
-        .portfolio-card {
-            background: #f8f9fa;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 25px;
-            text-align: left;
+        /* Container หลักพร้อมการ์ดแบบมีมิติ */
+        .container { 
+            padding: 40px 15px; 
+            max-width: 850px; 
+            margin: 0 auto; 
         }
-        .portfolio-card h3 { color: #1565c0; margin-bottom: 8px; font-size: 20px; }
-        .portfolio-card p { font-size: 16px; margin-bottom: 6px; color: #555; }
+
+        /* โครงสร้างหน้า และแอนิเมชั่นเปลี่ยนหน้า */
+        .page { 
+            display: none; 
+            background: #ffffff; 
+            border-radius: 16px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05); 
+            padding: 35px 25px; 
+            text-align: center; 
+        }
+        .page.active { 
+            display: block; 
+            animation: slideUpFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+        }
+
+        /* หัวข้อ */
+        h1 { color: #1565c0; margin-bottom: 18px; font-size: 26px; }
+        h2 { color: #0d47a1; margin-bottom: 25px; font-size: 24px; position: relative; display: inline-block; }
+        h2::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 4px;
+            background: #1565c0;
+            margin: 6px auto 0;
+            border-radius: 2px;
+        }
+        p { font-size: 17px; line-height: 1.7; color: #475569; margin-bottom: 12px; }
+        
+        /* Portfolio Cards มีเงาลึกตื้น และลอยขึ้นเมื่อชี้ */
+        .portfolio-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 30px;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .portfolio-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(21, 101, 192, 0.12);
+            border-color: #cbd5e1;
+        }
+        .portfolio-card h3 { color: #0f172a; margin-bottom: 10px; font-size: 20px; }
+        .portfolio-card p { font-size: 15px; margin-bottom: 6px; color: #64748b; }
+        
         .badge {
             display: inline-block;
-            background: #e3f2fd;
-            color: #1565c0;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 10px;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            color: #0369a1;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 6px rgba(3, 105, 161, 0.15);
         }
 
-        /* รูปภาพเกียรติบัตรถาวร */
+        /* รูปภาพเกียรติบัตรลอยตัวพร้อมมิติ */
         .cert-image-container {
-            margin-top: 15px;
+            margin-top: 20px;
             text-align: center;
+            overflow: hidden;
+            border-radius: 10px;
         }
         .cert-image-container img {
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            border: 1px solid #f1f5f9;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .cert-image-container img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+        }
+
+        /* Keyframe Animations */
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -121,7 +233,7 @@
         <!-- หน้าที่ 2: กิจกรรมที่เข้าร่วม -->
         <div id="activities" class="page">
             <h2>กิจกรรมที่เข้าร่วม (Activities)</h2>
-            <p style="color: #666; font-size: 16px;">ยังไม่มีข้อมูลกิจกรรม</p>
+            <p style="color: #94a3b8; font-size: 16px;">ยังไม่มีข้อมูลกิจกรรม</p>
         </div>
     </div>
 
@@ -131,12 +243,15 @@
             document.getElementById('navLinks').classList.toggle('active');
         }
 
-        // สลับหน้า
+        // สลับหน้าพร้อมแอนิเมชั่น
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
             
-            document.getElementById(pageId).classList.add('active');
+            // Re-trigger animation
+            const targetPage = document.getElementById(pageId);
+            targetPage.classList.add('active');
+            
             document.getElementById('navLinks').classList.remove('active');
         }
     </script>
