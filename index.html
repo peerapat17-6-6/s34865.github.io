@@ -130,6 +130,7 @@
             position: relative;
             z-index: 2;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
         }
 
         .hero-title {
@@ -193,6 +194,7 @@
         .info-card {
             padding: 18px 20px;
             border-radius: 12px;
+            transition: all 0.25s ease;
             border: 1px solid #e2e8f0;
         }
         .info-card.blue-light {
@@ -380,9 +382,9 @@
         <div class="logo">PEERAPAT.PORTFOLIO</div>
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
         <div class="nav-links" id="navLinks">
-            <a onclick="showPage('home')">หน้าแรก (Profile)</a>
-            <a onclick="showPage('portfolio')">แฟ้มสะสมผลงาน (Portfolio)</a>
-            <a onclick="showPage('activities')">กิจกรรม (Activities)</a>
+            <a href="javascript:void(0)" onclick="showPage('home')">หน้าแรก (Profile)</a>
+            <a href="javascript:void(0)" onclick="showPage('portfolio')">แฟ้มสะสมผลงาน (Portfolio)</a>
+            <a href="javascript:void(0)" onclick="showPage('activities')">กิจกรรม (Activities)</a>
         </div>
     </nav>
 
@@ -506,13 +508,13 @@
     <script>
         var gpaxTimer = null;
 
-        // สลับเปิด-ปิดเมนู
+        // เปิด-ปิด เมนู 3 ขีด
         function toggleMenu() {
             var menu = document.getElementById('navLinks');
             if(menu) menu.classList.toggle('active');
         }
 
-        // สลับหน้าหลัก
+        // สลับหมวดหลัก
         function showPage(pageId) {
             var pages = document.querySelectorAll('.page');
             for (var i = 0; i < pages.length; i++) {
@@ -526,7 +528,6 @@
             
             var menu = document.getElementById('navLinks');
             if(menu) menu.classList.remove('active');
-            
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             if(pageId === 'home') {
@@ -534,7 +535,7 @@
             }
         }
 
-        // สลับแท็บย่อย
+        // สลับแท็บย่อยในหน้าเกียรติบัตร
         function switchCertTab(tabId, btnElement) {
             var tabs = document.querySelectorAll('.sub-tab-content');
             for (var i = 0; i < tabs.length; i++) {
@@ -553,12 +554,11 @@
             if(btnElement) btnElement.classList.add('active');
         }
 
-        // ฟังก์ชันนับ GPAX ที่ปลอดภัย (ป้องกันค้าง 100%)
+        // ฟังก์ชันนับ GPAX แบบปลอดภัย
         function animateGPAX() {
             var counter = document.getElementById('gpaxCounter');
             if(!counter) return;
             
-            // ล้าง Timer เก่าทิ้งทันทีป้องกัน Loop ซ้อน
             if(gpaxTimer) clearInterval(gpaxTimer);
             
             var target = 3.82;
@@ -577,7 +577,7 @@
             }, 30);
         }
 
-        // ดูรูปใหญ่
+        // ฟังก์ชันดูเกียรติบัตรรูปใหญ่
         function openModal(imgSrc) {
             var img = document.getElementById('modalImage');
             var modal = document.getElementById('imgModal');
@@ -588,8 +588,4 @@
         }
 
         function closeModal() {
-            var modal = document.getElementById('imgModal');
-            if(modal) {
-                modal.classList.remove('active');
-            }
-        }
+            var modal = document.getElementBy
