@@ -68,6 +68,7 @@
             border-bottom: 1px solid #1e293b; 
             transition: all 0.2s ease;
             font-size: 15px;
+            cursor: pointer;
         }
         .nav-links a:hover { 
             background: #2563eb; 
@@ -379,11 +380,11 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">PEERAPAT.PORTFOLIO</div>
-        <button class="menu-btn" id="menuToggleBtn">☰</button>
+        <button class="menu-btn" onclick="toggleNavMenu()">☰</button>
         <div class="nav-links" id="navLinks">
-            <a href="javascript:void(0)" onclick="openPage('home')">หน้าแรก (Profile)</a>
-            <a href="javascript:void(0)" onclick="openPage('portfolio')">แฟ้มสะสมผลงาน (Portfolio)</a>
-            <a href="javascript:void(0)" onclick="openPage('activities')">กิจกรรม (Activities)</a>
+            <a onclick="switchMainPage('home')">หน้าแรก (Profile)</a>
+            <a onclick="switchMainPage('portfolio')">แฟ้มสะสมผลงาน (Portfolio)</a>
+            <a onclick="switchMainPage('activities')">กิจกรรม (Activities)</a>
         </div>
     </nav>
 
@@ -450,7 +451,7 @@
                             <p class="card-details"><strong>สถานที่:</strong> โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
                             <p class="card-details"><strong>วันที่:</strong> 9–11 มกราคม พ.ศ. 2569</p>
 
-                            <div class="cert-frame" onclick="viewImage('pic_20260907094652_0.jpg')">
+                            <div class="cert-frame" onclick="openModalImage('pic_20260907094652_0.jpg')">
                                 <img src="pic_20260907094652_0.jpg" alt="เกียรติบัตร รางวัลชนะเลิศ Smart School">
                             </div>
                         </div>
@@ -466,7 +467,7 @@
                             <p class="card-details"><strong>สถานที่:</strong> มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ วิทยาเขตปราจีนบุรี</p>
                             <p class="card-details"><strong>วันที่:</strong> 13–14 ธันวาคม 2025</p>
 
-                            <div class="cert-frame" onclick="viewImage('pic_20260907094120_0.jpg')">
+                            <div class="cert-frame" onclick="openModalImage('pic_20260907094120_0.jpg')">
                                 <img src="pic_20260907094120_0.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025">
                             </div>
                         </div>
@@ -485,7 +486,7 @@
                             <p class="card-details"><strong>สถานที่:</strong> EEC Automation Park</p>
                             <p class="card-details"><strong>วันที่:</strong> 23 สิงหาคม 2025</p>
 
-                            <div class="cert-frame" onclick="viewImage('44 Mr. Peerapat Thawornwattanacharoen.pdf_20260416_132908_0000.png')">
+                            <div class="cert-frame" onclick="openModalImage('44 Mr. Peerapat Thawornwattanacharoen.pdf_20260416_132908_0000.png')">
                                 <img src="44 Mr. Peerapat Thawornwattanacharoen.pdf_20260416_132908_0000.png" alt="เกียรติบัตร EEC AUTOMATION PARK - CiRA CORE">
                             </div>
                         </div>
@@ -506,85 +507,86 @@
     </div>
 
     <!-- Modal ขยายรูป -->
-    <div class="modal-overlay" id="imgModal" onclick="hideImage()">
+    <div class="modal-overlay" id="imgModal" onclick="closeModalImage()">
         <span class="modal-close">&times;</span>
         <img class="modal-img" id="modalImage" src="" alt="เกียรติบัตรขนาดใหญ่">
     </div>
 
     <script>
-        var animFrameReq = null;
+        var gpaxTimer = null;
 
-        // สวิตช์เมนู 3 ขีด
-        document.getElementById('menuToggleBtn').onclick = function() {
+        // 1. สลับ เปิด-ปิด เมนู 3 ขีด
+        function toggleNavMenu() {
             var menu = document.getElementById('navLinks');
-            menu.classList.toggle('active');
-        };
+            if (menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            } else {
+                menu.classList.add('active');
+            }
+        }
 
-        // สลับหมวดหลัก
-        function openPage(pageId) {
-            var pages = document.querySelectorAll('.page');
+        // 2. สลับหมวดหลัก (Profile, Portfolio, Activities)
+        function switchMainPage(pageId) {
+            var pages = document.getElementsByClassName('page');
             for (var i = 0; i < pages.length; i++) {
                 pages[i].classList.remove('active');
             }
             
-            var targetPage = document.getElementById(pageId);
-            if(targetPage) {
-                targetPage.classList.add('active');
+            var target = document.getElementById(pageId);
+            if (target) {
+                target.classList.add('active');
             }
             
             document.getElementById('navLinks').classList.remove('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            if(pageId === 'home') {
-                runGPAXAnimation();
+            if (pageId === 'home') {
+                startGPAXCount();
             }
         }
 
-        // สลับแท็บย่อยใน Portfolio
-        function switchSubTab(tabId, btnElement) {
-            var tabs = document.querySelectorAll('.sub-tab-content');
-            for (var i = 0; i < tabs.length; i++) {
-                tabs[i].classList.remove('active');
+        // 3. สลับแท็บย่อยใน Portfolio
+        function switchSubTab(tabId, btn) {
+            var contents = document.getElementsByClassName('sub-tab-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
             }
 
-            var tabBtns = document.querySelectorAll('.sub-tab-btn');
-            for (var j = 0; j < tabBtns.length; j++) {
-                tabBtns[j].classList.remove('active');
+            var btns = document.getElementsByClassName('sub-tab-btn');
+            for (var j = 0; j < btns.length; j++) {
+                btns[j].classList.remove('active');
             }
 
             var targetTab = document.getElementById(tabId);
-            if(targetTab) {
+            if (targetTab) {
                 targetTab.classList.add('active');
             }
-            btnElement.classList.add('active');
+            btn.classList.add('active');
         }
 
-        // เอฟเฟกต์ตัวเลขเกรดนับขึ้นแบบ Smooth
-        function runGPAXAnimation() {
-            var counter = document.getElementById('gpaxCounter');
-            if(!counter) return;
-            
-            if(animFrameReq) cancelAnimationFrame(animFrameReq);
+        // 4. แอนิเมชันเกรดเฉลี่ยแบบนับขึ้น
+        function startGPAXCount() {
+            var el = document.getElementById('gpaxCounter');
+            if (!el) return;
 
-            var targetVal = 3.82;
-            var duration = 1200; // ระยะเวลา 1.2 วินาที
-            var startTime = null;
+            if (gpaxTimer) clearInterval(gpaxTimer);
 
-            function step(timestamp) {
-                if (!startTime) startTime = timestamp;
-                var progress = Math.min((timestamp - startTime) / duration, 1);
-                var currentVal = progress * targetVal;
-                counter.innerText = currentVal.toFixed(2);
+            var current = 0.00;
+            var target = 3.82;
+            el.innerHTML = "0.00";
 
-                if (progress < 1) {
-                    animFrameReq = requestAnimationFrame(step);
+            gpaxTimer = setInterval(function() {
+                current += 0.08;
+                if (current >= target) {
+                    el.innerHTML = "3.82";
+                    clearInterval(gpaxTimer);
                 } else {
-                    counter.innerText = "3.82";
+                    el.innerHTML = current.toFixed(2);
                 }
-            }
-
-            animFrameReq = requestAnimationFrame(step);
+            }, 30);
         }
 
-        // ดูรูปใหญ่
-        function view
+        // 5. ดูรูปใหญ่ Modal
+        function openModalImage(src) {
+            var img = document.getElementById('modalImage');
+            var modal = document.getElementById('imgMo
