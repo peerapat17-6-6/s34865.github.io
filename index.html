@@ -45,6 +45,7 @@
             background: none; 
             border: none; 
             color: #ffffff; 
+            padding: 5px 10px;
         }
         .nav-links { 
             display: none; 
@@ -52,13 +53,13 @@
             top: 100%; 
             right: 15px; 
             background: #0f172a; 
-            width: 220px; 
+            width: 230px; 
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
             border: 1px solid #334155;
         }
-        .nav-links.active { display: block; }
+        .nav-links.active { display: block !important; }
         .nav-links a { 
             color: #f8fafc; 
             padding: 14px 20px; 
@@ -91,7 +92,7 @@
             border: 1px solid #cbd5e1;
         }
         .page.active { 
-            display: block; 
+            display: block !important; 
             animation: fadeIn 0.4s ease-out forwards; 
         }
 
@@ -130,9 +131,6 @@
             z-index: 2;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
-        }
-        .profile-avatar:hover {
-            transform: scale(1.05);
         }
 
         .hero-title {
@@ -213,10 +211,6 @@
             grid-column: 1 / -1;
             text-align: center;
         }
-        .info-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
-        }
         .info-label {
             font-size: 13px;
             font-weight: 700;
@@ -242,7 +236,6 @@
             padding: 30px 20px;
         }
 
-        /* แท็บสลับหน้าเกียรติบัตร (แข่ง / อบรม) */
         .sub-tab-container {
             display: flex;
             justify-content: center;
@@ -274,10 +267,10 @@
 
         .sub-tab-content {
             display: none;
-            animation: fadeIn 0.3s ease-out;
         }
         .sub-tab-content.active {
-            display: block;
+            display: block !important;
+            animation: fadeIn 0.3s ease-out;
         }
 
         .portfolio-card {
@@ -287,11 +280,6 @@
             border: 1px solid #e2e8f0;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        .portfolio-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
         }
         .card-header-badge {
             padding: 10px 20px;
@@ -308,10 +296,6 @@
         }
         .badge-blue-bg {
             background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
-            color: white;
-        }
-        .badge-purple-bg {
-            background: linear-gradient(90deg, #4c1d95 0%, #7c3aed 100%);
             color: white;
         }
         
@@ -342,24 +326,6 @@
             background: #f8fafc;
             padding: 8px;
             cursor: pointer;
-            position: relative;
-            transition: all 0.25s ease;
-        }
-        .cert-frame::after {
-            content: '🔍 คลิกเพื่อดูภาพขยาย';
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            background: rgba(15, 23, 42, 0.8);
-            color: white;
-            font-size: 12px;
-            padding: 5px 12px;
-            border-radius: 20px;
-            opacity: 0;
-            transition: opacity 0.25s ease;
-        }
-        .cert-frame:hover::after {
-            opacity: 1;
         }
         .cert-frame img {
             width: 100%;
@@ -379,9 +345,8 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            animation: fadeIn 0.25s ease;
         }
-        .modal-overlay.active { display: flex; }
+        .modal-overlay.active { display: flex !important; }
         .modal-img {
             max-width: 90%;
             max-height: 85vh;
@@ -397,7 +362,6 @@
             font-weight: bold;
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -415,9 +379,9 @@
         <div class="logo">PEERAPAT.PORTFOLIO</div>
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
         <div class="nav-links" id="navLinks">
-            <a href="#" onclick="showPage('home')">หน้าแรก (Profile)</a>
-            <a href="#" onclick="showPage('portfolio')">แฟ้มสะสมผลงาน (Portfolio)</a>
-            <a href="#" onclick="showPage('activities')">กิจกรรม (Activities)</a>
+            <a href="javascript:void(0)" onclick="showPage('home')">หน้าแรก (Profile)</a>
+            <a href="javascript:void(0)" onclick="showPage('portfolio')">แฟ้มสะสมผลงาน (Portfolio)</a>
+            <a href="javascript:void(0)" onclick="showPage('activities')">กิจกรรม (Activities)</a>
         </div>
     </nav>
 
@@ -455,7 +419,7 @@
 
                     <div class="info-card gold-light">
                         <div class="info-label">เกรดเฉลี่ยสะสม (GPAX)</div>
-                        <div class="gpax-value" id="gpaxCounter">0.00</div>
+                        <div class="gpax-value" id="gpaxCounter">3.82</div>
                     </div>
                 </div>
             </div>
@@ -536,18 +500,24 @@
     <script>
         // เปิด-ปิด เมนู 3 ขีด
         function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
+            var menu = document.getElementById('navLinks');
+            menu.classList.toggle('active');
         }
 
         // สลับหมวดหลัก
         function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
+            var pages = document.querySelectorAll('.page');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
             
-            const targetPage = document.getElementById(pageId);
-            targetPage.classList.add('active');
+            var targetPage = document.getElementById(pageId);
+            if(targetPage) {
+                targetPage.classList.add('active');
+            }
             
-            document.getElementById('navLinks').classList.remove('active');
+            var menu = document.getElementById('navLinks');
+            menu.classList.remove('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             if(pageId === 'home') {
@@ -555,30 +525,39 @@
             }
         }
 
-        // สลับแท็บย่อยในหน้าเกียรติบัตร (แข่ง / อบรม)
+        // สลับแท็บย่อยในหน้าเกียรติบัตร
         function switchCertTab(tabId, btnElement) {
-            const tabs = document.querySelectorAll('.sub-tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
+            var tabs = document.querySelectorAll('.sub-tab-content');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
 
-            const tabBtns = document.querySelectorAll('.sub-tab-btn');
-            tabBtns.forEach(btn => btn.classList.remove('active'));
+            var tabBtns = document.querySelectorAll('.sub-tab-btn');
+            for (var j = 0; j < tabBtns.length; j++) {
+                tabBtns[j].classList.remove('active');
+            }
 
-            document.getElementById(tabId).classList.add('active');
+            var targetTab = document.getElementById(tabId);
+            if(targetTab) {
+                targetTab.classList.add('active');
+            }
             btnElement.classList.add('active');
         }
 
-        // ฟังก์ชันนับ GPAX สไตล์ดิจิทัล
+        // ฟังก์ชันนับ GPAX แบบปลอดภัย
         function animateGPAX() {
-            const counter = document.getElementById('gpaxCounter');
-            let target = 3.82;
-            let current = 0.00;
-            let step = 0.08;
+            var counter = document.getElementById('gpaxCounter');
+            if(!counter) return;
+            
+            var target = 3.82;
+            var current = 0.00;
+            var step = 0.1;
             
             counter.innerText = "0.00";
-            let timer = setInterval(() => {
+            var timer = setInterval(function() {
                 current += step;
                 if (current >= target) {
-                    counter.innerText = target.toFixed(2);
+                    counter.innerText = "3.82";
                     clearInterval(timer);
                 } else {
                     counter.innerText = current.toFixed(2);
@@ -586,14 +565,28 @@
             }, 30);
         }
 
-        // ฟังก์ชันดูเกียรติบัตรรูปใหญ่ (Modal)
+        // ฟังก์ชันดูเกียรติบัตรรูปใหญ่
         function openModal(imgSrc) {
-            document.getElementById('modalImage').src = imgSrc;
-            document.getElementById('imgModal').classList.add('active');
+            var img = document.getElementById('modalImage');
+            var modal = document.getElementById('imgModal');
+            if(img && modal) {
+                img.src = imgSrc;
+                modal.classList.add('active');
+            }
         }
 
         function closeModal() {
-            document.getElementById('imgModal').classList.remove('active');
+            var modal = document.getElementById('imgModal');
+            if(modal) {
+                modal.classList.remove('active');
+            }
         }
 
-        // เรียกใช้อนิเมชันนับเก
+        // เริ่มต้นนับเกรดเมื่อโหลดหน้าเว็บ
+        window.onload = function() {
+            animateGPAX();
+        };
+    </script>
+
+</body>
+</html>
