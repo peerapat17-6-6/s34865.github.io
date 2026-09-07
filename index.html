@@ -12,16 +12,16 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
         }
 
-        /* พื้นหลังโทนสว่างเรียบหรูแบบทางการ */
+        /* พื้นหลังโทนสว่าง มีมิติด้วย Gradient อ่อนๆ */
         body { 
-            background: #f1f5f9; 
-            color: #0f172a; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); 
+            color: #1e293b; 
             min-height: 100vh;
         }
 
-        /* Header / Navbar โทนน้ำเงินกรมท่าเข้ม (Navy Blue) */
+        /* Navbar โทนน้ำเงินเข้ม ไล่เฉดสี */
         .navbar { 
-            background: #0f172a; 
+            background: linear-gradient(90deg, #0f172a 0%, #1e3a8a 100%); 
             color: white; 
             padding: 16px 24px; 
             display: flex; 
@@ -30,14 +30,14 @@
             position: sticky; 
             top: 0;
             z-index: 1000; 
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
-            border-bottom: 2px solid #1e3a8a;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.2);
         }
         .logo { 
-            font-size: 20px; 
-            font-weight: 700; 
-            letter-spacing: 0.5px;
+            font-size: 18px; 
+            font-weight: 800; 
+            letter-spacing: 1px;
             color: #ffffff;
+            text-transform: uppercase;
         }
         .menu-btn { 
             font-size: 24px; 
@@ -45,23 +45,18 @@
             background: none; 
             border: none; 
             color: #ffffff; 
-            transition: transform 0.2s ease;
-        }
-        .menu-btn:active {
-            transform: scale(0.9);
         }
         .nav-links { 
             display: none; 
             position: absolute; 
             top: 100%; 
             right: 15px; 
-            background: #1e293b; 
+            background: #0f172a; 
             width: 220px; 
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.25); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
             border: 1px solid #334155;
-            animation: fadeIn 0.25s ease;
         }
         .nav-links.active { display: block; }
         .nav-links a { 
@@ -69,192 +64,217 @@
             padding: 14px 20px; 
             display: block; 
             text-decoration: none; 
-            border-bottom: 1px solid #334155; 
-            transition: background 0.2s ease;
+            border-bottom: 1px solid #1e293b; 
+            transition: all 0.2s ease;
             font-size: 15px;
         }
         .nav-links a:hover { 
-            background: #1e3a8a; 
+            background: #2563eb; 
             color: #ffffff; 
+            padding-left: 25px;
         }
 
         /* Container หลัก */
         .container { 
-            padding: 35px 15px; 
-            max-width: 800px; 
+            padding: 25px 15px 50px 15px; 
+            max-width: 850px; 
             margin: 0 auto; 
         }
 
-        /* โครงสร้างหน้า และแอนิเมชั่นสลับหน้า */
+        /* การ์ดหน้าหลัก */
         .page { 
             display: none; 
             background: #ffffff; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); 
-            padding: 35px 25px; 
-            border: 1px solid #e2e8f0;
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
         }
         .page.active { 
             display: block; 
-            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+            animation: fadeIn 0.4s ease-out forwards; 
         }
 
-        /* หัวข้อทางการ */
-        h1 { 
-            color: #0f172a; 
-            margin-bottom: 20px; 
-            font-size: 26px; 
-            font-weight: 700;
+        /* Hero Header สำหรับหน้าแรก */
+        .profile-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #2563eb 100%);
+            padding: 40px 20px 30px 20px;
             text-align: center;
+            color: white;
+            position: relative;
         }
-        h2 { 
-            color: #1e3a8a; 
-            margin-bottom: 25px; 
-            font-size: 22px; 
+        .profile-avatar-container {
+            margin-bottom: 15px;
+            display: inline-block;
+            position: relative;
+        }
+        .profile-avatar {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .profile-avatar:hover {
+            transform: scale(1.05);
+        }
+        .hero-title {
+            font-size: 24px;
             font-weight: 700;
-            text-align: center;
-            position: relative; 
+            color: #ffffff;
+            margin-top: 10px;
         }
-        h2::after {
+        .hero-subtitle {
+            font-size: 14px;
+            color: #93c5fd;
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Layout ข้อมูลส่วนตัว (Grid เล่นสีอ่อน-เข้ม) */
+        .profile-body {
+            padding: 30px 20px;
+        }
+        .section-title {
+            font-size: 20px;
+            color: #0f172a;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+        .section-title::after {
             content: '';
             display: block;
-            width: 50px;
-            height: 3px;
-            background: #d97706;
-            margin: 8px auto 0;
+            width: 40px;
+            height: 4px;
+            background: #2563eb;
+            margin: 6px auto 0;
             border-radius: 2px;
         }
 
-        /* รูปโปรไฟล์ขนาดพอดี สุภาพ สไตล์มืออาชีพ */
-        .profile-avatar-container {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        .profile-avatar {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid #1e3a8a;
-            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.15);
-        }
-
-        /* ตารางข้อมูลส่วนตัวหน้าแรก */
         .info-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            margin-top: 20px;
-            text-align: left;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
         }
-        .info-item {
-            background: #f8fafc;
-            padding: 14px 18px;
-            border-radius: 8px;
-            border-left: 4px solid #1e3a8a;
-            font-size: 16px;
-            color: #334155;
-        }
-        .info-item strong {
-            color: #0f172a;
-        }
-        
-        /* Portfolio Cards แบบทางการมีมิติ */
-        .portfolio-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 22px;
-            margin-bottom: 25px;
-            text-align: left;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        .info-card {
+            padding: 18px 20px;
+            border-radius: 12px;
             transition: all 0.25s ease;
-            position: relative;
-            overflow: hidden;
+            border: 1px solid #e2e8f0;
         }
-        .portfolio-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 5px; height: 100%;
-            background: #1e3a8a;
+        .info-card.blue-light {
+            background: #f0f6ff;
+            border-left: 5px solid #2563eb;
         }
-        .portfolio-card.gold-card::before {
-            background: #d97706;
+        .info-card.dark-light {
+            background: #f8fafc;
+            border-left: 5px solid #0f172a;
         }
-        
-        .portfolio-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-            border-color: #cbd5e1;
+        .info-card.gold-light {
+            background: #fffbeb;
+            border-left: 5px solid #d97706;
+            grid-column: 1 / -1; /* ทอดยาวเต็มความกว้าง */
+            text-align: center;
         }
-        .portfolio-card h3 { 
-            color: #0f172a; 
-            margin-bottom: 10px; 
-            font-size: 19px; 
-            font-weight: 700; 
-            line-height: 1.4;
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
         }
-        .portfolio-card p { 
-            font-size: 15px; 
-            margin-bottom: 6px; 
-            color: #475569; 
-            line-height: 1.6;
-        }
-        
-        /* Badges ทางการ */
-        .badge {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 4px;
+        .info-label {
             font-size: 13px;
             font-weight: 700;
-            margin-bottom: 12px;
+            text-transform: uppercase;
+            color: #64748b;
+            margin-bottom: 4px;
         }
-        .badge-gold {
-            background: #fffbeb;
+        .info-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        .gpax-value {
+            font-size: 28px;
+            font-weight: 800;
             color: #b45309;
-            border: 1px solid #fcd34d;
-        }
-        .badge-blue {
-            background: #eff6ff;
-            color: #1e3a8a;
-            border: 1px solid #bfdbfe;
         }
 
-        /* รูปภาพเกียรติบัตรเรียบหรู */
-        .cert-image-container {
-            margin-top: 18px;
-            text-align: center;
-            border-radius: 6px;
+        /* Portfolio & Certificate Styles */
+        .portfolio-body {
+            padding: 30px 20px;
+        }
+        .portfolio-card {
+            background: #ffffff;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            border: 1px solid #e2e8f0;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+        }
+        .card-header-badge {
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .badge-gold-bg {
+            background: linear-gradient(90deg, #d97706 0%, #b45309 100%);
+            color: white;
+        }
+        .badge-blue-bg {
+            background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        .card-content h3 {
+            font-size: 18px;
+            color: #0f172a;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        .card-details {
+            font-size: 14px;
+            color: #475569;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+        .card-details strong {
+            color: #1e293b;
+        }
+
+        .cert-frame {
+            margin-top: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
             background: #f8fafc;
             padding: 8px;
-            border: 1px solid #e2e8f0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
         }
-        .cert-image-container img {
-            max-width: 100%;
+        .cert-frame img {
+            width: 100%;
             height: auto;
-            border-radius: 4px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
-        }
-        .cert-image-container img:hover {
-            transform: scale(1.01);
+            display: block;
+            border-radius: 6px;
         }
 
-        /* Keyframe Animations */
-        @keyframes slideUpFade {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-8px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
@@ -263,78 +283,100 @@
 
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="logo">PEERAPAT THAVORNWATTANACHAROEN</div>
+        <div class="logo">PEERAPAT.PORTFOLIO</div>
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
         <div class="nav-links" id="navLinks">
-            <a href="#" onclick="showPage('home')">หน้าแรก</a>
-            <a href="#" onclick="showPage('portfolio')">แฟ้มสะสมผลงาน</a>
-            <a href="#" onclick="showPage('activities')">กิจกรรมที่เข้าร่วม</a>
+            <a href="#" onclick="showPage('home')">หน้าแรก (Profile)</a>
+            <a href="#" onclick="showPage('portfolio')">แฟ้มสะสมผลงาน (Portfolio)</a>
+            <a href="#" onclick="showPage('activities')">กิจกรรม (Activities)</a>
         </div>
     </nav>
 
     <div class="container">
-        <!-- หน้าแรก (Home) -->
+        
+        <!-- หน้าแรก (Home/Profile) -->
         <div id="home" class="page active">
-            <h1>ข้อมูลส่วนตัว (Profile)</h1>
-            
-            <!-- รูปส่วนตัวขนาดพอดี -->
-            <div class="profile-avatar-container">
-                <img src="IMG_20260907_130228.png" alt="รูปโปรไฟล์ พีรพัฒน์" class="profile-avatar">
+            <!-- ส่วนบน Hero Banner -->
+            <div class="profile-hero">
+                <div class="profile-avatar-container">
+                    <img src="IMG_20260907_130228.png" alt="รูปโปรไฟล์ พีรพัฒน์" class="profile-avatar">
+                </div>
+                <h1 class="hero-title">นายพีรพัฒน์ ถาวรวัฒนเจริญ</h1>
+                <p class="hero-subtitle">Student at Banbueng "Utsahakramnukroh" School</p>
             </div>
 
-            <div class="info-grid">
-                <div class="info-item">
-                    <strong>ชื่อ-นามสกุล:</strong> นายพีรพัฒน์ ถาวรวัฒนเจริญ
-                </div>
-                <div class="info-item">
-                    <strong>สถานศึกษา:</strong> โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"
-                </div>
-                <div class="info-item">
-                    <strong>แผนการเรียน:</strong> CSE (Computer Science & Engineering)
-                </div>
-                <div class="info-item">
-                    <strong>เกรดเฉลี่ยสะสม (GPAX):</strong> 3.82
+            <!-- ส่วนข้อมูลส่วนตัว -->
+            <div class="profile-body">
+                <h2 class="section-title">ข้อมูลส่วนตัว (Profile)</h2>
+                
+                <div class="info-grid">
+                    <div class="info-card blue-light">
+                        <div class="info-label">สถานศึกษา</div>
+                        <div class="info-value">โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</div>
+                    </div>
+
+                    <div class="info-card dark-light">
+                        <div class="info-label">แผนการเรียน</div>
+                        <div class="info-value">CSE (Computer Science & Engineering)</div>
+                    </div>
+
+                    <div class="info-card gold-light">
+                        <div class="info-label">เกรดเฉลี่ยสะสม (GPAX)</div>
+                        <div class="gpax-value">3.82</div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- หน้าที่ 1: แฟ้มสะสมผลงาน -->
+        <!-- หน้าที่ 1: แฟ้มสะสมผลงาน (Portfolio) -->
         <div id="portfolio" class="page">
-            <h2>แฟ้มสะสมผลงาน (Portfolio)</h2>
+            <div class="portfolio-body">
+                <h2 class="section-title">ผลงานโดดเด่น (Portfolio)</h2>
 
-            <!-- รายการที่ 1: รางวัลชนะเลิศ Smart School -->
-            <div class="portfolio-card gold-card">
-                <span class="badge badge-gold">🥇 รางวัลชนะเลิศ</span>
-                <h3>การประกวดนวัตกรรมและเทคโนโลยี แก้ปัญหา Smart School</h3>
-                <p><strong>โครงการ:</strong> ค่ายพัฒนานวัตกรรมและเทคโนโลยี ครั้งที่ 5</p>
-                <p><strong>สถานที่:</strong> โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
-                <p><strong>วันที่:</strong> 9–11 มกราคม พ.ศ. 2569</p>
+                <!-- รายการที่ 1: Smart School -->
+                <div class="portfolio-card">
+                    <div class="card-header-badge badge-gold-bg">
+                        <span>🥇 รางวัลชนะเลิศ</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>การประกวดนวัตกรรมและเทคโนโลยี แก้ปัญหา Smart School</h3>
+                        <p class="card-details"><strong>โครงการ:</strong> ค่ายพัฒนานวัตกรรมและเทคโนโลยี ครั้งที่ 5</p>
+                        <p class="card-details"><strong>สถานที่:</strong> โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
+                        <p class="card-details"><strong>วันที่:</strong> 9–11 มกราคม พ.ศ. 2569</p>
 
-                <div class="cert-image-container">
-                    <img src="pic_20260907094652_0.jpg" alt="เกียรติบัตร รางวัลชนะเลิศ Smart School">
+                        <div class="cert-frame">
+                            <img src="pic_20260907094652_0.jpg" alt="เกียรติบัตร รางวัลชนะเลิศ Smart School">
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- รายการที่ 2: PLC BATTLE THAILAND 2025 -->
-            <div class="portfolio-card">
-                <span class="badge badge-blue">🏆 รางวัล / เกียรติบัตร</span>
-                <h3>GOOD PERFORMANCE PRIZE</h3>
-                <p><strong>รายการ:</strong> PLC BATTLE THAILAND 2025</p>
-                <p><strong>หน่วยงานที่จัด:</strong> CEITA, KMUTNB ร่วมกับ Schneider Electric & TIA</p>
-                <p><strong>สถานที่:</strong> มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ วิทยาเขตปราจีนบุรี</p>
-                <p><strong>วันที่:</strong> 13–14 ธันวาคม 2025</p>
+                <!-- รายการที่ 2: PLC BATTLE -->
+                <div class="portfolio-card">
+                    <div class="card-header-badge badge-blue-bg">
+                        <span>🏆 GOOD PERFORMANCE PRIZE</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>PLC BATTLE THAILAND 2025</h3>
+                        <p class="card-details"><strong>หน่วยงานที่จัด:</strong> CEITA, KMUTNB ร่วมกับ Schneider Electric & TIA</p>
+                        <p class="card-details"><strong>สถานที่:</strong> มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ วิทยาเขตปราจีนบุรี</p>
+                        <p class="card-details"><strong>วันที่:</strong> 13–14 ธันวาคม 2025</p>
 
-                <div class="cert-image-container">
-                    <img src="pic_20260907094120_0.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025">
+                        <div class="cert-frame">
+                            <img src="pic_20260907094120_0.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- หน้าที่ 2: กิจกรรมที่เข้าร่วม -->
         <div id="activities" class="page">
-            <h2>กิจกรรมที่เข้าร่วม (Activities)</h2>
-            <p style="color: #64748b; font-size: 15px; text-align: center;">ยังไม่มีข้อมูลกิจกรรม</p>
+            <div class="portfolio-body">
+                <h2 class="section-title">กิจกรรมที่เข้าร่วม (Activities)</h2>
+                <p style="color: #64748b; font-size: 15px; text-align: center; padding: 40px 0;">ยังไม่มีข้อมูลกิจกรรม</p>
+            </div>
         </div>
+
     </div>
 
     <script>
@@ -343,7 +385,7 @@
             document.getElementById('navLinks').classList.toggle('active');
         }
 
-        // สลับหน้าพร้อมแอนิเมชั่น
+        // สลับหน้า
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
@@ -352,6 +394,7 @@
             targetPage.classList.add('active');
             
             document.getElementById('navLinks').classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 
