@@ -298,10 +298,6 @@
             background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
             color: white;
         }
-        .badge-teal-bg {
-            background: linear-gradient(90deg, #0d9488 0%, #0f766e 100%);
-            color: white;
-        }
         
         .card-content {
             padding: 20px;
@@ -378,6 +374,7 @@
 </head>
 <body>
 
+    <!-- Navbar (3 หมวดหลัก) -->
     <nav class="navbar">
         <div class="logo">PEERAPAT.PORTFOLIO</div>
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
@@ -390,6 +387,7 @@
 
     <div class="container">
         
+        <!-- หมวดที่ 1: หน้าแรก (Home/Profile) -->
         <div id="home" class="page active">
             <div class="profile-hero">
                 <div class="profile-avatar-container">
@@ -427,16 +425,20 @@
             </div>
         </div>
 
+        <!-- หมวดที่ 2: แฟ้มสะสมผลงาน (Portfolio) -->
         <div id="portfolio" class="page">
             <div class="portfolio-body">
                 <h2 class="section-title">แฟ้มสะสมผลงาน (Portfolio)</h2>
 
+                <!-- ปุ่มสลับ 2 หน้าเกียรติบัตร -->
                 <div class="sub-tab-container">
                     <button class="sub-tab-btn active" onclick="switchCertTab('competeTab', this)">🏆 เกียรติบัตรการแข่ง</button>
                     <button class="sub-tab-btn" onclick="switchCertTab('trainTab', this)">📜 เกียรติบัตรการอบรม</button>
                 </div>
 
+                <!-- หน้าเกียรติบัตรแข่ง -->
                 <div id="competeTab" class="sub-tab-content active">
+                    <!-- รายการที่ 1: Smart School -->
                     <div class="portfolio-card">
                         <div class="card-header-badge badge-gold-bg">
                             <span>🥇 รางวัลชนะเลิศ</span>
@@ -453,6 +455,7 @@
                         </div>
                     </div>
 
+                    <!-- รายการที่ 2: PLC BATTLE -->
                     <div class="portfolio-card">
                         <div class="card-header-badge badge-blue-bg">
                             <span>🏆 GOOD PERFORMANCE PRIZE</span>
@@ -470,27 +473,15 @@
                     </div>
                 </div>
 
+                <!-- หน้าเกียรติบัตรอบรม -->
                 <div id="trainTab" class="sub-tab-content">
-                    <div class="portfolio-card">
-                        <div class="card-header-badge badge-teal-bg">
-                            <span>📜 CERTIFICATE OF ATTENDANCE</span>
-                        </div>
-                        <div class="card-content">
-                            <h3>Fabrication Laboratory: CiRA CORE (7 Hours)</h3>
-                            <p class="card-details"><strong>หน่วยงานที่จัด:</strong> EEC AUTOMATION PARK (มหาวิทยาลัยบูรพา)</p>
-                            <p class="card-details"><strong>สถานที่:</strong> EEC Automation Park</p>
-                            <p class="card-details"><strong>วันที่:</strong> 23 สิงหาคม 2025</p>
-
-                            <div class="cert-frame" onclick="openModal('44 Mr. Peerapat Thawornwattanacharoen.pdf_20260416_132908_0000.png')">
-                                <img src="44 Mr. Peerapat Thawornwattanacharoen.pdf_20260416_132908_0000.png" alt="เกียรติบัตร EEC AUTOMATION PARK - CiRA CORE">
-                            </div>
-                        </div>
-                    </div>
+                    <p style="color: #64748b; font-size: 15px; text-align: center; padding: 40px 0;">ยังไม่มีข้อมูลเกียรติบัตรการอบรม</p>
                 </div>
 
             </div>
         </div>
 
+        <!-- หมวดที่ 3: กิจกรรมที่เข้าร่วม (Activities) -->
         <div id="activities" class="page">
             <div class="portfolio-body">
                 <h2 class="section-title">กิจกรรมที่เข้าร่วม (Activities)</h2>
@@ -500,6 +491,7 @@
 
     </div>
 
+    <!-- Modal สำหรับแสดงเกียรติบัตรขยายใหญ่ -->
     <div class="modal-overlay" id="imgModal" onclick="closeModal()">
         <span class="modal-close">&times;</span>
         <img class="modal-img" id="modalImage" src="" alt="เกียรติบัตรขนาดใหญ่">
@@ -587,4 +579,14 @@
             var modal = document.getElementById('imgModal');
             if(modal) {
                 modal.classList.remove('active');
-    
+            }
+        }
+
+        // เริ่มต้นนับเกรดเมื่อโหลดหน้าเว็บ
+        window.onload = function() {
+            animateGPAX();
+        };
+    </script>
+
+</body>
+</html>
