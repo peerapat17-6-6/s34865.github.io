@@ -512,13 +512,13 @@
     </div>
 
     <script>
-        var timerId = null;
+        var animFrameReq = null;
 
         // สวิตช์เมนู 3 ขีด
-        document.getElementById('menuToggleBtn').addEventListener('click', function() {
+        document.getElementById('menuToggleBtn').onclick = function() {
             var menu = document.getElementById('navLinks');
             menu.classList.toggle('active');
-        });
+        };
 
         // สลับหมวดหลัก
         function openPage(pageId) {
@@ -559,32 +559,32 @@
             btnElement.classList.add('active');
         }
 
-        // เอฟเฟกต์ตัวเลขเกรดนับขึ้น
+        // เอฟเฟกต์ตัวเลขเกรดนับขึ้นแบบ Smooth
         function runGPAXAnimation() {
             var counter = document.getElementById('gpaxCounter');
             if(!counter) return;
             
-            if(timerId) clearInterval(timerId);
+            if(animFrameReq) cancelAnimationFrame(animFrameReq);
 
             var targetVal = 3.82;
-            var currentVal = 0.00;
-            counter.innerText = "0.00";
+            var duration = 1200; // ระยะเวลา 1.2 วินาที
+            var startTime = null;
 
-            timerId = setInterval(function() {
-                currentVal += 0.08;
-                if (currentVal >= targetVal) {
-                    counter.innerText = "3.82";
-                    clearInterval(timerId);
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var progress = Math.min((timestamp - startTime) / duration, 1);
+                var currentVal = progress * targetVal;
+                counter.innerText = currentVal.toFixed(2);
+
+                if (progress < 1) {
+                    animFrameReq = requestAnimationFrame(step);
                 } else {
-                    counter.innerText = currentVal.toFixed(2);
+                    counter.innerText = "3.82";
                 }
-            }, 25);
+            }
+
+            animFrameReq = requestAnimationFrame(step);
         }
 
         // ดูรูปใหญ่
-        function viewImage(imgSrc) {
-            var img = document.getElementById('modalImage');
-            var modal = document.getElementById('imgModal');
-            if(img && modal) {
-                img.src = imgSrc;
-                modal.classLis
+        function view
