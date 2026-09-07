@@ -12,14 +12,13 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
         }
 
-        /* พื้นหลังโทนสว่าง มีมิติด้วย Gradient อ่อนๆ */
         body { 
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); 
             color: #1e293b; 
             min-height: 100vh;
         }
 
-        /* Navbar โทนน้ำเงินเข้ม ไล่เฉดสี */
+        /* Navbar โทนน้ำเงินเข้ม */
         .navbar { 
             background: linear-gradient(90deg, #0f172a 0%, #1e3a8a 100%); 
             color: white; 
@@ -68,6 +67,7 @@
             border-bottom: 1px solid #1e293b; 
             transition: all 0.2s ease;
             font-size: 15px;
+            cursor: pointer;
         }
         .nav-links a:hover { 
             background: #2563eb; 
@@ -130,7 +130,6 @@
             position: relative;
             z-index: 2;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
         }
 
         .hero-title {
@@ -194,7 +193,6 @@
         .info-card {
             padding: 18px 20px;
             border-radius: 12px;
-            transition: all 0.25s ease;
             border: 1px solid #e2e8f0;
         }
         .info-card.blue-light {
@@ -378,20 +376,18 @@
 </head>
 <body>
 
-    <!-- Navbar (3 หมวดหลัก) -->
     <nav class="navbar">
         <div class="logo">PEERAPAT.PORTFOLIO</div>
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
         <div class="nav-links" id="navLinks">
-            <a href="javascript:void(0)" onclick="showPage('home')">หน้าแรก (Profile)</a>
-            <a href="javascript:void(0)" onclick="showPage('portfolio')">แฟ้มสะสมผลงาน (Portfolio)</a>
-            <a href="javascript:void(0)" onclick="showPage('activities')">กิจกรรม (Activities)</a>
+            <a onclick="showPage('home')">หน้าแรก (Profile)</a>
+            <a onclick="showPage('portfolio')">แฟ้มสะสมผลงาน (Portfolio)</a>
+            <a onclick="showPage('activities')">กิจกรรม (Activities)</a>
         </div>
     </nav>
 
     <div class="container">
         
-        <!-- หมวดที่ 1: หน้าแรก (Home/Profile) -->
         <div id="home" class="page active">
             <div class="profile-hero">
                 <div class="profile-avatar-container">
@@ -429,20 +425,16 @@
             </div>
         </div>
 
-        <!-- หมวดที่ 2: แฟ้มสะสมผลงาน (Portfolio) -->
         <div id="portfolio" class="page">
             <div class="portfolio-body">
                 <h2 class="section-title">แฟ้มสะสมผลงาน (Portfolio)</h2>
 
-                <!-- ปุ่มสลับ 2 หน้าเกียรติบัตร -->
                 <div class="sub-tab-container">
                     <button class="sub-tab-btn active" onclick="switchCertTab('competeTab', this)">🏆 เกียรติบัตรการแข่ง</button>
                     <button class="sub-tab-btn" onclick="switchCertTab('trainTab', this)">📜 เกียรติบัตรการอบรม</button>
                 </div>
 
-                <!-- หน้าเกียรติบัตรแข่ง -->
                 <div id="competeTab" class="sub-tab-content active">
-                    <!-- รายการที่ 1: Smart School -->
                     <div class="portfolio-card">
                         <div class="card-header-badge badge-gold-bg">
                             <span>🥇 รางวัลชนะเลิศ</span>
@@ -459,7 +451,6 @@
                         </div>
                     </div>
 
-                    <!-- รายการที่ 2: PLC BATTLE -->
                     <div class="portfolio-card">
                         <div class="card-header-badge badge-blue-bg">
                             <span>🏆 GOOD PERFORMANCE PRIZE</span>
@@ -477,7 +468,6 @@
                     </div>
                 </div>
 
-                <!-- หน้าเกียรติบัตรอบรม -->
                 <div id="trainTab" class="sub-tab-content">
                     <div class="portfolio-card">
                         <div class="card-header-badge badge-teal-bg">
@@ -499,7 +489,6 @@
             </div>
         </div>
 
-        <!-- หมวดที่ 3: กิจกรรมที่เข้าร่วม (Activities) -->
         <div id="activities" class="page">
             <div class="portfolio-body">
                 <h2 class="section-title">กิจกรรมที่เข้าร่วม (Activities)</h2>
@@ -509,20 +498,21 @@
 
     </div>
 
-    <!-- Modal สำหรับแสดงเกียรติบัตรขยายใหญ่ -->
     <div class="modal-overlay" id="imgModal" onclick="closeModal()">
         <span class="modal-close">&times;</span>
         <img class="modal-img" id="modalImage" src="" alt="เกียรติบัตรขนาดใหญ่">
     </div>
 
     <script>
-        // เปิด-ปิด เมนู 3 ขีด
+        var gpaxTimer = null;
+
+        // สลับเปิด-ปิดเมนู
         function toggleMenu() {
             var menu = document.getElementById('navLinks');
-            menu.classList.toggle('active');
+            if(menu) menu.classList.toggle('active');
         }
 
-        // สลับหมวดหลัก
+        // สลับหน้าหลัก
         function showPage(pageId) {
             var pages = document.querySelectorAll('.page');
             for (var i = 0; i < pages.length; i++) {
@@ -535,7 +525,8 @@
             }
             
             var menu = document.getElementById('navLinks');
-            menu.classList.remove('active');
+            if(menu) menu.classList.remove('active');
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             if(pageId === 'home') {
@@ -543,7 +534,7 @@
             }
         }
 
-        // สลับแท็บย่อยในหน้าเกียรติบัตร
+        // สลับแท็บย่อย
         function switchCertTab(tabId, btnElement) {
             var tabs = document.querySelectorAll('.sub-tab-content');
             for (var i = 0; i < tabs.length; i++) {
@@ -559,28 +550,46 @@
             if(targetTab) {
                 targetTab.classList.add('active');
             }
-            btnElement.classList.add('active');
+            if(btnElement) btnElement.classList.add('active');
         }
 
-        // ฟังก์ชันนับ GPAX แบบปลอดภัย
+        // ฟังก์ชันนับ GPAX ที่ปลอดภัย (ป้องกันค้าง 100%)
         function animateGPAX() {
             var counter = document.getElementById('gpaxCounter');
             if(!counter) return;
             
+            // ล้าง Timer เก่าทิ้งทันทีป้องกัน Loop ซ้อน
+            if(gpaxTimer) clearInterval(gpaxTimer);
+            
             var target = 3.82;
             var current = 0.00;
-            var step = 0.1;
-            
             counter.innerText = "0.00";
-            var timer = setInterval(function() {
-                current += step;
+
+            gpaxTimer = setInterval(function() {
+                current += 0.12;
                 if (current >= target) {
                     counter.innerText = "3.82";
-                    clearInterval(timer);
+                    clearInterval(gpaxTimer);
+                    gpaxTimer = null;
                 } else {
                     counter.innerText = current.toFixed(2);
                 }
             }, 30);
         }
 
-        //
+        // ดูรูปใหญ่
+        function openModal(imgSrc) {
+            var img = document.getElementById('modalImage');
+            var modal = document.getElementById('imgModal');
+            if(img && modal) {
+                img.src = imgSrc;
+                modal.classList.add('active');
+            }
+        }
+
+        function closeModal() {
+            var modal = document.getElementById('imgModal');
+            if(modal) {
+                modal.classList.remove('active');
+            }
+        }
