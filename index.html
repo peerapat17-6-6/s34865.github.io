@@ -12,13 +12,14 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
         }
 
+        /* พื้นหลังโทนสว่าง มีมิติด้วย Gradient อ่อนๆ */
         body { 
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); 
             color: #1e293b; 
             min-height: 100vh;
         }
 
-        /* Navbar โทนน้ำเงินเข้ม */
+        /* Navbar โทนน้ำเงินเข้ม ไล่เฉดสี */
         .navbar { 
             background: linear-gradient(90deg, #0f172a 0%, #1e3a8a 100%); 
             color: white; 
@@ -67,7 +68,6 @@
             border-bottom: 1px solid #1e293b; 
             transition: all 0.2s ease;
             font-size: 15px;
-            cursor: pointer;
         }
         .nav-links a:hover { 
             background: #2563eb; 
@@ -421,7 +421,7 @@
 
                     <div class="info-card gold-light">
                         <div class="info-label">เกรดเฉลี่ยสะสม (GPAX)</div>
-                        <div class="gpax-value" id="gpaxCounter">0.00</div>
+                        <div class="gpax-value" id="gpaxCounter">3.82</div>
                     </div>
                 </div>
             </div>
@@ -506,18 +506,13 @@
     </div>
 
     <script>
-        // ประกาศตัวแปร Global
-        var gpaxTimer = null;
-
-        // ฟังก์ชันเปิด-ปิด เมนู 3 ขีด
+        // เปิด-ปิด เมนู 3 ขีด
         function toggleMenu() {
             var menu = document.getElementById('navLinks');
-            if (menu) {
-                menu.classList.toggle('active');
-            }
+            menu.classList.toggle('active');
         }
 
-        // ฟังก์ชันสลับหมวดหลัก
+        // สลับหมวดหลัก
         function showPage(pageId) {
             var pages = document.querySelectorAll('.page');
             for (var i = 0; i < pages.length; i++) {
@@ -530,10 +525,7 @@
             }
             
             var menu = document.getElementById('navLinks');
-            if(menu) {
-                menu.classList.remove('active');
-            }
-
+            menu.classList.remove('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             if(pageId === 'home') {
@@ -541,7 +533,7 @@
             }
         }
 
-        // ฟังก์ชันสลับแท็บย่อยในหน้าเกียรติบัตร
+        // สลับแท็บย่อยในหน้าเกียรติบัตร
         function switchCertTab(tabId, btnElement) {
             var tabs = document.querySelectorAll('.sub-tab-content');
             for (var i = 0; i < tabs.length; i++) {
@@ -557,38 +549,42 @@
             if(targetTab) {
                 targetTab.classList.add('active');
             }
-            if(btnElement) {
-                btnElement.classList.add('active');
-            }
+            btnElement.classList.add('active');
         }
 
-        // ฟังก์ชันนับ GPAX อนิเมชั่น (ปรับปรุงใหม่ให้ทำงานทันที)
+        // ฟังก์ชันนับ GPAX แบบปลอดภัย
         function animateGPAX() {
             var counter = document.getElementById('gpaxCounter');
             if(!counter) return;
             
-            if(gpaxTimer) {
-                clearInterval(gpaxTimer);
-            }
-            
             var target = 3.82;
             var current = 0.00;
-            var step = 0.06; // ปรับให้วิ่งเนียนขึ้น
+            var step = 0.1;
             
             counter.innerText = "0.00";
-
-            gpaxTimer = setInterval(function() {
+            var timer = setInterval(function() {
                 current += step;
                 if (current >= target) {
                     counter.innerText = "3.82";
-                    clearInterval(gpaxTimer);
+                    clearInterval(timer);
                 } else {
                     counter.innerText = current.toFixed(2);
                 }
-            }, 25);
+            }, 30);
         }
 
         // ฟังก์ชันดูเกียรติบัตรรูปใหญ่
         function openModal(imgSrc) {
             var img = document.getElementById('modalImage');
-            var modal = document.ge
+            var modal = document.getElementById('imgModal');
+            if(img && modal) {
+                img.src = imgSrc;
+                modal.classList.add('active');
+            }
+        }
+
+        function closeModal() {
+            var modal = document.getElementById('imgModal');
+            if(modal) {
+                modal.classList.remove('active');
+    
