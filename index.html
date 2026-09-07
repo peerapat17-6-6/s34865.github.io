@@ -104,7 +104,6 @@
             position: relative;
         }
 
-        /* [ลูกเล่นที่ 1] Glowing & Pulse Profile */
         .profile-avatar-container {
             margin-bottom: 15px;
             display: inline-block;
@@ -149,7 +148,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* [ลูกเล่นที่ 2] Tag Badges สายเทค */
         .hero-tags {
             margin-top: 15px;
             display: flex;
@@ -232,7 +230,6 @@
             color: #0f172a;
         }
 
-        /* [ลูกเล่นที่ 3] GPAX Counter Display */
         .gpax-value {
             font-size: 32px;
             font-weight: 800;
@@ -240,14 +237,53 @@
             letter-spacing: -0.5px;
         }
 
-        /* Portfolio & Certificate Styles */
+        /* Portfolio & Certificate Tabs */
         .portfolio-body {
             padding: 30px 20px;
         }
+
+        /* แท็บสลับหน้าเกียรติบัตร (แข่ง / อบรม) */
+        .sub-tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            background: #f1f5f9;
+            padding: 6px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        .sub-tab-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            background: transparent;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: center;
+        }
+        .sub-tab-btn.active {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+        }
+
+        .sub-tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .sub-tab-content.active {
+            display: block;
+        }
+
         .portfolio-card {
             background: #ffffff;
             border-radius: 16px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             border: 1px solid #e2e8f0;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -274,6 +310,10 @@
             background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
             color: white;
         }
+        .badge-purple-bg {
+            background: linear-gradient(90deg, #4c1d95 0%, #7c3aed 100%);
+            color: white;
+        }
         
         .card-content {
             padding: 20px;
@@ -294,7 +334,6 @@
             color: #1e293b;
         }
 
-        /* [ลูกเล่นที่ 4] Interactive Certificate Frame */
         .cert-frame {
             margin-top: 15px;
             border-radius: 10px;
@@ -371,7 +410,7 @@
 </head>
 <body>
 
-    <!-- Navbar -->
+    <!-- Navbar (3 หมวดหลัก) -->
     <nav class="navbar">
         <div class="logo">PEERAPAT.PORTFOLIO</div>
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
@@ -384,9 +423,8 @@
 
     <div class="container">
         
-        <!-- หน้าแรก (Home/Profile) -->
+        <!-- หมวดที่ 1: หน้าแรก (Home/Profile) -->
         <div id="home" class="page active">
-            <!-- ส่วนบน Hero Banner -->
             <div class="profile-hero">
                 <div class="profile-avatar-container">
                     <img src="IMG_20260907_130228.png" alt="รูปโปรไฟล์ พีรพัฒน์" class="profile-avatar">
@@ -394,7 +432,6 @@
                 <h1 class="hero-title">นายพีรพัฒน์ ถาวรวัฒนเจริญ</h1>
                 <p class="hero-subtitle">Student at Banbueng "Utsahakramnukroh" School</p>
                 
-                <!-- Tag สายเทคโนโลยี -->
                 <div class="hero-tags">
                     <span class="tag-pill">💻 CSE Program</span>
                     <span class="tag-pill">⚙️ Instrumentation</span>
@@ -402,7 +439,6 @@
                 </div>
             </div>
 
-            <!-- ส่วนข้อมูลส่วนตัว -->
             <div class="profile-body">
                 <h2 class="section-title">ข้อมูลส่วนตัว (Profile)</h2>
                 
@@ -425,48 +461,63 @@
             </div>
         </div>
 
-        <!-- หน้าที่ 1: แฟ้มสะสมผลงาน (Portfolio) -->
+        <!-- หมวดที่ 2: แฟ้มสะสมผลงาน (Portfolio) -->
         <div id="portfolio" class="page">
             <div class="portfolio-body">
-                <h2 class="section-title">ผลงานโดดเด่น (Portfolio)</h2>
+                <h2 class="section-title">แฟ้มสะสมผลงาน (Portfolio)</h2>
 
-                <!-- รายการที่ 1: Smart School -->
-                <div class="portfolio-card">
-                    <div class="card-header-badge badge-gold-bg">
-                        <span>🥇 รางวัลชนะเลิศ</span>
+                <!-- ปุ่มสลับ 2 หน้าเกียรติบัตร -->
+                <div class="sub-tab-container">
+                    <button class="sub-tab-btn active" onclick="switchCertTab('competeTab', this)">🏆 เกียรติบัตรการแข่ง</button>
+                    <button class="sub-tab-btn" onclick="switchCertTab('trainTab', this)">📜 เกียรติบัตรการอบรม</button>
+                </div>
+
+                <!-- หน้าเกียรติบัตรแข่ง -->
+                <div id="competeTab" class="sub-tab-content active">
+                    <!-- รายการที่ 1: Smart School -->
+                    <div class="portfolio-card">
+                        <div class="card-header-badge badge-gold-bg">
+                            <span>🥇 รางวัลชนะเลิศ</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>การประกวดนวัตกรรมและเทคโนโลยี แก้ปัญหา Smart School</h3>
+                            <p class="card-details"><strong>โครงการ:</strong> ค่ายพัฒนานวัตกรรมและเทคโนโลยี ครั้งที่ 5</p>
+                            <p class="card-details"><strong>สถานที่:</strong> โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
+                            <p class="card-details"><strong>วันที่:</strong> 9–11 มกราคม พ.ศ. 2569</p>
+
+                            <div class="cert-frame" onclick="openModal('pic_20260907094652_0.jpg')">
+                                <img src="pic_20260907094652_0.jpg" alt="เกียรติบัตร รางวัลชนะเลิศ Smart School">
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <h3>การประกวดนวัตกรรมและเทคโนโลยี แก้ปัญหา Smart School</h3>
-                        <p class="card-details"><strong>โครงการ:</strong> ค่ายพัฒนานวัตกรรมและเทคโนโลยี ครั้งที่ 5</p>
-                        <p class="card-details"><strong>สถานที่:</strong> โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
-                        <p class="card-details"><strong>วันที่:</strong> 9–11 มกราคม พ.ศ. 2569</p>
 
-                        <div class="cert-frame" onclick="openModal('pic_20260907094652_0.jpg')">
-                            <img src="pic_20260907094652_0.jpg" alt="เกียรติบัตร รางวัลชนะเลิศ Smart School">
+                    <!-- รายการที่ 2: PLC BATTLE -->
+                    <div class="portfolio-card">
+                        <div class="card-header-badge badge-blue-bg">
+                            <span>🏆 GOOD PERFORMANCE PRIZE</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>PLC BATTLE THAILAND 2025</h3>
+                            <p class="card-details"><strong>หน่วยงานที่จัด:</strong> CEITA, KMUTNB ร่วมกับ Schneider Electric & TIA</p>
+                            <p class="card-details"><strong>สถานที่:</strong> มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ วิทยาเขตปราจีนบุรี</p>
+                            <p class="card-details"><strong>วันที่:</strong> 13–14 ธันวาคม 2025</p>
+
+                            <div class="cert-frame" onclick="openModal('pic_20260907094120_0.jpg')">
+                                <img src="pic_20260907094120_0.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025">
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- รายการที่ 2: PLC BATTLE -->
-                <div class="portfolio-card">
-                    <div class="card-header-badge badge-blue-bg">
-                        <span>🏆 GOOD PERFORMANCE PRIZE</span>
-                    </div>
-                    <div class="card-content">
-                        <h3>PLC BATTLE THAILAND 2025</h3>
-                        <p class="card-details"><strong>หน่วยงานที่จัด:</strong> CEITA, KMUTNB ร่วมกับ Schneider Electric & TIA</p>
-                        <p class="card-details"><strong>สถานที่:</strong> มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ วิทยาเขตปราจีนบุรี</p>
-                        <p class="card-details"><strong>วันที่:</strong> 13–14 ธันวาคม 2025</p>
-
-                        <div class="cert-frame" onclick="openModal('pic_20260907094120_0.jpg')">
-                            <img src="pic_20260907094120_0.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025">
-                        </div>
-                    </div>
+                <!-- หน้าเกียรติบัตรอบรม -->
+                <div id="trainTab" class="sub-tab-content">
+                    <p style="color: #64748b; font-size: 15px; text-align: center; padding: 40px 0;">ยังไม่มีข้อมูลเกียรติบัตรการอบรม</p>
                 </div>
+
             </div>
         </div>
 
-        <!-- หน้าที่ 2: กิจกรรมที่เข้าร่วม -->
+        <!-- หมวดที่ 3: กิจกรรมที่เข้าร่วม (Activities) -->
         <div id="activities" class="page">
             <div class="portfolio-body">
                 <h2 class="section-title">กิจกรรมที่เข้าร่วม (Activities)</h2>
@@ -488,7 +539,7 @@
             document.getElementById('navLinks').classList.toggle('active');
         }
 
-        // สลับหน้า
+        // สลับหมวดหลัก
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
@@ -504,7 +555,19 @@
             }
         }
 
-        // [ลูกเล่น] ฟังก์ชันนับ GPAX สไตล์ดิจิทัล
+        // สลับแท็บย่อยในหน้าเกียรติบัตร (แข่ง / อบรม)
+        function switchCertTab(tabId, btnElement) {
+            const tabs = document.querySelectorAll('.sub-tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.sub-tab-btn');
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            btnElement.classList.add('active');
+        }
+
+        // ฟังก์ชันนับ GPAX สไตล์ดิจิทัล
         function animateGPAX() {
             const counter = document.getElementById('gpaxCounter');
             let target = 3.82;
@@ -523,7 +586,7 @@
             }, 30);
         }
 
-        // [ลูกเล่น] ฟังก์ชันดูเกียรติบัตรรูปใหญ่ (Modal)
+        // ฟังก์ชันดูเกียรติบัตรรูปใหญ่ (Modal)
         function openModal(imgSrc) {
             document.getElementById('modalImage').src = imgSrc;
             document.getElementById('imgModal').classList.add('active');
@@ -533,11 +596,4 @@
             document.getElementById('imgModal').classList.remove('active');
         }
 
-        // เรียกใช้อนิเมชันนับเกรดเมื่อโหลดหน้าครั้งแรก
-        window.onload = function() {
-            animateGPAX();
-        };
-    </script>
-
-</body>
-</html>
+        // เรียกใช้อนิเมชันนับเก
