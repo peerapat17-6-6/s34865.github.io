@@ -382,9 +382,9 @@
         <div class="logo">PEERAPAT.PORTFOLIO</div>
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
         <div class="nav-links" id="navLinks">
-            <a onclick="showPage('home')">หน้าแรก (Profile)</a>
-            <a onclick="showPage('portfolio')">แฟ้มสะสมผลงาน (Portfolio)</a>
-            <a onclick="showPage('activities')">กิจกรรม (Activities)</a>
+            <a href="javascript:void(0)" onclick="showPage('home')">หน้าแรก (Profile)</a>
+            <a href="javascript:void(0)" onclick="showPage('portfolio')">แฟ้มสะสมผลงาน (Portfolio)</a>
+            <a href="javascript:void(0)" onclick="showPage('activities')">กิจกรรม (Activities)</a>
         </div>
     </nav>
 
@@ -506,9 +506,10 @@
     </div>
 
     <script>
+        // ประกาศตัวแปร Global
         var gpaxTimer = null;
 
-        // เปิด-ปิด เมนู 3 ขีด
+        // ฟังก์ชันเปิด-ปิด เมนู 3 ขีด
         function toggleMenu() {
             var menu = document.getElementById('navLinks');
             if (menu) {
@@ -516,7 +517,7 @@
             }
         }
 
-        // สลับหมวดหลัก
+        // ฟังก์ชันสลับหมวดหลัก
         function showPage(pageId) {
             var pages = document.querySelectorAll('.page');
             for (var i = 0; i < pages.length; i++) {
@@ -540,7 +541,7 @@
             }
         }
 
-        // สลับแท็บย่อยในหน้าเกียรติบัตร
+        // ฟังก์ชันสลับแท็บย่อยในหน้าเกียรติบัตร
         function switchCertTab(tabId, btnElement) {
             var tabs = document.querySelectorAll('.sub-tab-content');
             for (var i = 0; i < tabs.length; i++) {
@@ -561,38 +562,33 @@
             }
         }
 
-        // ฟังก์ชันนับ GPAX เสถียร 100%
+        // ฟังก์ชันนับ GPAX อนิเมชั่น (ปรับปรุงใหม่ให้ทำงานทันที)
         function animateGPAX() {
             var counter = document.getElementById('gpaxCounter');
             if(!counter) return;
             
             if(gpaxTimer) {
                 clearInterval(gpaxTimer);
-                gpaxTimer = null;
             }
             
             var target = 3.82;
             var current = 0.00;
+            var step = 0.06; // ปรับให้วิ่งเนียนขึ้น
+            
             counter.innerText = "0.00";
 
             gpaxTimer = setInterval(function() {
-                current += 0.12;
+                current += step;
                 if (current >= target) {
                     counter.innerText = "3.82";
                     clearInterval(gpaxTimer);
-                    gpaxTimer = null;
                 } else {
                     counter.innerText = current.toFixed(2);
                 }
-            }, 30);
+            }, 25);
         }
 
         // ฟังก์ชันดูเกียรติบัตรรูปใหญ่
         function openModal(imgSrc) {
             var img = document.getElementById('modalImage');
-            var modal = document.getElementById('imgModal');
-            if(img && modal) {
-                img.src = imgSrc;
-                modal.classList.add('active');
-            }
- 
+            var modal = document.ge
