@@ -27,7 +27,7 @@
         h2 { color: #0d47a1; margin-bottom: 20px; }
         p { font-size: 18px; line-height: 1.6; margin-bottom: 10px; }
         
-        /* Portfolio Item Style (กล่อง PLC เหลือแค่รายละเอียด) */
+        /* Portfolio Card Style */
         .portfolio-card {
             background: #f8f9fa;
             border: 1px solid #e0e0e0;
@@ -49,10 +49,33 @@
             margin-bottom: 10px;
         }
 
-        /* Portfolio Image Container (ส่วนแสดงรูปเกียรติบัตร) */
+        /* ปุ่ม/กรอบอัปโหลดรูปชั่วคราว */
+        .temp-upload-box {
+            margin-top: 15px;
+            padding: 15px;
+            border: 2px dashed #90caf9;
+            border-radius: 8px;
+            text-align: center;
+            background: #fff;
+        }
+        .temp-upload-box input {
+            display: none;
+        }
+        .upload-btn-label {
+            background: #1565c0;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        /* รูปภาพที่แสดงหลังอัปโหลด */
         .cert-image-container {
             margin-top: 15px;
             text-align: center;
+            display: none; /* ซ่อนไว้ก่อน พอยกเลิกอัปโหลดถึงจะโชว์ */
         }
         .cert-image-container img {
             max-width: 100%;
@@ -61,10 +84,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             border: 1px solid #ddd;
         }
-
-        /* Gallery สไตล์ทั่วไป */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin-top: 20px; }
-        .gallery img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
@@ -94,7 +113,7 @@
         <div id="portfolio" class="page">
             <h2>แฟ้มสะสมผลงาน (Portfolio)</h2>
 
-            <!-- รายการเกียรติบัตร PLC (มีเฉพาะรายละเอียด) -->
+            <!-- รายการเกียรติบัตร PLC -->
             <div class="portfolio-card">
                 <span class="badge">🏆 รางวัล / เกียรติบัตร</span>
                 <h3>GOOD PERFORMANCE PRIZE</h3>
@@ -103,9 +122,16 @@
                 <p><strong>สถานที่:</strong> มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ วิทยาเขตปราจีนบุรี</p>
                 <p><strong>วันที่:</strong> 13–14 ธันวาคม 2025</p>
 
-                <!-- แสดงรูปภาพเกียรติบัตรตรงนี้ (นำชื่อไฟล์รูปของคุณใส่ใน src ได้เลย) -->
-                <div class="cert-image-container">
-                    <img src="10270.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025">
+                <!-- ปุ่มอัปโหลดรูปชั่วคราว (กรอบนี้จะหายไปเมื่อกดเลือกรูป) -->
+                <div class="temp-upload-box" id="uploadBox">
+                    <p style="font-size: 14px; color: #666; margin-bottom: 8px;">แนบรูปภาพเกียรติบัตรชั่วคราว:</p>
+                    <label for="certInput" class="upload-btn-label">📷 เลือกรูปภาพเกียรติบัตร</label>
+                    <input type="file" id="certInput" accept="image/*" onchange="previewCertImage(event)">
+                </div>
+
+                <!-- พื้นที่แสดงรูปภาพ (จะแสดงเมื่อเลือกรูปแล้ว) -->
+                <div class="cert-image-container" id="certImageContainer">
+                    <img id="certImg" src="" alt="เกียรติบัตร PLC BATTLE THAILAND 2025">
                 </div>
             </div>
         </div>
@@ -130,6 +156,23 @@
             
             document.getElementById(pageId).classList.add('active');
             document.getElementById('navLinks').classList.remove('active');
+        }
+
+        // ฟังก์ชันแสดงรูปภาพและซ่อนกรอบอัปโหลด
+        function previewCertImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // ใส่รูปในแท็ก img
+                    document.getElementById('certImg').src = e.target.result;
+                    // แสดงพื้นที่รูปภาพ
+                    document.getElementById('certImageContainer').style.display = 'block';
+                    // ซ่อนกรอบปุ่มอัปโหลดออกไป
+                    document.getElementById('uploadBox').style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            }
         }
     </script>
 
