@@ -98,28 +98,44 @@
         /* Hero Header สำหรับหน้าแรก */
         .profile-hero {
             background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #2563eb 100%);
-            padding: 40px 20px 30px 20px;
+            padding: 45px 20px 35px 20px;
             text-align: center;
             color: white;
             position: relative;
         }
+
+        /* [ลูกเล่นที่ 1] Glowing & Pulse Profile */
         .profile-avatar-container {
             margin-bottom: 15px;
             display: inline-block;
             position: relative;
         }
+        .profile-avatar-container::before {
+            content: '';
+            position: absolute;
+            top: -6px; left: -6px; right: -6px; bottom: -6px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3b82f6, #60a5fa, #d97706);
+            z-index: 1;
+            opacity: 0.8;
+            filter: blur(8px);
+            animation: pulseGlow 3s infinite alternate;
+        }
         .profile-avatar {
-            width: 140px;
-            height: 140px;
+            width: 145px;
+            height: 145px;
             object-fit: cover;
             border-radius: 50%;
             border: 4px solid #ffffff;
+            position: relative;
+            z-index: 2;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
         }
         .profile-avatar:hover {
             transform: scale(1.05);
         }
+
         .hero-title {
             font-size: 24px;
             font-weight: 700;
@@ -133,7 +149,26 @@
             letter-spacing: 0.5px;
         }
 
-        /* Layout ข้อมูลส่วนตัว (Grid เล่นสีอ่อน-เข้ม) */
+        /* [ลูกเล่นที่ 2] Tag Badges สายเทค */
+        .hero-tags {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .tag-pill {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #e0f2fe;
+            font-weight: 600;
+        }
+
+        /* Layout ข้อมูลส่วนตัว */
         .profile-body {
             padding: 30px 20px;
         }
@@ -177,7 +212,7 @@
         .info-card.gold-light {
             background: #fffbeb;
             border-left: 5px solid #d97706;
-            grid-column: 1 / -1; /* ทอดยาวเต็มความกว้าง */
+            grid-column: 1 / -1;
             text-align: center;
         }
         .info-card:hover {
@@ -196,10 +231,13 @@
             font-weight: 600;
             color: #0f172a;
         }
+
+        /* [ลูกเล่นที่ 3] GPAX Counter Display */
         .gpax-value {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 800;
             color: #b45309;
+            letter-spacing: -0.5px;
         }
 
         /* Portfolio & Certificate Styles */
@@ -256,6 +294,7 @@
             color: #1e293b;
         }
 
+        /* [ลูกเล่นที่ 4] Interactive Certificate Frame */
         .cert-frame {
             margin-top: 15px;
             border-radius: 10px;
@@ -263,7 +302,25 @@
             border: 1px solid #cbd5e1;
             background: #f8fafc;
             padding: 8px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.25s ease;
+        }
+        .cert-frame::after {
+            content: '🔍 คลิกเพื่อดูภาพขยาย';
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(15, 23, 42, 0.8);
+            color: white;
+            font-size: 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .cert-frame:hover::after {
+            opacity: 1;
         }
         .cert-frame img {
             width: 100%;
@@ -272,10 +329,43 @@
             border-radius: 6px;
         }
 
+        /* Modal ซูมรูปเกียรติบัตร */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeIn 0.25s ease;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 25px;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseGlow {
+            from { opacity: 0.4; filter: blur(6px); }
+            to { opacity: 0.9; filter: blur(12px); }
         }
     </style>
 </head>
@@ -303,6 +393,13 @@
                 </div>
                 <h1 class="hero-title">นายพีรพัฒน์ ถาวรวัฒนเจริญ</h1>
                 <p class="hero-subtitle">Student at Banbueng "Utsahakramnukroh" School</p>
+                
+                <!-- Tag สายเทคโนโลยี -->
+                <div class="hero-tags">
+                    <span class="tag-pill">💻 CSE Program</span>
+                    <span class="tag-pill">⚙️ Instrumentation</span>
+                    <span class="tag-pill">🤖 Automation</span>
+                </div>
             </div>
 
             <!-- ส่วนข้อมูลส่วนตัว -->
@@ -322,7 +419,7 @@
 
                     <div class="info-card gold-light">
                         <div class="info-label">เกรดเฉลี่ยสะสม (GPAX)</div>
-                        <div class="gpax-value">3.82</div>
+                        <div class="gpax-value" id="gpaxCounter">0.00</div>
                     </div>
                 </div>
             </div>
@@ -344,7 +441,7 @@
                         <p class="card-details"><strong>สถานที่:</strong> โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
                         <p class="card-details"><strong>วันที่:</strong> 9–11 มกราคม พ.ศ. 2569</p>
 
-                        <div class="cert-frame">
+                        <div class="cert-frame" onclick="openModal('pic_20260907094652_0.jpg')">
                             <img src="pic_20260907094652_0.jpg" alt="เกียรติบัตร รางวัลชนะเลิศ Smart School">
                         </div>
                     </div>
@@ -361,7 +458,7 @@
                         <p class="card-details"><strong>สถานที่:</strong> มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ วิทยาเขตปราจีนบุรี</p>
                         <p class="card-details"><strong>วันที่:</strong> 13–14 ธันวาคม 2025</p>
 
-                        <div class="cert-frame">
+                        <div class="cert-frame" onclick="openModal('pic_20260907094120_0.jpg')">
                             <img src="pic_20260907094120_0.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025">
                         </div>
                     </div>
@@ -377,6 +474,12 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- Modal สำหรับแสดงเกียรติบัตรขยายใหญ่ -->
+    <div class="modal-overlay" id="imgModal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-img" id="modalImage" src="" alt="เกียรติบัตรขนาดใหญ่">
     </div>
 
     <script>
@@ -395,7 +498,45 @@
             
             document.getElementById('navLinks').classList.remove('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if(pageId === 'home') {
+                animateGPAX();
+            }
         }
+
+        // [ลูกเล่น] ฟังก์ชันนับ GPAX สไตล์ดิจิทัล
+        function animateGPAX() {
+            const counter = document.getElementById('gpaxCounter');
+            let target = 3.82;
+            let current = 0.00;
+            let step = 0.08;
+            
+            counter.innerText = "0.00";
+            let timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    counter.innerText = target.toFixed(2);
+                    clearInterval(timer);
+                } else {
+                    counter.innerText = current.toFixed(2);
+                }
+            }, 30);
+        }
+
+        // [ลูกเล่น] ฟังก์ชันดูเกียรติบัตรรูปใหญ่ (Modal)
+        function openModal(imgSrc) {
+            document.getElementById('modalImage').src = imgSrc;
+            document.getElementById('imgModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('imgModal').classList.remove('active');
+        }
+
+        // เรียกใช้อนิเมชันนับเกรดเมื่อโหลดหน้าครั้งแรก
+        window.onload = function() {
+            animateGPAX();
+        };
     </script>
 
 </body>
