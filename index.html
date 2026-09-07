@@ -382,9 +382,9 @@
         <div class="logo">PEERAPAT.PORTFOLIO</div>
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
         <div class="nav-links" id="navLinks">
-            <a href="javascript:void(0)" onclick="showPage('home')">หน้าแรก (Profile)</a>
-            <a href="javascript:void(0)" onclick="showPage('portfolio')">แฟ้มสะสมผลงาน (Portfolio)</a>
-            <a href="javascript:void(0)" onclick="showPage('activities')">กิจกรรม (Activities)</a>
+            <a onclick="showPage('home')">หน้าแรก (Profile)</a>
+            <a onclick="showPage('portfolio')">แฟ้มสะสมผลงาน (Portfolio)</a>
+            <a onclick="showPage('activities')">กิจกรรม (Activities)</a>
         </div>
     </nav>
 
@@ -421,7 +421,7 @@
 
                     <div class="info-card gold-light">
                         <div class="info-label">เกรดเฉลี่ยสะสม (GPAX)</div>
-                        <div class="gpax-value" id="gpaxCounter">3.82</div>
+                        <div class="gpax-value" id="gpaxCounter">0.00</div>
                     </div>
                 </div>
             </div>
@@ -511,7 +511,9 @@
         // เปิด-ปิด เมนู 3 ขีด
         function toggleMenu() {
             var menu = document.getElementById('navLinks');
-            if(menu) menu.classList.toggle('active');
+            if (menu) {
+                menu.classList.toggle('active');
+            }
         }
 
         // สลับหมวดหลัก
@@ -527,7 +529,10 @@
             }
             
             var menu = document.getElementById('navLinks');
-            if(menu) menu.classList.remove('active');
+            if(menu) {
+                menu.classList.remove('active');
+            }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             if(pageId === 'home') {
@@ -551,15 +556,20 @@
             if(targetTab) {
                 targetTab.classList.add('active');
             }
-            if(btnElement) btnElement.classList.add('active');
+            if(btnElement) {
+                btnElement.classList.add('active');
+            }
         }
 
-        // ฟังก์ชันนับ GPAX แบบปลอดภัย
+        // ฟังก์ชันนับ GPAX เสถียร 100%
         function animateGPAX() {
             var counter = document.getElementById('gpaxCounter');
             if(!counter) return;
             
-            if(gpaxTimer) clearInterval(gpaxTimer);
+            if(gpaxTimer) {
+                clearInterval(gpaxTimer);
+                gpaxTimer = null;
+            }
             
             var target = 3.82;
             var current = 0.00;
@@ -585,7 +595,4 @@
                 img.src = imgSrc;
                 modal.classList.add('active');
             }
-        }
-
-        function closeModal() {
-            var modal = document.getElementBy
+ 
