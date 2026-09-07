@@ -12,16 +12,19 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
         }
 
+        /* พื้นหลังแบบ Vibrant Gradient */
         body { 
-            background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%); 
-            color: #1e293b; 
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 35%, #0f766e 100%); 
+            color: #f8fafc; 
             min-height: 100vh;
+            background-attachment: fixed;
         }
 
-        /* Navbar แบบกระจกฝ้า (Glassmorphism) มีแสงเงา */
+        /* Navbar กระจกใสพร้อมโทนสีนีออน */
         .navbar { 
-            background: rgba(21, 101, 192, 0.95); 
-            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.75); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             color: white; 
             padding: 16px 24px; 
             display: flex; 
@@ -30,11 +33,15 @@
             position: sticky; 
             top: 0;
             z-index: 1000; 
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
         .logo { 
             font-size: 22px; 
-            font-weight: 700; 
+            font-weight: 800; 
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: 0.5px;
         }
         .menu-btn { 
@@ -42,7 +49,7 @@
             cursor: pointer; 
             background: none; 
             border: none; 
-            color: white; 
+            color: #38bdf8; 
             transition: transform 0.2s ease;
         }
         .menu-btn:active {
@@ -53,109 +60,150 @@
             position: absolute; 
             top: 100%; 
             right: 15px; 
-            background: #0d47a1; 
+            background: rgba(30, 27, 75, 0.95); 
+            backdrop-filter: blur(10px);
             width: 220px; 
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
-            transform-origin: top right;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
             animation: fadeIn 0.3s ease;
         }
         .nav-links.active { display: block; }
         .nav-links a { 
-            color: white; 
+            color: #e2e8f0; 
             padding: 14px 20px; 
             display: block; 
             text-decoration: none; 
-            border-bottom: 1px solid rgba(255,255,255,0.08); 
-            transition: background 0.2s ease;
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            transition: all 0.2s ease;
         }
-        .nav-links a:hover { background: #1565c0; }
+        .nav-links a:hover { 
+            background: linear-gradient(90deg, #4f46e5, #06b6d4); 
+            color: white; 
+        }
 
-        /* Container หลักพร้อมการ์ดแบบมีมิติ */
+        /* Container & Page Cards แบบลอยใส */
         .container { 
             padding: 40px 15px; 
             max-width: 850px; 
             margin: 0 auto; 
         }
 
-        /* โครงสร้างหน้า และแอนิเมชั่นเปลี่ยนหน้า */
         .page { 
             display: none; 
-            background: #ffffff; 
-            border-radius: 16px; 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05); 
+            background: rgba(255, 255, 255, 0.95); 
+            border-radius: 20px; 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); 
             padding: 35px 25px; 
             text-align: center; 
+            color: #1e293b;
         }
         .page.active { 
             display: block; 
             animation: slideUpFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
         }
 
-        /* หัวข้อ */
-        h1 { color: #1565c0; margin-bottom: 18px; font-size: 26px; }
-        h2 { color: #0d47a1; margin-bottom: 25px; font-size: 24px; position: relative; display: inline-block; }
+        /* หัวข้อสีสดใส */
+        h1 { 
+            background: linear-gradient(135deg, #4f46e5, #0284c7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 18px; 
+            font-size: 28px; 
+            font-weight: 800;
+        }
+        h2 { 
+            background: linear-gradient(135deg, #0284c7, #0d9488);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px; 
+            font-size: 24px; 
+            font-weight: 800;
+            position: relative; 
+            display: inline-block; 
+        }
         h2::after {
             content: '';
             display: block;
-            width: 50%;
+            width: 60%;
             height: 4px;
-            background: #1565c0;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
             margin: 6px auto 0;
             border-radius: 2px;
         }
-        p { font-size: 17px; line-height: 1.7; color: #475569; margin-bottom: 12px; }
+        p { font-size: 17px; line-height: 1.7; color: #334155; margin-bottom: 12px; }
         
-        /* Portfolio Cards มีเงาลึกตื้น และลอยขึ้นเมื่อชี้ */
+        /* Portfolio Cards หลากสีสัน */
         .portfolio-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
-            border-radius: 14px;
+            border-radius: 16px;
             padding: 24px;
             margin-bottom: 30px;
             text-align: left;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
         }
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 6px; height: 100%;
+            background: linear-gradient(to bottom, #38bdf8, #818cf8);
+        }
+        .portfolio-card.gold-border::before {
+            background: linear-gradient(to bottom, #f59e0b, #ef4444);
+        }
+        
         .portfolio-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 16px 32px rgba(21, 101, 192, 0.12);
+            box-shadow: 0 16px 32px rgba(99, 102, 241, 0.2);
             border-color: #cbd5e1;
         }
-        .portfolio-card h3 { color: #0f172a; margin-bottom: 10px; font-size: 20px; }
-        .portfolio-card p { font-size: 15px; margin-bottom: 6px; color: #64748b; }
+        .portfolio-card h3 { color: #0f172a; margin-bottom: 10px; font-size: 20px; font-weight: 700; }
+        .portfolio-card p { font-size: 15px; margin-bottom: 6px; color: #475569; }
         
+        /* Badges สีกระแทกตา */
         .badge {
             display: inline-block;
-            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
-            color: #0369a1;
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 13px;
             font-weight: 700;
             margin-bottom: 12px;
-            box-shadow: 0 2px 6px rgba(3, 105, 161, 0.15);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+        }
+        .badge-gold {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #b45309;
+            border: 1px solid #fcd34d;
+        }
+        .badge-blue {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            color: #0369a1;
+            border: 1px solid #7dd3fc;
         }
 
-        /* รูปภาพเกียรติบัตรลอยตัวพร้อมมิติ */
+        /* รูปภาพเกียรติบัตรมีกรอบสีเรืองแสง */
         .cert-image-container {
             margin-top: 20px;
             text-align: center;
             overflow: hidden;
-            border-radius: 10px;
+            border-radius: 12px;
         }
         .cert-image-container img {
             max-width: 100%;
             height: auto;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-            border: 1px solid #f1f5f9;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e2e8f0;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
         .cert-image-container img:hover {
             transform: scale(1.02);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.25);
         }
 
         /* Keyframe Animations */
@@ -194,8 +242,8 @@
             <h1>ยินดีต้อนรับสู่โปรไฟล์ของฉัน 👋</h1>
             <p>สวัสดีครับ! ผมชื่อ <strong>พีรพัฒน์ ถาวรวัฒนเจริญ</strong></p>
             <p>นักเรียนโรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
-            <p>แผนการเรียน: <strong>CSE (Computer Science & Engineering)</strong></p>
-            <p>เกรดเฉลี่ยสะสม (GPAX): <strong>3.82</strong></p>
+            <p>แผนการเรียน: <strong style="color: #4f46e5;">CSE (Computer Science & Engineering)</strong></p>
+            <p>เกรดเฉลี่ยสะสม (GPAX): <strong style="color: #0d9488;">3.82</strong></p>
         </div>
 
         <!-- หน้าที่ 1: แฟ้มสะสมผลงาน -->
@@ -203,8 +251,8 @@
             <h2>แฟ้มสะสมผลงาน (Portfolio)</h2>
 
             <!-- รายการที่ 1: รางวัลชนะเลิศ Smart School -->
-            <div class="portfolio-card">
-                <span class="badge">🥇 รางวัลชนะเลิศ</span>
+            <div class="portfolio-card gold-border">
+                <span class="badge badge-gold">🥇 รางวัลชนะเลิศ</span>
                 <h3>การประกวดนวัตกรรมและเทคโนโลยี แก้ปัญหา Smart School</h3>
                 <p><strong>โครงการ:</strong> ค่ายพัฒนานวัตกรรมและเทคโนโลยี ครั้งที่ 5</p>
                 <p><strong>สถานที่:</strong> โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
@@ -217,7 +265,7 @@
 
             <!-- รายการที่ 2: PLC BATTLE THAILAND 2025 -->
             <div class="portfolio-card">
-                <span class="badge">🏆 รางวัล / เกียรติบัตร</span>
+                <span class="badge badge-blue">🏆 รางวัล / เกียรติบัตร</span>
                 <h3>GOOD PERFORMANCE PRIZE</h3>
                 <p><strong>รายการ:</strong> PLC BATTLE THAILAND 2025</p>
                 <p><strong>หน่วยงานที่จัด:</strong> CEITA, KMUTNB ร่วมกับ Schneider Electric & TIA</p>
@@ -233,7 +281,7 @@
         <!-- หน้าที่ 2: กิจกรรมที่เข้าร่วม -->
         <div id="activities" class="page">
             <h2>กิจกรรมที่เข้าร่วม (Activities)</h2>
-            <p style="color: #94a3b8; font-size: 16px;">ยังไม่มีข้อมูลกิจกรรม</p>
+            <p style="color: #64748b; font-size: 16px;">ยังไม่มีข้อมูลกิจกรรม</p>
         </div>
     </div>
 
@@ -248,7 +296,6 @@
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
             
-            // Re-trigger animation
             const targetPage = document.getElementById(pageId);
             targetPage.classList.add('active');
             
