@@ -12,7 +12,7 @@
         .navbar { background: #1565c0; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: relative; }
         .logo { font-size: 20px; font-weight: bold; }
         .menu-btn { font-size: 24px; cursor: pointer; background: none; border: none; color: white; }
-        .nav-links { display: none; position: absolute; top: 100%; right: 0; background: #0d47a1; width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        .nav-links { display: none; position: absolute; top: 100%; right: 0; background: #0d47a1; width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 100; }
         .nav-links.active { display: block; }
         .nav-links a { color: white; padding: 12px 20px; display: block; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .nav-links a:hover { background: #1565c0; }
@@ -27,6 +27,28 @@
         h2 { color: #0d47a1; margin-bottom: 20px; }
         p { font-size: 18px; line-height: 1.6; margin-bottom: 10px; }
         
+        /* Portfolio Item Style */
+        .portfolio-card {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .portfolio-card h3 { color: #1565c0; margin-bottom: 8px; font-size: 20px; }
+        .portfolio-card p { font-size: 16px; margin-bottom: 6px; color: #555; }
+        .badge {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
         /* Upload & Gallery */
         .upload-section { margin-bottom: 25px; padding: 15px; border: 2px dashed #90caf9; border-radius: 8px; }
         .upload-btn { background: #1565c0; color: white; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; }
@@ -36,6 +58,7 @@
 </head>
 <body>
 
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">Peerapat's Site</div>
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
@@ -47,6 +70,7 @@
     </nav>
 
     <div class="container">
+        <!-- หน้าแรก (Home) -->
         <div id="home" class="page active">
             <h1>ยินดีต้อนรับสู่โปรไฟล์ของฉัน 👋</h1>
             <p>สวัสดีครับ! ผมชื่อ <strong>พีรพัฒน์ ถาวรวัฒนเจริญ</strong></p>
@@ -55,9 +79,22 @@
             <p>เกรดเฉลี่ยสะสม (GPAX): <strong>3.82</strong></p>
         </div>
 
+        <!-- หน้าที่ 1: แฟ้มสะสมผลงาน -->
         <div id="portfolio" class="page">
             <h2>แฟ้มสะสมผลงาน (Portfolio)</h2>
+
+            <!-- รายการเกียรติบัตร -->
+            <div class="portfolio-card">
+                <span class="badge">🏆 รางวัล / เกียรติบัตร</span>
+                <h3>GOOD PERFORMANCE PRIZE — PLC BATTLE THAILAND 2025</h3>
+                <p><strong>หน่วยงานที่จัด:</strong> Center of Excellence on Instrumentation Technology and Automation (CEITA), KMUTNB ร่วมกับ Schneider Electric & TIA</p>
+                <p><strong>สถานที่:</strong> มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ วิทยาเขตปราจีนบุรี</p>
+                <p><strong>วันที่:</strong> 13–14 ธันวาคม 2025</p>
+            </div>
+
+            <!-- ส่วนอัปโหลดรูปเพิ่มเติม -->
             <div class="upload-section">
+                <p style="font-size: 15px; color: #666;">อัปโหลดรูปภาพเกียรติบัตรหรือผลงานเพิ่มเติม:</p>
                 <input type="file" id="portInput" accept="image/*" multiple>
                 <br>
                 <button class="upload-btn" onclick="uploadImages('portInput', 'portGallery')">อัปโหลดรูปผลงาน</button>
@@ -65,9 +102,11 @@
             <div class="gallery" id="portGallery"></div>
         </div>
 
+        <!-- หน้าที่ 2: กิจกรรมที่เข้าร่วม -->
         <div id="activities" class="page">
             <h2>กิจกรรมที่เข้าร่วม (Activities)</h2>
             <div class="upload-section">
+                <p style="font-size: 15px; color: #666;">อัปโหลดรูปกิจกรรม:</p>
                 <input type="file" id="actInput" accept="image/*" multiple>
                 <br>
                 <button class="upload-btn" onclick="uploadImages('actInput', 'actGallery')">อัปโหลดรูปกิจกรรม</button>
@@ -82,7 +121,7 @@
             document.getElementById('navLinks').classList.toggle('active');
         }
 
-        // สลับหน้า (Home, Portfolio, Activities)
+        // สลับหน้า
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
@@ -106,7 +145,7 @@
                     }
                     reader.readAsDataURL(file);
                 });
-                input.value = ''; // เคลียร์ไฟล์หลังอัปโหลด
+                input.value = '';
             }
         }
     </script>
