@@ -475,7 +475,23 @@
 
                 <!-- หน้าเกียรติบัตรอบรม -->
                 <div id="trainTab" class="sub-tab-content">
-                    <p style="color: #64748b; font-size: 15px; text-align: center; padding: 40px 0;">ยังไม่มีข้อมูลเกียรติบัตรการอบรม</p>
+                    <!-- รายการที่ 1: CiRA CORE -->
+                    <div class="portfolio-card">
+                        <div class="card-header-badge badge-blue-bg">
+                            <span>📜 Certificate of Attendance</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Fabrication Laboratory: CiRA CORE (7 Hours)</h3>
+                            <p class="card-details"><strong>หน่วยงานที่จัด:</strong> EEC Automation Park</p>
+                            <p class="card-details"><strong>สถานที่:</strong> EEC Automation Park (มหาวิทยาลัยบูรพา)</p>
+                            <p class="card-details"><strong>วันที่:</strong> 23 สิงหาคม 2025</p>
+
+                            <!-- กดที่รูปเพื่อขยาย ใช้ชื่อไฟล์ 10296.png -->
+                            <div class="cert-frame" onclick="openModal('10296.png')">
+                                <img src="10296.png" alt="เกียรติบัตร Fabrication Laboratory: CiRA CORE">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -567,26 +583,4 @@
 
         // ฟังก์ชันดูเกียรติบัตรรูปใหญ่
         function openModal(imgSrc) {
-            var img = document.getElementById('modalImage');
-            var modal = document.getElementById('imgModal');
-            if(img && modal) {
-                img.src = imgSrc;
-                modal.classList.add('active');
-            }
-        }
-
-        function closeModal() {
-            var modal = document.getElementById('imgModal');
-            if(modal) {
-                modal.classList.remove('active');
-            }
-        }
-
-        // เริ่มต้นนับเกรดเมื่อโหลดหน้าเว็บ
-        window.onload = function() {
-            animateGPAX();
-        };
-    </script>
-
-</body>
-</html>
+            var img = document.getElementById('moda
