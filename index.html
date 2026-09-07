@@ -58,9 +58,7 @@
             text-align: center;
             background: #fff;
         }
-        .temp-upload-box input {
-            display: none;
-        }
+        .temp-upload-box input { display: none; }
         .upload-btn-label {
             background: #1565c0;
             color: white;
@@ -75,7 +73,7 @@
         .cert-image-container {
             margin-top: 15px;
             text-align: center;
-            display: none; /* ซ่อนไว้ก่อน พอยกเลิกอัปโหลดถึงจะโชว์ */
+            display: none;
         }
         .cert-image-container img {
             max-width: 100%;
@@ -83,6 +81,16 @@
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             border: 1px solid #ddd;
+        }
+        .remove-btn {
+            background: #e53935;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 8px;
         }
     </style>
 </head>
@@ -122,16 +130,18 @@
                 <p><strong>สถานที่:</strong> มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ วิทยาเขตปราจีนบุรี</p>
                 <p><strong>วันที่:</strong> 13–14 ธันวาคม 2025</p>
 
-                <!-- ปุ่มอัปโหลดรูปชั่วคราว (กรอบนี้จะหายไปเมื่อกดเลือกรูป) -->
+                <!-- ปุ่มอัปโหลดรูป (จะซ่อนตัวเมื่อมีรูปแล้ว) -->
                 <div class="temp-upload-box" id="uploadBox">
-                    <p style="font-size: 14px; color: #666; margin-bottom: 8px;">แนบรูปภาพเกียรติบัตรชั่วคราว:</p>
+                    <p style="font-size: 14px; color: #666; margin-bottom: 8px;">แนบรูปภาพเกียรติบัตร (จะล็อกไว้ถาวร):</p>
                     <label for="certInput" class="upload-btn-label">📷 เลือกรูปภาพเกียรติบัตร</label>
-                    <input type="file" id="certInput" accept="image/*" onchange="previewCertImage(event)">
+                    <input type="file" id="certInput" accept="image/*" onchange="previewAndSaveCertImage(event)">
                 </div>
 
-                <!-- พื้นที่แสดงรูปภาพ (จะแสดงเมื่อเลือกรูปแล้ว) -->
+                <!-- พื้นที่แสดงรูปภาพ -->
                 <div class="cert-image-container" id="certImageContainer">
                     <img id="certImg" src="" alt="เกียรติบัตร PLC BATTLE THAILAND 2025">
+                    <br>
+                    <button class="remove-btn" onclick="removeCertImage()">🗑️ ลบ/เปลี่ยนรูปภาพ</button>
                 </div>
             </div>
         </div>
@@ -144,6 +154,16 @@
     </div>
 
     <script>
+        // โหลดรูปภาพที่บันทึกไว้เมื่อเปิดหน้าเว็บขึ้นมา
+        window.onload = function() {
+            const savedImage = localStorage.getItem('savedCertImage');
+            if (savedImage) {
+                document.getElementById('certImg').src = savedImage;
+                document.getElementById('certImageContainer').style.display = 'block';
+                document.getElementById('uploadBox').style.display = 'none';
+            }
+        };
+
         // เปิด-ปิด เมนู 3 ขีด
         function toggleMenu() {
             document.getElementById('navLinks').classList.toggle('active');
@@ -158,20 +178,32 @@
             document.getElementById('navLinks').classList.remove('active');
         }
 
-        // ฟังก์ชันแสดงรูปภาพและซ่อนกรอบอัปโหลด
-        function previewCertImage(event) {
+        // บันทึกรูปภาพลง localStorage และแสดงผล
+        function previewAndSaveCertImage(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    // ใส่รูปในแท็ก img
-                    document.getElementById('certImg').src = e.target.result;
-                    // แสดงพื้นที่รูปภาพ
+                    const imageData = e.target.result;
+                    // บันทึกลงเบราว์เซอร์
+                    localStorage.setItem('savedCertImage', imageData);
+                    // แสดงรูปและซ่อนกรอบอัปโหลด
+                    document.getElementById('certImg').src = imageData;
                     document.getElementById('certImageContainer').style.display = 'block';
-                    // ซ่อนกรอบปุ่มอัปโหลดออกไป
                     document.getElementById('uploadBox').style.display = 'none';
                 }
                 reader.readAsDataURL(file);
+            }
+        }
+
+        // ลบรูปภาพออกจาก localStorage
+        function removeCertImage() {
+            if (confirm('คุณต้องการลบหรือเปลี่ยนรูปภาพเกียรติบัตรใช่หรือไม่?')) {
+                localStorage.removeItem('savedCertImage');
+                document.getElementById('certImg').src = '';
+                document.getElementById('certImageContainer').style.display = 'none';
+                document.getElementById('uploadBox').style.display = 'block';
+                document.getElementById('certInput').value = '';
             }
         }
     </script>
