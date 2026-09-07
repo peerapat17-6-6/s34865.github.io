@@ -2,36 +2,114 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <title>หน้าแนะนำตัวของฉัน</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรไฟล์ของพีรพัฒน์</title>
     <style>
-        body {
-            background-color: #e3f2fd;
-            color: #333;
-            text-align: center;
-            padding: 50px;
-        }
-        .card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 30px;
-        }
-        h1 { color: #1565c0; }
-        p { font-size: 18px; line-height: 1.6; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #e3f2fd; color: #333; }
+
+        /* Navbar & Menu */
+        .navbar { background: #1565c0; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: relative; }
+        .logo { font-size: 20px; font-weight: bold; }
+        .menu-btn { font-size: 24px; cursor: pointer; background: none; border: none; color: white; }
+        .nav-links { display: none; position: absolute; top: 100%; right: 0; background: #0d47a1; width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        .nav-links.active { display: block; }
+        .nav-links a { color: white; padding: 12px 20px; display: block; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-links a:hover { background: #1565c0; }
+
+        /* Container & Page Views */
+        .container { padding: 30px 15px; max-width: 800px; margin: 0 auto; }
+        .page { display: none; background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 30px; text-align: center; }
+        .page.active { display: block; }
+
+        /* General Styling */
+        h1 { color: #1565c0; margin-bottom: 15px; }
+        h2 { color: #0d47a1; margin-bottom: 20px; }
+        p { font-size: 18px; line-height: 1.6; margin-bottom: 10px; }
+        
+        /* Upload & Gallery */
+        .upload-section { margin-bottom: 25px; padding: 15px; border: 2px dashed #90caf9; border-radius: 8px; }
+        .upload-btn { background: #1565c0; color: white; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin-top: 20px; }
+        .gallery img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>ยินดีต้อนรับสู่โปรไฟล์ของฉัน 👋</h1>
-        <p>สวัสดีครับ! ผมชื่อ <strong>พีรพัฒน์ (Peerapat)</strong></p>
-        <p>ขณะนี้กำลังศึกษา/สนใจด้าน Computer Science & Engineering</p>
-        <p>นี่คือเว็บไซต์แรกของผมที่โฮสต์บน GitHub Pages!</p>
-        
-        <a href="portfolio.html" style="display:inline-block; background:#3498db; color:white; padding:10px 20px; text-decoration:none; border-radius:5px; margin-top:15px;">👉 ดูแฟ้มสะสมงานของผม</a>
+    <nav class="navbar">
+        <div class="logo">Peerapat's Site</div>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="#" onclick="showPage('home')">หน้าแรก</a>
+            <a href="#" onclick="showPage('portfolio')">แฟ้มสะสมผลงาน</a>
+            <a href="#" onclick="showPage('activities')">กิจกรรมที่เข้าร่วม</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="home" class="page active">
+            <h1>ยินดีต้อนรับสู่โปรไฟล์ของฉัน 👋</h1>
+            <p>สวัสดีครับ! ผมชื่อ <strong>พีรพัฒน์ ถาวรวัฒนเจริญ</strong></p>
+            <p>นักเรียนโรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
+            <p>แผนการเรียน: <strong>CSE (Computer Science & Engineering)</strong></p>
+            <p>เกรดเฉลี่ยสะสม (GPAX): <strong>3.82</strong></p>
+        </div>
+
+        <div id="portfolio" class="page">
+            <h2>แฟ้มสะสมผลงาน (Portfolio)</h2>
+            <div class="upload-section">
+                <input type="file" id="portInput" accept="image/*" multiple>
+                <br>
+                <button class="upload-btn" onclick="uploadImages('portInput', 'portGallery')">อัปโหลดรูปผลงาน</button>
+            </div>
+            <div class="gallery" id="portGallery"></div>
+        </div>
+
+        <div id="activities" class="page">
+            <h2>กิจกรรมที่เข้าร่วม (Activities)</h2>
+            <div class="upload-section">
+                <input type="file" id="actInput" accept="image/*" multiple>
+                <br>
+                <button class="upload-btn" onclick="uploadImages('actInput', 'actGallery')">อัปโหลดรูปกิจกรรม</button>
+            </div>
+            <div class="gallery" id="actGallery"></div>
+        </div>
     </div>
+
+    <script>
+        // เปิด-ปิด เมนู 3 ขีด
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // สลับหน้า (Home, Portfolio, Activities)
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            document.getElementById(pageId).classList.add('active');
+            document.getElementById('navLinks').classList.remove('active');
+        }
+
+        // ระบบแสดงรูปภาพที่อัปโหลด
+        function uploadImages(inputId, galleryId) {
+            const input = document.getElementById(inputId);
+            const gallery = document.getElementById(galleryId);
+
+            if (input.files) {
+                Array.from(input.files).forEach(file => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        gallery.appendChild(img);
+                    }
+                    reader.readAsDataURL(file);
+                });
+                input.value = ''; // เคลียร์ไฟล์หลังอัปโหลด
+            }
+        }
+    </script>
 
 </body>
 </html>
