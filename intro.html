@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คำนำ - โปรไฟล์ของพีรพัฒน์</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); color: #1e293b; min-height: 100vh; }
+        
+        /* Navbar */
+        .navbar { background: linear-gradient(90deg, #0f172a 0%, #1e3a8a 100%); color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.2); }
+        .logo { font-size: 18px; font-weight: 800; letter-spacing: 1px; color: #ffffff; text-transform: uppercase; }
+        .menu-btn { font-size: 24px; cursor: pointer; background: none; border: none; color: #ffffff; padding: 5px 10px; }
+        .nav-links { display: none; position: absolute; top: 100%; right: 15px; background: #0f172a; width: 230px; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.3); border: 1px solid #334155; }
+        .nav-links.active { display: block !important; }
+        .nav-links a { color: #f8fafc; padding: 14px 20px; display: block; text-decoration: none; border-bottom: 1px solid #1e293b; transition: all 0.2s ease; font-size: 15px; }
+        .nav-links a:hover { background: #2563eb; color: #ffffff; padding-left: 25px; }
+        
+        /* Container & Page */
+        .container { padding: 25px 15px 50px 15px; max-width: 850px; margin: 0 auto; }
+        .page { background: #ffffff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); overflow: hidden; border: 1px solid #cbd5e1; animation: fadeIn 0.4s ease-out forwards; }
+        .content-body { padding: 35px 30px; }
+        .section-title { font-size: 24px; color: #0f172a; font-weight: 700; margin-bottom: 25px; text-align: center; position: relative; }
+        .section-title::after { content: ''; display: block; width: 50px; height: 4px; background: #2563eb; margin: 8px auto 0; border-radius: 2px; }
+        
+        /* Typography */
+        .text-content { color: #334155; line-height: 1.8; font-size: 16px; margin-bottom: 15px; text-align: justify; text-indent: 2.5em; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">PORTFOLIO</div>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">หน้าแรก</a>
+            <a href="intro.html">คำนำ</a>
+            <a href="profile.html">ประวัติส่วนตัว</a>
+            <a href="education.html">การศึกษา</a>
+            <a href="activities.html">กิจกรรมและผลงาน</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page">
+            <div class="content-body">
+                <h2 class="section-title">คำนำ</h2>
+                
+                <p class="text-content">
+                    แฟ้มสะสมผลงาน (Portfolio) เล่มนี้ ข้าพเจ้าจัดทำขึ้นเพื่อเป็นเอกสารนำเสนอข้อมูลเกี่ยวกับประวัติส่วนตัว ประวัติการศึกษา ความรู้ ความสามารถ ทักษะ ตลอดจนกิจกรรมและผลงานที่สะท้อนถึงความมุ่งมั่นและความสนใจของข้าพเจ้า เพื่อใช้ประกอบการพิจารณาคัดเลือกเข้าศึกษาต่อในระดับปริญญาตรี <strong>ภาควิชาวิศวกรรมเครื่องมือวัดและอัตโนมัติ (INAE) มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ วิทยาเขตปราจีนบุรี</strong>
+                </p>
+                
+                <p class="text-content">
+                    ด้วยความสนใจอย่างลึกซึ้งในด้านเทคโนโลยีระบบอัตโนมัติ การควบคุม และการใช้เครื่องมือวัดอุตสาหกรรม ข้าพเจ้าจึงมีความมุ่งมั่นที่จะพัฒนาตนเองในสายวิชาชีพนี้ ข้าพเจ้าเชื่อมั่นว่าภาควิชา INAE ของ มจพ. วิทยาเขตปราจีนบุรี ซึ่งมีความเป็นเลิศทางด้านวิศวกรรมปฏิบัติการ จะเป็นสถานที่ที่ช่วยหล่อหลอมและมอบประสบการณ์อันล้ำค่า เพื่อให้ข้าพเจ้าก้าวไปสู่วิศวกรที่มีคุณภาพและสามารถสร้างสรรค์นวัตกรรมที่เป็นประโยชน์ต่อภาคอุตสาหกรรมในอนาคต
+                </p>
+                
+                <p class="text-content" style="margin-bottom: 40px;">
+                    ข้าพเจ้าขอขอบพระคุณ คุณครู คณาจารย์ ครอบครัว และเพื่อนๆ ที่คอยให้คำแนะนำ สนับสนุน และเป็นแรงผลักดันในการสร้างสรรค์ผลงานต่างๆ ให้สำเร็จลุล่วงด้วยดี ข้าพเจ้าหวังเป็นอย่างยิ่งว่าแฟ้มสะสมผลงานเล่มนี้ จะทำให้คณะกรรมการทุกท่านได้เห็นถึงศักยภาพ ความตั้งใจจริง และความเหมาะสมของข้าพเจ้าในการเข้าศึกษาต่อในสถาบันแห่งนี้
+                </p>
+                
+                <div style="text-align: right; color: #0f172a; padding-right: 20px;">
+                    <p>จัดทำโดย</p>
+                    <p style="font-weight: 700; margin-top: 5px; font-size: 17px;">นายพีรพัฒน์ ถาวรวัฒนเจริญ</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
