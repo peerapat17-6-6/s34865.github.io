@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ประวัติส่วนตัว - PORTFOLIO</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #030712; color: #e2e8f0; min-height: 100vh; background-image: radial-gradient(circle at center, #0f172a 0%, #030712 100%); }
+        
+        .navbar { background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 240, 255, 0.3); padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 30px rgba(0, 240, 255, 0.1); }
+        .logo { font-size: 20px; font-weight: 900; letter-spacing: 2px; color: #fff; text-shadow: 0 0 10px #00f0ff; }
+        .menu-btn { font-size: 24px; cursor: pointer; background: none; border: none; color: #00f0ff; }
+        .nav-links { display: none; position: absolute; top: 100%; right: 15px; background: rgba(10, 15, 30, 0.95); width: 230px; border-radius: 8px; border: 1px solid #00f0ff; box-shadow: 0 0 20px rgba(0,240,255,0.2); backdrop-filter: blur(10px); }
+        .nav-links.active { display: block; }
+        .nav-links a { color: #cbd5e1; padding: 15px 20px; display: block; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        .nav-links a:hover { background: rgba(0, 240, 255, 0.1); color: #00f0ff; padding-left: 25px; }
+
+        .container { padding: 40px 15px; max-width: 850px; margin: 0 auto; position: relative; z-index: 1; }
+        
+        /* กรอบขอบไล่สี แดง - น้ำเงิน - ฟ้า (Red & Blue Gradient Glow) */
+        .tech-box-wrapper { 
+            position: relative; 
+            border-radius: 16px; 
+            padding: 2px; 
+            background: linear-gradient(135deg, #ff0055, #00f0ff, #0055ff, #ff0055); 
+            background-size: 300% 300%; 
+            animation: redBlueGlow 6s linear infinite; 
+            margin-bottom: 30px;
+        }
+        
+        .tech-box { 
+            background: rgba(10, 15, 30, 0.92); 
+            backdrop-filter: blur(12px); 
+            border-radius: 14px; 
+            padding: 35px 30px; 
+            position: relative; 
+            z-index: 2; 
+        }
+        
+        @keyframes redBlueGlow {
+            0% { background-position: 0% 50%; box-shadow: 0 0 20px rgba(255, 0, 85, 0.4); }
+            50% { background-position: 100% 50%; box-shadow: 0 0 25px rgba(0, 240, 255, 0.5); }
+            100% { background-position: 0% 50%; box-shadow: 0 0 20px rgba(255, 0, 85, 0.4); }
+        }
+
+        .section-title { font-size: 24px; color: #00f0ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; text-shadow: 0 0 10px rgba(0,240,255,0.5); display: flex; align-items: center; }
+        .section-title::before { content: '>> '; color: #ff0055; margin-right: 10px; animation: blink 1s infinite; text-shadow: 0 0 8px #ff0055; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Grid จัดเรียงข้อมูล */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-bottom: 10px; }
+        
+        .info-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-left: 3px solid #00f0ff;
+            padding: 16px 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .info-card:hover {
+            border-color: #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .info-label { font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+        .info-value { font-size: 18px; color: #fff; font-weight: 600; }
+        .highlight { color: #00f0ff; text-shadow: 0 0 8px rgba(0, 240, 255, 0.5); }
+        
+        /* สไตล์สำหรับการ์ดการศึกษา */
+        .edu-timeline { display: flex; flex-direction: column; gap: 15px; }
+        .edu-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 0, 85, 0.2);
+            border-left: 3px solid #ff0055;
+            padding: 18px 22px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            transition: 0.3s;
+        }
+        .edu-card:hover {
+            border-color: #ff0055;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.25);
+            transform: translateY(-2px);
+        }
+        .edu-level { font-size: 12px; color: #ff0055; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+        .edu-school { font-size: 17px; color: #fff; font-weight: 600; margin-top: 4px; }
+        .gpax-badge {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid #00f0ff;
+            color: #00f0ff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(0,240,255,0.5);
+            box-shadow: 0 0 10px rgba(0,240,255,0.15);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">PORTFOLIO</div>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">🌌 หน้าแรก</a>
+            <a href="intro.html">📖 คำนำ</a>
+            <a href="profile.html">💎 ประวัติส่วนตัว</a>
+            <a href="education.html">🎓 การศึกษา</a>
+            <a href="activities.html">✨ กิจกรรมและผลงาน</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- กล่องข้อมูลส่วนตัว -->
+        <div class="tech-box-wrapper">
+            <div class="tech-box">
+                <h2 class="section-title">PERSONAL INFORMATION</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-label">Full Name (ชื่อ-นามสกุล)</div>
+                        <div class="info-value">นายพีรพัฒน์ ถาวรวัฒนเจริญ</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Nationality (เชื้อชาติ)</div>
+                        <div class="info-value">ไทย (Thai)</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Blood Type (หมู่เลือด)</div>
+                        <div class="info-value highlight">B</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Target Field (เป้าหมายการศึกษา)</div>
+                        <div class="info-value">วิศวกรรมเครื่องมือวัดและอัตโนมัติ (INAE)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- กล่องประวัติการศึกษา -->
+        <div class="tech-box-wrapper">
+            <div class="tech-box">
+                <h2 class="section-title">EDUCATION HISTORY</h2>
+                <div class="edu-timeline">
+                    
+                    <div class="edu-card">
+                        <div>
+                            <div class="edu-level">Primary School (ระดับประถมศึกษา)</div>
+                            <div class="edu-school">โรงเรียนบุญประทีปวิทยาคาร</div>
+                        </div>
+                        <div class="gpax-badge">GPAX 4.00</div>
+                    </div>
+
+                    <div class="edu-card">
+                        <div>
+                            <div class="edu-level">Junior High School (ระดับมัธยมศึกษาตอนต้น)</div>
+                            <div class="edu-school">โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</div>
+                        </div>
+                        <div class="gpax-badge">GPAX 3.92</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }</script>
+</body>
+</html>
