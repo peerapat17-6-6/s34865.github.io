@@ -7,8 +7,6 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); color: #1e293b; min-height: 100vh; }
-        
-        /* Navbar */
         .navbar { background: linear-gradient(90deg, #0f172a 0%, #1e3a8a 100%); color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.2); }
         .logo { font-size: 18px; font-weight: 800; letter-spacing: 1px; color: #ffffff; text-transform: uppercase; }
         .menu-btn { font-size: 24px; cursor: pointer; background: none; border: none; color: #ffffff; padding: 5px 10px; }
@@ -16,60 +14,47 @@
         .nav-links.active { display: block !important; }
         .nav-links a { color: #f8fafc; padding: 14px 20px; display: block; text-decoration: none; border-bottom: 1px solid #1e293b; transition: all 0.2s ease; font-size: 15px; }
         .nav-links a:hover { background: #2563eb; color: #ffffff; padding-left: 25px; }
-        
         .container { padding: 25px 15px 50px 15px; max-width: 850px; margin: 0 auto; }
         .page { background: #ffffff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); overflow: hidden; border: 1px solid #cbd5e1; animation: fadeIn 0.4s ease-out forwards; }
-        
-        /* Hero Section */
         .profile-hero { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #2563eb 100%); padding: 45px 20px 35px 20px; text-align: center; color: white; position: relative; }
         .profile-avatar-container { margin-bottom: 15px; display: inline-block; position: relative; }
         .profile-avatar-container::before { content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px; border-radius: 50%; background: linear-gradient(45deg, #3b82f6, #60a5fa, #d97706); z-index: 1; opacity: 0.8; filter: blur(8px); animation: pulseGlow 3s infinite alternate; }
-        .profile-avatar { width: 145px; height: 145px; object-fit: cover; border-radius: 50%; border: 4px solid #ffffff; position: relative; z-index: 2; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease; }
+        .profile-avatar { width: 145px; height: 145px; object-fit: cover; border-radius: 50%; border: 4px solid #ffffff; position: relative; z-index: 2; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); }
         .hero-title { font-size: 24px; font-weight: 700; color: #ffffff; margin-top: 10px; }
-        .hero-subtitle { font-size: 14px; color: #93c5fd; margin-top: 4px; letter-spacing: 0.5px; }
-        
-        /* Hero Tags */
+        .hero-subtitle { font-size: 14px; color: #93c5fd; margin-top: 4px; }
         .hero-tags { margin-top: 15px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
         .tag-pill { background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(4px); border: 1px solid rgba(255, 255, 255, 0.25); padding: 4px 12px; border-radius: 20px; font-size: 12px; color: #e0f2fe; font-weight: 600; }
-        
-        /* Content Body */
         .content-body { padding: 30px 20px; }
         .section-title { font-size: 20px; color: #0f172a; font-weight: 700; margin-bottom: 20px; text-align: center; position: relative; }
         .section-title::after { content: ''; display: block; width: 40px; height: 4px; background: #2563eb; margin: 6px auto 0; border-radius: 2px; }
-        
-        /* Info Grid */
         .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-        .info-card { padding: 18px 20px; border-radius: 12px; transition: all 0.25s ease; border: 1px solid #e2e8f0; }
+        .info-card { padding: 18px 20px; border-radius: 12px; border: 1px solid #e2e8f0; }
         .info-card.blue-light { background: #f0f6ff; border-left: 5px solid #2563eb; }
         .info-card.dark-light { background: #f8fafc; border-left: 5px solid #0f172a; }
         .info-card.gold-light { background: #fffbeb; border-left: 5px solid #d97706; grid-column: 1 / -1; text-align: center; }
         .info-label { font-size: 13px; font-weight: 700; color: #64748b; margin-bottom: 4px; }
         .info-value { font-size: 16px; font-weight: 600; color: #0f172a; }
-        .gpax-value { font-size: 32px; font-weight: 800; color: #b45309; letter-spacing: -0.5px; }
+        .gpax-value { font-size: 32px; font-weight: 800; color: #b45309; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes pulseGlow { from { opacity: 0.4; filter: blur(6px); } to { opacity: 0.9; filter: blur(12px); } }
     </style>
 </head>
 <body>
-
-    <!-- เมนูลิงก์ไปทั้ง 5 ไฟล์ -->
     <nav class="navbar">
         <div class="logo">PORTFOLIO</div>
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
         <div class="nav-links" id="navLinks">
-            <a href="index.html">หน้าแรก</a>
-            <a href="preface.html">คำนำ</a>
-            <a href="profile.html">ประวัติส่วนตัว</a>
-            <a href="education.html">การศึกษา</a>
-            <a href="portfolio.html">กิจกรรมและผลงาน</a>
+            <a href="index.html">🌌 หน้าแรก</a>
+            <a href="intro.html">📖 คำนำ</a>
+            <a href="profile.html">💎 ประวัติส่วนตัว</a>
+            <a href="education.html">🎓 การศึกษา</a>
+            <a href="activities.html">✨ กิจกรรมและผลงาน</a>
         </div>
     </nav>
 
     <div class="container">
         <div class="page">
-            
-            <!-- ส่วนหัวพร้อมรูปโปรไฟล์และแท็ก -->
             <div class="profile-hero">
                 <div class="profile-avatar-container">
                     <img src="IMG_20260907_130228.png" alt="Profile" class="profile-avatar">
@@ -84,56 +69,38 @@
                 </div>
             </div>
 
-            <!-- ส่วนข้อมูลส่วนตัว แผนการเรียน และเกรด -->
             <div class="content-body">
                 <h2 class="section-title">ข้อมูลเบื้องต้น</h2>
-                
                 <div class="info-grid">
                     <div class="info-card blue-light">
                         <div class="info-label">สถานศึกษา</div>
                         <div class="info-value">โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</div>
                     </div>
-
                     <div class="info-card dark-light">
                         <div class="info-label">แผนการเรียน</div>
                         <div class="info-value">CSE (Computer Science & Engineering)</div>
                     </div>
-
                     <div class="info-card gold-light">
                         <div class="info-label">เกรดเฉลี่ยสะสม (GPAX)</div>
                         <div class="gpax-value" id="gpaxCounter">3.82</div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
     <script>
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
-
-        function animateGPAX() {
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+        window.onload = function() {
             var counter = document.getElementById('gpaxCounter');
             if(!counter) return;
-            var target = 3.82;
-            var current = 0.00;
-            var step = 0.1;
+            var target = 3.82, current = 0.00, step = 0.1;
             counter.innerText = "0.00";
             var timer = setInterval(function() {
                 current += step;
-                if (current >= target) {
-                    counter.innerText = "3.82";
-                    clearInterval(timer);
-                } else {
-                    counter.innerText = current.toFixed(2);
-                }
+                if (current >= target) { counter.innerText = "3.82"; clearInterval(timer); } 
+                else { counter.innerText = current.toFixed(2); }
             }, 30);
-        }
-
-        window.onload = function() {
-            animateGPAX();
         };
     </script>
 </body>
