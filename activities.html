@@ -18,61 +18,51 @@
 
         .container { padding: 40px 15px; max-width: 850px; margin: 0 auto; position: relative; z-index: 1; }
         
-        /* กรอบขอบไล่สี แดง - น้ำเงิน - ฟ้า (Red & Blue Gradient Glow) */
-        .tech-box-wrapper { 
+        .section-title { 
+            font-size: 26px; 
+            color: #00f0ff; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            margin-bottom: 30px; 
+            text-align: center;
+            text-shadow: 0 0 12px rgba(0,240,255,0.6); 
+        }
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        /* กรอบขอบไล่สีสำหรับแต่ละการ์ด (แยกแต่ละอัน) */
+        .tech-card-wrapper { 
             position: relative; 
             border-radius: 16px; 
             padding: 2px; 
             background: linear-gradient(135deg, #ff0055, #00f0ff, #0055ff, #ff0055); 
             background-size: 300% 300%; 
             animation: redBlueGlow 6s linear infinite; 
-            margin-bottom: 35px;
+            transition: transform 0.3s ease;
         }
-        
-        .tech-box { 
-            background: rgba(10, 15, 30, 0.92); 
-            backdrop-filter: blur(12px); 
-            border-radius: 14px; 
-            padding: 35px 25px; 
-            position: relative; 
-            z-index: 2; 
-        }
-        
-        @keyframes redBlueGlow {
-            0% { background-position: 0% 50%; box-shadow: 0 0 20px rgba(255, 0, 85, 0.4); }
-            50% { background-position: 100% 50%; box-shadow: 0 0 25px rgba(0, 240, 255, 0.5); }
-            100% { background-position: 0% 50%; box-shadow: 0 0 20px rgba(255, 0, 85, 0.4); }
-        }
-
-        .section-title { 
-            font-size: 24px; 
-            color: #00f0ff; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            margin-bottom: 25px; 
-            text-shadow: 0 0 10px rgba(0,240,255,0.5); 
-        }
-
-        .activity-list {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        /* การ์ดกิจกรรมและผลงาน */
-        .activity-card {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(0, 240, 255, 0.25);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-        .activity-card:hover {
-            border-color: #00f0ff;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        .tech-card-wrapper:hover {
             transform: translateY(-4px);
+        }
+
+        @keyframes redBlueGlow {
+            0% { background-position: 0% 50%; box-shadow: 0 0 15px rgba(255, 0, 85, 0.3); }
+            50% { background-position: 100% 50%; box-shadow: 0 0 20px rgba(0, 240, 255, 0.4); }
+            100% { background-position: 0% 50%; box-shadow: 0 0 15px rgba(255, 0, 85, 0.3); }
+        }
+
+        /* เนื้อหาภายในการ์ดแต่ละใบ */
+        .activity-card {
+            background: rgba(10, 15, 30, 0.92);
+            backdrop-filter: blur(12px);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         /* ส่วนแสดงรูปเดี่ยว/รูปคู่ */
@@ -118,7 +108,7 @@
         }
         .cert-img:hover { transform: scale(1.05); }
 
-        .activity-details { padding: 20px; }
+        .activity-details { padding: 25px; }
         .activity-badge {
             display: inline-block;
             background: rgba(255, 0, 85, 0.15);
@@ -129,7 +119,7 @@
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 1px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             text-transform: uppercase;
         }
         .activity-title { font-size: 18px; color: #fff; font-weight: 700; margin-bottom: 8px; line-height: 1.4; }
@@ -138,11 +128,11 @@
         
         .hours-tag {
             display: inline-block;
-            margin-top: 12px;
+            margin-top: 14px;
             background: rgba(0, 240, 255, 0.1);
             color: #00f0ff;
             border: 1px solid rgba(0, 240, 255, 0.4);
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 6px;
             font-size: 12px;
             font-weight: 600;
@@ -163,75 +153,76 @@
     </nav>
 
     <div class="container">
-        <div class="tech-box-wrapper">
-            <div class="tech-box">
-                <h2 class="section-title">ACTIVITIES & CERTIFICATES</h2>
-                
-                <div class="activity-list">
+        <h2 class="section-title">ACTIVITIES & CERTIFICATES</h2>
+        
+        <div class="activity-list">
 
-                    <!-- รายการที่ 1: รางวัลชนะเลิศ Smart School (เพิ่มใหม่) -->
-                    <div class="activity-card">
-                        <div class="cert-img-single">
-                            <div class="cert-img-wrapper">
-                                <img src="1st place.jpg" alt="เกียรติบัตรรางวัลชนะเลิศ Smart School" class="cert-img">
-                            </div>
-                        </div>
-                        <div class="activity-details">
-                            <span class="activity-badge">COMPETITION / 1ST PLACE</span>
-                            <h3 class="activity-title">รางวัลชนะเลิศ การประกวดนวัตกรรมและเทคโนโลยี แก้ปัญหา Smart School</h3>
-                            <p class="activity-org">โครงการ "ค่ายพัฒนานวัตกรรมและเทคโนโลยี" ครั้งที่ 5 ณ โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
-                            <p class="activity-desc">
-                                คิดค้นและพัฒนาผลงานนวัตกรรมเพื่อแก้ไขปัญหาภายในโรงเรียนตามแนวคิด Smart School จัดขึ้นระหว่างวันที่ 9–11 มกราคม พ.ศ. 2569
-                            </p>
-                            <span class="hours-tag">🥇 รางวัลชนะเลิศ (1st Place)</span>
+            <!-- การ์ดที่ 1: รางวัลชนะเลิศ Smart School -->
+            <div class="tech-card-wrapper">
+                <div class="activity-card">
+                    <div class="cert-img-single">
+                        <div class="cert-img-wrapper">
+                            <img src="1st place.jpg" alt="เกียรติบัตรรางวัลชนะเลิศ Smart School" class="cert-img">
                         </div>
                     </div>
-
-                    <!-- รายการที่ 2: โครงการเตรียมวิศวกรรม TIRA -->
-                    <div class="activity-card">
-                        <div class="cert-img-grid">
-                            <div class="cert-img-wrapper">
-                                <img src="pic_20260416133914_0.jpg" alt="เกียรติบัตร TIRA" class="cert-img">
-                            </div>
-                            <div class="cert-img-wrapper">
-                                <img src="tirareceive.jpeg" alt="ภาพรับมอบเกียรติบัตร TIRA" class="cert-img">
-                            </div>
-                        </div>
-                        <div class="activity-details">
-                            <span class="activity-badge">CERTIFICATE / TRAINING</span>
-                            <h3 class="activity-title">โครงการพัฒนาหลักสูตรเตรียมวิศวกรรม ด้านเทคโนโลยีอิเล็กทรอนิกส์อัจฉริยะ</h3>
-                            <p class="activity-org">สมาคมการสร้างนวัตกรรมและหุ่นยนต์ (TIRA) ร่วมกับ กองทุนพัฒนาเทคโนโลยีเพื่อการศึกษา สำนักงานปลัดกระทรวงศึกษาธิการ</p>
-                            <p class="activity-desc">
-                                เข้าร่วมเป็นกลุ่มตัวอย่างการอบรมในรูปแบบออนไลน์และออนไซต์ (ชลบุรี) ฝึกฝนและเรียนรู้ทักษะพื้นฐานทางด้านเทคโนโลยีอิเล็กทรอนิกส์อัจฉริยะและการประยุกต์ใช้ในงานวิศวกรรม
-                            </p>
-                            <span class="hours-tag">⏱️ ระยะเวลาอบรม 30 ชั่วโมง</span>
-                        </div>
+                    <div class="activity-details">
+                        <span class="activity-badge">COMPETITION / 1ST PLACE</span>
+                        <h3 class="activity-title">รางวัลชนะเลิศ การประกวดนวัตกรรมและเทคโนโลยี แก้ปัญหา Smart School</h3>
+                        <p class="activity-org">โครงการ "ค่ายพัฒนานวัตกรรมและเทคโนโลยี" ครั้งที่ 5 ณ โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
+                        <p class="activity-desc">
+                            คิดค้นและพัฒนาผลงานนวัตกรรมเพื่อแก้ไขปัญหาภายในโรงเรียนตามแนวคิด Smart School จัดขึ้นระหว่างวันที่ 9–11 มกราคม พ.ศ. 2569
+                        </p>
+                        <span class="hours-tag">🥇 รางวัลชนะเลิศ (1st Place)</span>
                     </div>
-
-                    <!-- รายการที่ 3: การแข่งขัน PLC BATTLE THAILAND 2025 -->
-                    <div class="activity-card">
-                        <div class="cert-img-grid">
-                            <div class="cert-img-wrapper">
-                                <img src="IMG_20260413_141521.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025" class="cert-img">
-                            </div>
-                            <div class="cert-img-wrapper">
-                                <img src="Plc cer.png" alt="ภาพกิจกรรมการรับมอบ PLC" class="cert-img">
-                            </div>
-                        </div>
-                        <div class="activity-details">
-                            <span class="activity-badge">COMPETITION / AWARD</span>
-                            <h3 class="activity-title">รางวัล GOOD PERFORMANCE PRIZE — PLC BATTLE THAILAND 2025</h3>
-                            <p class="activity-org">Center of Excellence on Instrumentation Technology and Automation (CEITA), มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ วิทยาเขตปราจีนบุรี ร่วมกับ Schneider Electric และ TIA</p>
-                            <p class="activity-desc">
-                                เข้าร่วมการแข่งขันประลองทักษะการเขียนโปรแกรมระบบควบคุมอัตโนมัติ (PLC) จัดขึ้นระหว่างวันที่ 13–14 ธันวาคม 2025 ณ ศูนย์ความเป็นเลิศทางด้านเทคโนโลยีเครื่องมือวัดและอัตโนมัติ คณะวิศวกรรมศาสตร์ มจพ. ปราจีนบุรี
-                            </p>
-                            <span class="hours-tag">🏆 Good Performance Prize</span>
-                        </div>
-                    </div>
-
                 </div>
-
             </div>
+
+            <!-- การ์ดที่ 2: โครงการเตรียมวิศวกรรม TIRA -->
+            <div class="tech-card-wrapper">
+                <div class="activity-card">
+                    <div class="cert-img-grid">
+                        <div class="cert-img-wrapper">
+                            <img src="pic_20260416133914_0.jpg" alt="เกียรติบัตร TIRA" class="cert-img">
+                        </div>
+                        <div class="cert-img-wrapper">
+                            <img src="tirareceive.jpeg" alt="ภาพรับมอบเกียรติบัตร TIRA" class="cert-img">
+                        </div>
+                    </div>
+                    <div class="activity-details">
+                        <span class="activity-badge">CERTIFICATE / TRAINING</span>
+                        <h3 class="activity-title">โครงการพัฒนาหลักสูตรเตรียมวิศวกรรม ด้านเทคโนโลยีอิเล็กทรอนิกส์อัจฉริยะ</h3>
+                        <p class="activity-org">สมาคมการสร้างนวัตกรรมและหุ่นยนต์ (TIRA) ร่วมกับ กองทุนพัฒนาเทคโนโลยีเพื่อการศึกษา สำนักงานปลัดกระทรวงศึกษาธิการ</p>
+                        <p class="activity-desc">
+                            เข้าร่วมเป็นกลุ่มตัวอย่างการอบรมในรูปแบบออนไลน์และออนไซต์ (ชลบุรี) ฝึกฝนและเรียนรู้ทักษะพื้นฐานทางด้านเทคโนโลยีอิเล็กทรอนิกส์อัจฉริยะและการประยุกต์ใช้ในงานวิศวกรรม
+                        </p>
+                        <span class="hours-tag">⏱️ ระยะเวลาอบรม 30 ชั่วโมง</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- การ์ดที่ 3: การแข่งขัน PLC BATTLE THAILAND 2025 -->
+            <div class="tech-card-wrapper">
+                <div class="activity-card">
+                    <div class="cert-img-grid">
+                        <div class="cert-img-wrapper">
+                            <img src="IMG_20260413_141521.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025" class="cert-img">
+                        </div>
+                        <div class="cert-img-wrapper">
+                            <img src="Plc cer.png" alt="ภาพกิจกรรมการรับมอบ PLC" class="cert-img">
+                        </div>
+                    </div>
+                    <div class="activity-details">
+                        <span class="activity-badge">COMPETITION / AWARD</span>
+                        <h3 class="activity-title">รางวัล GOOD PERFORMANCE PRIZE — PLC BATTLE THAILAND 2025</h3>
+                        <p class="activity-org">Center of Excellence on Instrumentation Technology and Automation (CEITA), มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ วิทยาเขตปราจีนบุรี ร่วมกับ Schneider Electric และ TIA</p>
+                        <p class="activity-desc">
+                            เข้าร่วมการแข่งขันประลองทักษะการเขียนโปรแกรมระบบควบคุมอัตโนมัติ (PLC) จัดขึ้นระหว่างวันที่ 13–14 ธันวาคม 2025 ณ ศูนย์ความเป็นเลิศทางด้านเทคโนโลยีเครื่องมือวัดและอัตโนมัติ คณะวิศวกรรมศาสตร์ มจพ. ปราจีนบุรี
+                        </p>
+                        <span class="hours-tag">🏆 Good Performance Prize</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
