@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กิจกรรมและผลงาน - PORTFOLIO</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #030712; color: #e2e8f0; min-height: 100vh; background-image: radial-gradient(circle at center, #0f172a 0%, #030712 100%); }
+        
+        .navbar { background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 240, 255, 0.3); padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 30px rgba(0, 240, 255, 0.1); }
+        .logo { font-size: 20px; font-weight: 900; letter-spacing: 2px; color: #fff; text-shadow: 0 0 10px #00f0ff; }
+        .menu-btn { font-size: 24px; cursor: pointer; background: none; border: none; color: #00f0ff; }
+        .nav-links { display: none; position: absolute; top: 100%; right: 15px; background: rgba(10, 15, 30, 0.95); width: 230px; border-radius: 8px; border: 1px solid #00f0ff; box-shadow: 0 0 20px rgba(0,240,255,0.2); backdrop-filter: blur(10px); }
+        .nav-links.active { display: block; }
+        .nav-links a { color: #cbd5e1; padding: 15px 20px; display: block; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        .nav-links a:hover { background: rgba(0, 240, 255, 0.1); color: #00f0ff; padding-left: 25px; }
+
+        .container { padding: 40px 15px; max-width: 850px; margin: 0 auto; position: relative; z-index: 1; }
+        
+        /* กรอบขอบไล่สี แดง - น้ำเงิน - ฟ้า (Red & Blue Gradient Glow) */
+        .tech-box-wrapper { 
+            position: relative; 
+            border-radius: 16px; 
+            padding: 2px; 
+            background: linear-gradient(135deg, #ff0055, #00f0ff, #0055ff, #ff0055); 
+            background-size: 300% 300%; 
+            animation: redBlueGlow 6s linear infinite; 
+            margin-bottom: 35px;
+        }
+        
+        .tech-box { 
+            background: rgba(10, 15, 30, 0.92); 
+            backdrop-filter: blur(12px); 
+            border-radius: 14px; 
+            padding: 35px 25px; 
+            position: relative; 
+            z-index: 2; 
+        }
+        
+        @keyframes redBlueGlow {
+            0% { background-position: 0% 50%; box-shadow: 0 0 20px rgba(255, 0, 85, 0.4); }
+            50% { background-position: 100% 50%; box-shadow: 0 0 25px rgba(0, 240, 255, 0.5); }
+            100% { background-position: 0% 50%; box-shadow: 0 0 20px rgba(255, 0, 85, 0.4); }
+        }
+
+        .section-title { font-size: 24px; color: #00f0ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; text-shadow: 0 0 10px rgba(0,240,255,0.5); display: flex; align-items: center; }
+        .section-title::before { content: '>> '; color: #ff0055; margin-right: 10px; animation: blink 1s infinite; text-shadow: 0 0 8px #ff0055; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* การ์ดกิจกรรมและผลงาน */
+        .activity-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.25);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .activity-card:hover {
+            border-color: #00f0ff;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .cert-img-container {
+            width: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 10px;
+        }
+        .cert-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        .activity-details { padding: 20px; }
+        .activity-badge {
+            display: inline-block;
+            background: rgba(255, 0, 85, 0.15);
+            border: 1px solid #ff0055;
+            color: #ff0055;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .activity-title { font-size: 18px; color: #fff; font-weight: 700; margin-bottom: 8px; line-height: 1.4; }
+        .activity-org { font-size: 14px; color: #00f0ff; margin-bottom: 12px; font-weight: 500; }
+        .activity-desc { font-size: 14px; color: #94a3b8; line-height: 1.6; }
+        
+        .hours-tag {
+            display: inline-block;
+            margin-top: 12px;
+            background: rgba(0, 240, 255, 0.1);
+            color: #00f0ff;
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">PORTFOLIO</div>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">🌌 หน้าแรก</a>
+            <a href="intro.html">📖 คำนำ</a>
+            <a href="profile.html">💎 ประวัติส่วนตัว</a>
+            <a href="education.html">🎓 การศึกษา</a>
+            <a href="activities.html">✨ กิจกรรมและผลงาน</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="tech-box-wrapper">
+            <div class="tech-box">
+                <h2 class="section-title">ACTIVITIES & CERTIFICATES</h2>
+                
+                <div class="activity-card">
+                    <div class="cert-img-container">
+                        <!-- ดึงรูปเกียรติบัตรจากชื่อไฟล์ที่คุณอัปโหลดบน GitHub -->
+                        <img src="pic_20260416133914_0.jpg" alt="เกียรติบัตรพัฒนาหลักสูตรเตรียมวิศวกรรม" class="cert-img">
+                    </div>
+                    <div class="activity-details">
+                        <span class="activity-badge">CERTIFICATE / TRAINING</span>
+                        <h3 class="activity-title">โครงการพัฒนาหลักสูตรเตรียมวิศวกรรม ด้านเทคโนโลยีอิเล็กทรอนิกส์อัจฉริยะ</h3>
+                        <p class="activity-org">สมาคมการสร้างนวัตกรรมและหุ่นยนต์ (TIRA) ร่วมกับ กองทุนพัฒนาเทคโนโลยีเพื่อการศึกษา สำนักงานปลัดกระทรวงศึกษาธิการ</p>
+                        <p class="activity-desc">
+                            เข้าร่วมเป็นกลุ่มตัวอย่างการอบรมในรูปแบบออนไลน์และออนไซต์ (ชลบุรี) ฝึกฝนและเรียนรู้ทักษะพื้นฐานทางด้านเทคโนโลยีอิเล็กทรอนิกส์อัจฉริยะและการประยุกต์ใช้ในงานวิศวกรรม
+                        </p>
+                        <span class="hours-tag">⏱️ ระยะเวลาอบรม 30 ชั่วโมง</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }</script>
+</body>
+</html>
