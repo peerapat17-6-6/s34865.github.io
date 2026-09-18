@@ -6,118 +6,79 @@
     <title>กิจกรรมและผลงาน - PORTFOLIO</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #030712; color: #e2e8f0; min-height: 100vh; background-image: radial-gradient(circle at center, #0f172a 0%, #030712 100%); }
+        body { background-color: #030712; color: #e2e8f0; min-height: 100vh; background-image: radial-gradient(circle at center, #0f172a 0%, #030712 100%); display: flex; }
         
-        /* NAVBAR CONTAINER */
-        .navbar-container {
-            position: sticky;
+        /* SIDEBAR NAVIGATION */
+        .sidebar {
+            width: 260px;
+            background: rgba(6, 11, 25, 0.95);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid rgba(0, 240, 255, 0.25);
+            min-height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
             top: 0;
+            left: 0;
             z-index: 1000;
-            width: 100%;
+            box-shadow: 4px 0 25px rgba(0, 0, 0, 0.5);
         }
 
-        .navbar { 
-            background: rgba(3, 7, 18, 0.95); 
-            backdrop-filter: blur(12px); 
-            border-bottom: 1px solid rgba(0, 240, 255, 0.25); 
-            padding: 15px 30px; 
-            display: flex; 
-            justify-content: flex-start; /* จัดให้อยู่ฝั่งซ้าย */
-            align-items: center; 
-            gap: 20px; /* ระยะห่างระหว่างปุ่มเมนูกับโลโก้ */
-            position: relative;
-            z-index: 1002;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); 
-        }
         .logo { 
-            font-size: 20px; 
+            font-size: 22px; 
             font-weight: 800; 
             letter-spacing: 2px; 
             color: #ffffff; 
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); 
+            text-shadow: 0 0 12px rgba(0, 240, 255, 0.6); 
+            margin-bottom: 40px;
+            padding-left: 10px;
         }
 
-        /* ปุ่มเปิดเมนูฝั่งซ้าย */
-        .menu-btn { 
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            cursor: pointer; 
-            background: rgba(15, 23, 42, 0.8); 
-            border: 1px solid rgba(0, 240, 255, 0.4); 
-            color: #00f0ff; 
-            padding: 8px 16px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
-        }
-        .menu-btn:hover {
-            background: rgba(0, 240, 255, 0.15);
-            border-color: #00f0ff;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-            color: #ffffff;
-        }
-
-        /* เมนูสไตล์แถบขยายเต็มความกว้าง */
-        .nav-links { 
-            display: none; 
-            position: absolute; 
-            top: 100%; 
-            left: 0;
-            width: 100%; 
-            background: rgba(6, 11, 25, 0.96); 
-            backdrop-filter: blur(16px); 
-            border-bottom: 1px solid rgba(0, 240, 255, 0.3); 
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8); 
-            z-index: 1001;
-            padding: 10px 0;
-            transform: translateY(-10px);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-        .nav-links.active { 
-            display: block; 
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .nav-menu-inner {
-            max-width: 1000px;
-            margin: 0 auto;
+        .nav-links {
             display: flex;
             flex-direction: column;
+            gap: 10px;
         }
 
         .nav-links a { 
             color: #94a3b8; 
-            padding: 14px 30px; 
+            padding: 12px 16px; 
             display: flex;
             align-items: center;
             justify-content: space-between;
             text-decoration: none; 
-            font-size: 14.5px;
+            font-size: 15px;
             font-weight: 500;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04); 
+            border-radius: 8px;
+            border: 1px solid transparent;
             transition: all 0.25s ease; 
         }
-        .nav-links a:last-child { border-bottom: none; }
+
         .nav-links a:hover { 
             background: rgba(0, 240, 255, 0.08); 
             color: #00f0ff; 
-            padding-left: 40px; 
-        }
-        .nav-links a.active-link {
-            color: #00f0ff;
-            background: rgba(0, 240, 255, 0.12);
-            font-weight: 600;
-            border-left: 4px solid #00f0ff;
+            border-color: rgba(0, 240, 255, 0.2);
+            padding-left: 20px; 
         }
 
-        .container { padding: 40px 20px; max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+        .nav-links a.active-link {
+            color: #ffffff;
+            background: rgba(0, 240, 255, 0.15);
+            border: 1px solid #00f0ff;
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+            font-weight: 600;
+        }
+
+        /* MAIN CONTENT AREA */
+        .main-content {
+            margin-left: 260px;
+            flex: 1;
+            padding: 40px 30px;
+            min-height: 100vh;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; }
         
         .section-title { 
             font-size: 26px; 
@@ -125,7 +86,6 @@
             text-transform: uppercase; 
             letter-spacing: 2px; 
             margin-bottom: 30px; 
-            text-align: center;
             text-shadow: 0 0 12px rgba(0,240,255,0.6); 
         }
 
@@ -160,12 +120,8 @@
             border-radius: 14px;
             overflow: hidden;
             display: grid;
-            grid-template-columns: 320px 1fr;
+            grid-template-columns: 300px 1fr;
             align-items: center;
-        }
-
-        @media (max-width: 820px) {
-            .activity-card { grid-template-columns: 1fr; }
         }
 
         .card-media {
@@ -177,12 +133,6 @@
             justify-content: center;
             border-right: 1px solid rgba(0, 240, 255, 0.2);
         }
-        @media (max-width: 820px) {
-            .card-media {
-                border-right: none;
-                border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-            }
-        }
 
         .cert-img-grid {
             display: grid;
@@ -190,10 +140,8 @@
             gap: 8px;
             width: 100%;
         }
-        .cert-img-grid .cert-img-wrapper { height: 150px; }
-
-        .cert-img-single { width: 100%; }
-        .cert-img-single .cert-img-wrapper { height: 200px; }
+        .cert-img-grid .cert-img-wrapper { height: 140px; }
+        .cert-img-single .cert-img-wrapper { height: 190px; }
 
         .cert-img-wrapper {
             width: 100%;
@@ -226,7 +174,7 @@
             margin-bottom: 12px;
             text-transform: uppercase;
         }
-        .activity-title { font-size: 18px; color: #fff; font-weight: 700; margin-bottom: 8px; line-height: 1.4; }
+        .activity-title { font-size: 17px; color: #fff; font-weight: 700; margin-bottom: 8px; line-height: 1.4; }
         .activity-org { font-size: 13px; color: #00f0ff; margin-bottom: 12px; font-weight: 500; }
         .activity-desc { font-size: 13.5px; color: #94a3b8; line-height: 1.6; }
         
@@ -241,124 +189,117 @@
             font-size: 12px;
             font-weight: 600;
         }
+
+        /* RESPONSIVE FOR MOBILE */
+        @media (max-width: 850px) {
+            body { flex-direction: column; }
+            .sidebar {
+                width: 100%;
+                min-height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 240, 255, 0.25);
+            }
+            .main-content { margin-left: 0; padding: 20px; }
+            .activity-card { grid-template-columns: 1fr; }
+            .card-media { border-right: none; border-bottom: 1px solid rgba(0, 240, 255, 0.2); }
+        }
     </style>
 </head>
 <body>
-    <div class="navbar-container">
-        <nav class="navbar">
-            <!-- ปุ่ม MENU ย้ายมาอยู่ฝั่งซ้าย -->
-            <button class="menu-btn" onclick="toggleMenu()">
-                <span>☰</span>
-                <span>MENU</span>
-            </button>
-            <div class="logo">PORTFOLIO</div>
+    <!-- SIDEBAR ด้านซ้าย -->
+    <aside class="sidebar">
+        <div class="logo">PORTFOLIO</div>
+        <nav class="nav-links">
+            <a href="index.html">หน้าแรก <span>›</span></a>
+            <a href="intro.html">คำนำ <span>›</span></a>
+            <a href="profile.html">ประวัติส่วนตัว <span>›</span></a>
+            <a href="education.html">การศึกษา <span>›</span></a>
+            <a href="activities.html" class="active-link">กิจกรรมและผลงาน <span>›</span></a>
         </nav>
+    </aside>
 
-        <!-- แถบเมนูเต็มความกว้าง -->
-        <div class="nav-links" id="navLinks">
-            <div class="nav-menu-inner">
-                <a href="index.html">หน้าแรก <span>›</span></a>
-                <a href="intro.html">คำนำ <span>›</span></a>
-                <a href="profile.html">ประวัติส่วนตัว <span>›</span></a>
-                <a href="education.html">การศึกษา <span>›</span></a>
-                <a href="activities.html" class="active-link">กิจกรรมและผลงาน <span>›</span></a>
+    <!-- เนื้อหาหลัก -->
+    <main class="main-content">
+        <div class="container">
+            <h2 class="section-title">ACTIVITIES & CERTIFICATES</h2>
+            
+            <div class="activity-list">
+
+                <!-- การ์ดที่ 1 -->
+                <div class="tech-card-wrapper">
+                    <div class="activity-card">
+                        <div class="card-media">
+                            <div class="cert-img-single">
+                                <div class="cert-img-wrapper">
+                                    <img src="1st place.jpg" alt="เกียรติบัตรรางวัลชนะเลิศ Smart School" class="cert-img">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-details">
+                            <span class="activity-badge">COMPETITION / 1ST PLACE</span>
+                            <h3 class="activity-title">รางวัลชนะเลิศ การประกวดนวัตกรรมและเทคโนโลยี แก้ปัญหา Smart School</h3>
+                            <p class="activity-org">โครงการ "ค่ายพัฒนานวัตกรรมและเทคโนโลยี" ครั้งที่ 5 ณ โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
+                            <p class="activity-desc">
+                                คิดค้นและพัฒนาผลงานนวัตกรรมเพื่อแก้ไขปัญหาภายในโรงเรียนตามแนวคิด Smart School จัดขึ้นระหว่างวันที่ 9–11 มกราคม พ.ศ. 2569
+                            </p>
+                            <span class="hours-tag">🥇 รางวัลชนะเลิศ (1st Place)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- การ์ดที่ 2 -->
+                <div class="tech-card-wrapper">
+                    <div class="activity-card">
+                        <div class="card-media">
+                            <div class="cert-img-grid">
+                                <div class="cert-img-wrapper">
+                                    <img src="pic_20260416133914_0.jpg" alt="เกียรติบัตร TIRA" class="cert-img">
+                                </div>
+                                <div class="cert-img-wrapper">
+                                    <img src="tirareceive.jpeg" alt="ภาพรับมอบเกียรติบัตร TIRA" class="cert-img">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-details">
+                            <span class="activity-badge">CERTIFICATE / TRAINING</span>
+                            <h3 class="activity-title">โครงการพัฒนาหลักสูตรเตรียมวิศวกรรม ด้านเทคโนโลยีอิเล็กทรอนิกส์อัจฉริยะ</h3>
+                            <p class="activity-org">สมาคมการสร้างนวัตกรรมและหุ่นยนต์ (TIRA) ร่วมกับ กองทุนพัฒนาเทคโนโลยีเพื่อการศึกษา</p>
+                            <p class="activity-desc">
+                                เข้าร่วมเป็นกลุ่มตัวอย่างการอบรมในรูปแบบออนไลน์และออนไซต์ (ชลบุรี) ฝึกฝนและเรียนรู้ทักษะพื้นฐานทางด้านเทคโนโลยีอิเล็กทรอนิกส์อัจฉริยะ
+                            </p>
+                            <span class="hours-tag">⏱️ ระยะเวลาอบรม 30 ชั่วโมง</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- การ์ดที่ 3 -->
+                <div class="tech-card-wrapper">
+                    <div class="activity-card">
+                        <div class="card-media">
+                            <div class="cert-img-grid">
+                                <div class="cert-img-wrapper">
+                                    <img src="IMG_20260413_141521.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025" class="cert-img">
+                                </div>
+                                <div class="cert-img-wrapper">
+                                    <img src="Plc cer.png" alt="ภาพกิจกรรมการรับมอบ PLC" class="cert-img">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-details">
+                            <span class="activity-badge">COMPETITION / AWARD</span>
+                            <h3 class="activity-title">รางวัล GOOD PERFORMANCE PRIZE — PLC BATTLE THAILAND 2025</h3>
+                            <p class="activity-org">Center of Excellence on Instrumentation Technology and Automation (CEITA), มจพ. ปราจีนบุรี</p>
+                            <p class="activity-desc">
+                                เข้าร่วมการแข่งขันประลองทักษะการเขียนโปรแกรมระบบควบคุมอัตโนมัติ (PLC) จัดขึ้นระหว่างวันที่ 13–14 ธันวาคม 2025
+                            </p>
+                            <span class="hours-tag">🏆 Good Performance Prize</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
-
-    <div class="container">
-        <h2 class="section-title">ACTIVITIES & CERTIFICATES</h2>
-        
-        <div class="activity-list">
-
-            <!-- การ์ดที่ 1 -->
-            <div class="tech-card-wrapper">
-                <div class="activity-card">
-                    <div class="card-media">
-                        <div class="cert-img-single">
-                            <div class="cert-img-wrapper">
-                                <img src="1st place.jpg" alt="เกียรติบัตรรางวัลชนะเลิศ Smart School" class="cert-img">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="activity-details">
-                        <span class="activity-badge">COMPETITION / 1ST PLACE</span>
-                        <h3 class="activity-title">รางวัลชนะเลิศ การประกวดนวัตกรรมและเทคโนโลยี แก้ปัญหา Smart School</h3>
-                        <p class="activity-org">โครงการ "ค่ายพัฒนานวัตกรรมและเทคโนโลยี" ครั้งที่ 5 ณ โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
-                        <p class="activity-desc">
-                            คิดค้นและพัฒนาผลงานนวัตกรรมเพื่อแก้ไขปัญหาภายในโรงเรียนตามแนวคิด Smart School จัดขึ้นระหว่างวันที่ 9–11 มกราคม พ.ศ. 2569
-                        </p>
-                        <span class="hours-tag">🥇 รางวัลชนะเลิศ (1st Place)</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- การ์ดที่ 2 -->
-            <div class="tech-card-wrapper">
-                <div class="activity-card">
-                    <div class="card-media">
-                        <div class="cert-img-grid">
-                            <div class="cert-img-wrapper">
-                                <img src="pic_20260416133914_0.jpg" alt="เกียรติบัตร TIRA" class="cert-img">
-                            </div>
-                            <div class="cert-img-wrapper">
-                                <img src="tirareceive.jpeg" alt="ภาพรับมอบเกียรติบัตร TIRA" class="cert-img">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="activity-details">
-                        <span class="activity-badge">CERTIFICATE / TRAINING</span>
-                        <h3 class="activity-title">โครงการพัฒนาหลักสูตรเตรียมวิศวกรรม ด้านเทคโนโลยีอิเล็กทรอนิกส์อัจฉริยะ</h3>
-                        <p class="activity-org">สมาคมการสร้างนวัตกรรมและหุ่นยนต์ (TIRA) ร่วมกับ กองทุนพัฒนาเทคโนโลยีเพื่อการศึกษา สำนักงานปลัดกระทรวงศึกษาธิการ</p>
-                        <p class="activity-desc">
-                            เข้าร่วมเป็นกลุ่มตัวอย่างการอบรมในรูปแบบออนไลน์และออนไซต์ (ชลบุรี) ฝึกฝนและเรียนรู้ทักษะพื้นฐานทางด้านเทคโนโลยีอิเล็กทรอนิกส์อัจฉริยะและการประยุกต์ใช้ในงานวิศวกรรม
-                        </p>
-                        <span class="hours-tag">⏱️ ระยะเวลาอบรม 30 ชั่วโมง</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- การ์ดที่ 3 -->
-            <div class="tech-card-wrapper">
-                <div class="activity-card">
-                    <div class="card-media">
-                        <div class="cert-img-grid">
-                            <div class="cert-img-wrapper">
-                                <img src="IMG_20260413_141521.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025" class="cert-img">
-                            </div>
-                            <div class="cert-img-wrapper">
-                                <img src="Plc cer.png" alt="ภาพกิจกรรมการรับมอบ PLC" class="cert-img">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="activity-details">
-                        <span class="activity-badge">COMPETITION / AWARD</span>
-                        <h3 class="activity-title">รางวัล GOOD PERFORMANCE PRIZE — PLC BATTLE THAILAND 2025</h3>
-                        <p class="activity-org">Center of Excellence on Instrumentation Technology and Automation (CEITA), มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ วิทยาเขตปราจีนบุรี ร่วมกับ Schneider Electric และ TIA</p>
-                        <p class="activity-desc">
-                            เข้าร่วมการแข่งขันประลองทักษะการเขียนโปรแกรมระบบควบคุมอัตโนมัติ (PLC) จัดขึ้นระหว่างวันที่ 13–14 ธันวาคม 2025 ณ ศูนย์ความเป็นเลิศทางด้านเทคโนโลยีเครื่องมือวัดและอัตโนมัติ คณะวิศวกรรมศาสตร์ มจพ. ปราจีนบุรี
-                        </p>
-                        <span class="hours-tag">🏆 Good Performance Prize</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <script>
-        function toggleMenu() { 
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active'); 
-        }
-
-        document.addEventListener('click', function(event) {
-            const navLinks = document.getElementById('navLinks');
-            const menuBtn = document.querySelector('.menu-btn');
-            if (!menuBtn.contains(event.target) && !navLinks.contains(event.target)) {
-                navLinks.classList.remove('active');
-            }
-        });
-    </script>
+    </main>
 </body>
 </html>
