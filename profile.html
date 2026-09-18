@@ -8,13 +8,151 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #030712; color: #e2e8f0; min-height: 100vh; background-image: radial-gradient(circle at center, #0f172a 0%, #030712 100%); }
         
-        .navbar { background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 240, 255, 0.3); padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 30px rgba(0, 240, 255, 0.1); }
-        .logo { font-size: 20px; font-weight: 900; letter-spacing: 2px; color: #fff; text-shadow: 0 0 10px #00f0ff; }
-        .menu-btn { font-size: 24px; cursor: pointer; background: none; border: none; color: #00f0ff; }
-        .nav-links { display: none; position: absolute; top: 100%; right: 15px; background: rgba(10, 15, 30, 0.95); width: 230px; border-radius: 8px; border: 1px solid #00f0ff; box-shadow: 0 0 20px rgba(0,240,255,0.2); backdrop-filter: blur(10px); }
-        .nav-links.active { display: block; }
-        .nav-links a { color: #cbd5e1; padding: 15px 20px; display: block; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
-        .nav-links a:hover { background: rgba(0, 240, 255, 0.1); color: #00f0ff; padding-left: 25px; }
+        /* TOP NAVBAR */
+        .top-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            background: rgba(3, 7, 18, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.25);
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .menu-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            color: #00f0ff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+        }
+        .menu-btn:hover {
+            background: rgba(0, 240, 255, 0.15);
+            border-color: #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            color: #ffffff;
+        }
+
+        .logo { 
+            font-size: 20px; 
+            font-weight: 800; 
+            letter-spacing: 2px; 
+            color: #ffffff; 
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); 
+        }
+
+        /* SIDEBAR OVERLAY */
+        .sidebar {
+            width: 280px;
+            background: rgba(6, 11, 25, 0.98);
+            backdrop-filter: blur(16px);
+            border-right: 1px solid rgba(0, 240, 255, 0.3);
+            height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: -285px;
+            z-index: 2000;
+            box-shadow: 5px 0 30px rgba(0, 0, 0, 0.8);
+            transition: left 0.35s ease-in-out;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+        }
+
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: #ff0055;
+            font-size: 22px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .nav-links a { 
+            color: #94a3b8; 
+            padding: 12px 16px; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none; 
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            transition: all 0.25s ease; 
+        }
+
+        .nav-links a:hover { 
+            background: rgba(0, 240, 255, 0.08); 
+            color: #00f0ff; 
+            border-color: rgba(0, 240, 255, 0.2);
+            padding-left: 20px; 
+        }
+
+        .nav-links a.active-link {
+            color: #ffffff;
+            background: rgba(0, 240, 255, 0.15);
+            border: 1px solid #00f0ff;
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+            font-weight: 600;
+        }
+
+        /* BACKDROP */
+        .overlay-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1500;
+            display: none;
+        }
+        .overlay-bg.active {
+            display: block;
+        }
 
         .container { padding: 40px 15px; max-width: 850px; margin: 0 auto; position: relative; z-index: 1; }
         
@@ -45,8 +183,6 @@
         }
 
         .section-title { font-size: 24px; color: #00f0ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; text-shadow: 0 0 10px rgba(0,240,255,0.5); display: flex; align-items: center; }
-        .section-title::before { content: '>> '; color: #ff0055; margin-right: 10px; animation: blink 1s infinite; text-shadow: 0 0 8px #ff0055; }
-        @keyframes blink { 50% { opacity: 0; } }
 
         /* Grid จัดเรียงข้อมูล */
         .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-bottom: 10px; }
@@ -102,20 +238,53 @@
             text-shadow: 0 0 5px rgba(0,240,255,0.5);
             box-shadow: 0 0 10px rgba(0,240,255,0.15);
         }
+
+        /* สไตล์สำหรับการ์ดความสามารถพิเศษ (Skills) */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+        .skill-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(0, 240, 255, 0.25);
+            border-radius: 10px;
+            padding: 20px;
+            transition: 0.3s ease;
+        }
+        .skill-card:hover {
+            border-color: #00f0ff;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        .skill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .skill-name { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+        .skill-badge { font-size: 11px; background: rgba(0, 240, 255, 0.15); color: #00f0ff; border: 1px solid #00f0ff; padding: 3px 10px; border-radius: 12px; font-weight: 600; }
+        .skill-desc { font-size: 13.5px; color: #94a3b8; line-height: 1.6; margin-top: 8px; }
+        .progress-bar-bg { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; margin-top: 12px; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #00f0ff, #0055ff); border-radius: 10px; box-shadow: 0 0 10px #00f0ff; }
     </style>
 </head>
 <body>
-    <nav class="navbar">
+    <header class="top-navbar">
+        <button class="menu-btn" onclick="toggleSidebar()">
+            <span>☰</span>
+            <span>MENU</span>
+        </button>
         <div class="logo">PORTFOLIO</div>
-        <button class="menu-btn" onclick="toggleMenu()">☰</button>
-        <div class="nav-links" id="navLinks">
-            <a href="index.html">🌌 หน้าแรก</a>
-            <a href="intro.html">📖 คำนำ</a>
-            <a href="profile.html">💎 ประวัติส่วนตัว</a>
-            <a href="education.html">🎓 การศึกษา</a>
-            <a href="activities.html">✨ กิจกรรมและผลงาน</a>
+    </header>
+
+    <div class="overlay-bg" id="overlayBg" onclick="toggleSidebar()"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-title">PORTFOLIO</span>
+            <button class="close-btn" onclick="toggleSidebar()">✕</button>
         </div>
-    </nav>
+        <nav class="nav-links">
+            <a href="index.html">หน้าแรก <span>›</span></a>
+            <a href="intro.html">คำนำ <span>›</span></a>
+            <a href="profile.html" class="active-link">ประวัติส่วนตัว <span>›</span></a>
+            <a href="education.html">การศึกษา <span>›</span></a>
+            <a href="activities.html">กิจกรรมและผลงาน <span>›</span></a>
+        </nav>
+    </aside>
 
     <div class="container">
         <!-- กล่องข้อมูลส่วนตัว -->
@@ -139,6 +308,42 @@
                         <div class="info-label">Target Field (เป้าหมายการศึกษา)</div>
                         <div class="info-value">วิศวกรรมเครื่องมือวัดและอัตโนมัติ (INAE)</div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- กล่องความสามารถพิเศษ (SKILLS & EXPERTISE) -->
+        <div class="tech-box-wrapper">
+            <div class="tech-box">
+                <h2 class="section-title">SKILLS & EXPERTISE</h2>
+                <div class="skills-grid">
+                    
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">C / C++ Programming</span>
+                            <span class="skill-badge">INTERMEDIATE</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 80%;"></div>
+                        </div>
+                        <p class="skill-desc">
+                            เข้าใจโครงสร้างพื้นฐาน การจัดการตัวแปร ลูป และอัลกอริทึม สามารถนำไปประยุกต์ใช้ในการเขียนโปรแกรมควบคุมไมโครคอนโทรลเลอร์ (Microcontroller) และฮาร์ดแวร์เบื้องต้นได้
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <span class="skill-name">Python Programming</span>
+                            <span class="skill-badge">INTERMEDIATE</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 85%;"></div>
+                        </div>
+                        <p class="skill-desc">
+                            มีความเชี่ยวชาญในการเขียนสคริปต์ประมวลผลข้อมูล (Data Processing), การพัฒนาอัลกอริทึมคำนวณ ตลอดจนการเขียนโปรแกรมเชื่อมต่อระบบอัตโนมัติและแก้ปัญหาเฉพาะทาง
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -170,6 +375,11 @@
         </div>
     </div>
 
-    <script>function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }</script>
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlayBg').classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
