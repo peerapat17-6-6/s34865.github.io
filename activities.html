@@ -22,8 +22,9 @@
             border-bottom: 1px solid rgba(0, 240, 255, 0.25); 
             padding: 15px 30px; 
             display: flex; 
-            justify-content: space-between; 
+            justify-content: flex-start; /* จัดให้อยู่ฝั่งซ้าย */
             align-items: center; 
+            gap: 20px; /* ระยะห่างระหว่างปุ่มเมนูกับโลโก้ */
             position: relative;
             z-index: 1002;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); 
@@ -36,7 +37,7 @@
             text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); 
         }
 
-        /* ปุ่มเปิดเมนู */
+        /* ปุ่มเปิดเมนูฝั่งซ้าย */
         .menu-btn { 
             display: flex;
             align-items: center;
@@ -60,7 +61,7 @@
             color: #ffffff;
         }
 
-        /* เมนูสไตล์แถบขยายเต็มความกว้าง (Full-width Dropdown Banner) */
+        /* เมนูสไตล์แถบขยายเต็มความกว้าง */
         .nav-links { 
             display: none; 
             position: absolute; 
@@ -245,12 +246,12 @@
 <body>
     <div class="navbar-container">
         <nav class="navbar">
-            <div class="logo">PORTFOLIO</div>
-            
+            <!-- ปุ่ม MENU ย้ายมาอยู่ฝั่งซ้าย -->
             <button class="menu-btn" onclick="toggleMenu()">
-                <span>MENU</span>
                 <span>☰</span>
+                <span>MENU</span>
             </button>
+            <div class="logo">PORTFOLIO</div>
         </nav>
 
         <!-- แถบเมนูเต็มความกว้าง -->
@@ -270,7 +271,7 @@
         
         <div class="activity-list">
 
-            <!-- การ์ดที่ 1: รางวัลชนะเลิศ Smart School -->
+            <!-- การ์ดที่ 1 -->
             <div class="tech-card-wrapper">
                 <div class="activity-card">
                     <div class="card-media">
@@ -292,7 +293,7 @@
                 </div>
             </div>
 
-            <!-- การ์ดที่ 2: โครงการเตรียมวิศวกรรม TIRA -->
+            <!-- การ์ดที่ 2 -->
             <div class="tech-card-wrapper">
                 <div class="activity-card">
                     <div class="card-media">
@@ -317,7 +318,7 @@
                 </div>
             </div>
 
-            <!-- การ์ดที่ 3: การแข่งขัน PLC BATTLE THAILAND 2025 -->
+            <!-- การ์ดที่ 3 -->
             <div class="tech-card-wrapper">
                 <div class="activity-card">
                     <div class="card-media">
