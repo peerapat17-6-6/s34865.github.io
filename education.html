@@ -26,13 +26,14 @@
             background: linear-gradient(135deg, #ff0055, #00f0ff, #0055ff, #ff0055); 
             background-size: 300% 300%; 
             animation: redBlueGlow 6s linear infinite; 
+            margin-bottom: 35px;
         }
         
         .tech-box { 
             background: rgba(10, 15, 30, 0.92); 
             backdrop-filter: blur(12px); 
             border-radius: 14px; 
-            padding: 40px 30px; 
+            padding: 35px 30px; 
             position: relative; 
             z-index: 2; 
         }
@@ -43,9 +44,37 @@
             100% { background-position: 0% 50%; box-shadow: 0 0 20px rgba(255, 0, 85, 0.4); }
         }
 
-        .section-title { font-size: 24px; color: #00f0ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; text-shadow: 0 0 10px rgba(0,240,255,0.5); display: flex; align-items: center; }
+        .section-title { font-size: 24px; color: #00f0ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; text-shadow: 0 0 10px rgba(0,240,255,0.5); display: flex; align-items: center; }
         .section-title::before { content: '>> '; color: #ff0055; margin-right: 10px; animation: blink 1s infinite; text-shadow: 0 0 8px #ff0055; }
         @keyframes blink { 50% { opacity: 0; } }
+
+        /* ส่วนเป้าหมายการศึกษา & โลโก้มหาวิทยาลัย */
+        .target-card {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+        }
+        @media (max-width: 600px) {
+            .target-card { flex-direction: column; text-align: center; }
+        }
+        
+        .uni-logo-wrapper { position: relative; display: inline-block; }
+        .uni-logo {
+            width: 110px;
+            height: auto;
+            filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.6));
+            transition: transform 0.3s ease;
+        }
+        .uni-logo:hover { transform: scale(1.05); }
+
+        .target-info { flex: 1; }
+        .target-tag { display: inline-block; background: rgba(255, 0, 85, 0.15); border: 1px solid #ff0055; color: #ff0055; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; }
+        .target-title { font-size: 20px; color: #fff; font-weight: 700; margin-bottom: 6px; text-shadow: 0 0 8px rgba(255,255,255,0.2); }
+        .target-sub { font-size: 14px; color: #00f0ff; font-weight: 500; line-height: 1.5; }
 
         /* Timeline Educational Cards */
         .edu-list { display: flex; flex-direction: column; gap: 20px; }
@@ -69,7 +98,6 @@
             transform: translateY(-3px);
         }
 
-        /* ไฮไลท์สำหรับมัธยมปลาย */
         .edu-card.highlight-card {
             border-left-color: #ff0055;
             background: rgba(15, 23, 42, 0.85);
@@ -119,6 +147,25 @@
     </nav>
 
     <div class="container">
+        <!-- กล่องเป้าหมายการเข้าศึกษา (เป้าหมายมหาวิทยาลัย/คณะ) -->
+        <div class="tech-box-wrapper">
+            <div class="tech-box">
+                <h2 class="section-title">TARGET GOAL</h2>
+                <div class="target-card">
+                    <div class="uni-logo-wrapper">
+                        <!-- โลโก้ มจพ. (KMUTNB Logo) -->
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/KMUTNB_Logo.png" alt="KMUTNB Logo" class="uni-logo">
+                    </div>
+                    <div class="target-info">
+                        <span class="target-tag">Target Program</span>
+                        <h3 class="target-title">ภาควิชาวิศวกรรมเครื่องมือวัดและอัตโนมัติ (INAE)</h3>
+                        <p class="target-sub">คณะเทคโนโลยีและการจัดการอุตสาหกรรม<br>มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ (วิทยาเขตปราจีนบุรี)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- กล่องประวัติการศึกษาย้อนหลัง -->
         <div class="tech-box-wrapper">
             <div class="tech-box">
                 <h2 class="section-title">EDUCATION RECORD</h2>
