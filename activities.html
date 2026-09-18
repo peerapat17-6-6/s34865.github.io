@@ -75,11 +75,19 @@
             transform: translateY(-4px);
         }
 
-        /* ส่วนแสดงรูปคู่กัน */
+        /* ส่วนแสดงรูปเดี่ยว/รูปคู่ */
         .cert-img-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
+            background: #000;
+            padding: 12px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        .cert-img-single {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background: #000;
             padding: 12px;
             border-bottom: 1px solid rgba(0, 240, 255, 0.2);
@@ -97,6 +105,10 @@
             overflow: hidden;
             border-radius: 8px;
             border: 1px solid rgba(0, 240, 255, 0.3);
+        }
+        .cert-img-single .cert-img-wrapper {
+            height: 260px;
+            max-width: 500px;
         }
         .cert-img {
             width: 100%;
@@ -156,7 +168,26 @@
                 <h2 class="section-title">ACTIVITIES & CERTIFICATES</h2>
                 
                 <div class="activity-list">
-                    <!-- รายการที่ 1: โครงการเตรียมวิศวกรรม TIRA (รูปคู่) -->
+
+                    <!-- รายการที่ 1: รางวัลชนะเลิศ Smart School (เพิ่มใหม่) -->
+                    <div class="activity-card">
+                        <div class="cert-img-single">
+                            <div class="cert-img-wrapper">
+                                <img src="1st place.jpg" alt="เกียรติบัตรรางวัลชนะเลิศ Smart School" class="cert-img">
+                            </div>
+                        </div>
+                        <div class="activity-details">
+                            <span class="activity-badge">COMPETITION / 1ST PLACE</span>
+                            <h3 class="activity-title">รางวัลชนะเลิศ การประกวดนวัตกรรมและเทคโนโลยี แก้ปัญหา Smart School</h3>
+                            <p class="activity-org">โครงการ "ค่ายพัฒนานวัตกรรมและเทคโนโลยี" ครั้งที่ 5 ณ โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
+                            <p class="activity-desc">
+                                คิดค้นและพัฒนาผลงานนวัตกรรมเพื่อแก้ไขปัญหาภายในโรงเรียนตามแนวคิด Smart School จัดขึ้นระหว่างวันที่ 9–11 มกราคม พ.ศ. 2569
+                            </p>
+                            <span class="hours-tag">🥇 รางวัลชนะเลิศ (1st Place)</span>
+                        </div>
+                    </div>
+
+                    <!-- รายการที่ 2: โครงการเตรียมวิศวกรรม TIRA -->
                     <div class="activity-card">
                         <div class="cert-img-grid">
                             <div class="cert-img-wrapper">
@@ -177,14 +208,13 @@
                         </div>
                     </div>
 
-                    <!-- รายการที่ 2: การแข่งขัน PLC BATTLE THAILAND 2025 (รูปคู่ - แก้ไขรูปภาพไม่ซ้ำกันแล้ว) -->
+                    <!-- รายการที่ 3: การแข่งขัน PLC BATTLE THAILAND 2025 -->
                     <div class="activity-card">
                         <div class="cert-img-grid">
                             <div class="cert-img-wrapper">
                                 <img src="IMG_20260413_141521.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025" class="cert-img">
                             </div>
                             <div class="cert-img-wrapper">
-                                <!-- เปลี่ยนดึงรูปภาพกิจกรรมการรับมอบเป็น Plc cer.png -->
                                 <img src="Plc cer.png" alt="ภาพกิจกรรมการรับมอบ PLC" class="cert-img">
                             </div>
                         </div>
@@ -198,6 +228,7 @@
                             <span class="hours-tag">🏆 Good Performance Prize</span>
                         </div>
                     </div>
+
                 </div>
 
             </div>
