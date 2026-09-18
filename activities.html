@@ -8,18 +8,24 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #030712; color: #e2e8f0; min-height: 100vh; background-image: radial-gradient(circle at center, #0f172a 0%, #030712 100%); }
         
-        /* NAVBAR */
+        /* NAVBAR CONTAINER */
+        .navbar-container {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
         .navbar { 
-            background: rgba(3, 7, 18, 0.85); 
+            background: rgba(3, 7, 18, 0.95); 
             backdrop-filter: blur(12px); 
             border-bottom: 1px solid rgba(0, 240, 255, 0.25); 
             padding: 15px 30px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
+            position: relative;
+            z-index: 1002;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); 
         }
         .logo { 
@@ -30,7 +36,7 @@
             text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); 
         }
 
-        /* ปุ่มเปิดเมนูสไตล์ทางการ */
+        /* ปุ่มเปิดเมนู */
         .menu-btn { 
             display: flex;
             align-items: center;
@@ -54,21 +60,21 @@
             color: #ffffff;
         }
 
-        /* เมนูดร็อปดาวน์สไตล์เป็นทางการ */
+        /* เมนูสไตล์แถบขยายเต็มความกว้าง (Full-width Dropdown Banner) */
         .nav-links { 
             display: none; 
             position: absolute; 
-            top: calc(100% + 10px); 
-            right: 25px; 
-            background: rgba(10, 15, 30, 0.95); 
-            width: 240px; 
-            border-radius: 10px; 
-            border: 1px solid rgba(0, 240, 255, 0.3); 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.15); 
+            top: 100%; 
+            left: 0;
+            width: 100%; 
+            background: rgba(6, 11, 25, 0.96); 
             backdrop-filter: blur(16px); 
-            overflow: hidden;
-            opacity: 0;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.3); 
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8); 
+            z-index: 1001;
+            padding: 10px 0;
             transform: translateY(-10px);
+            opacity: 0;
             transition: all 0.3s ease;
         }
         .nav-links.active { 
@@ -76,30 +82,38 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        .nav-menu-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
         .nav-links a { 
             color: #94a3b8; 
-            padding: 14px 20px; 
+            padding: 14px 30px; 
             display: flex;
             align-items: center;
             justify-content: space-between;
             text-decoration: none; 
-            font-size: 14px;
+            font-size: 14.5px;
             font-weight: 500;
             letter-spacing: 0.5px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04); 
             transition: all 0.25s ease; 
         }
         .nav-links a:last-child { border-bottom: none; }
         .nav-links a:hover { 
             background: rgba(0, 240, 255, 0.08); 
             color: #00f0ff; 
-            padding-left: 25px; 
+            padding-left: 40px; 
         }
         .nav-links a.active-link {
             color: #00f0ff;
             background: rgba(0, 240, 255, 0.12);
             font-weight: 600;
-            border-left: 3px solid #00f0ff;
+            border-left: 4px solid #00f0ff;
         }
 
         .container { padding: 40px 20px; max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
@@ -120,7 +134,6 @@
             gap: 30px;
         }
 
-        /* กรอบขอบไล่สี Red & Blue Glow แต่ละการ์ด */
         .tech-card-wrapper { 
             position: relative; 
             border-radius: 16px; 
@@ -140,7 +153,6 @@
             100% { background-position: 0% 50%; box-shadow: 0 0 15px rgba(255, 0, 85, 0.3); }
         }
 
-        /* Layout ซ้าย-ขวา แบบในรูปตัวอย่าง */
         .activity-card {
             background: rgba(10, 15, 30, 0.92);
             backdrop-filter: blur(12px);
@@ -152,12 +164,9 @@
         }
 
         @media (max-width: 820px) {
-            .activity-card {
-                grid-template-columns: 1fr;
-            }
+            .activity-card { grid-template-columns: 1fr; }
         }
 
-        /* ฝั่งซ้าย: รูปภาพ */
         .card-media {
             background: #000;
             padding: 12px;
@@ -174,24 +183,16 @@
             }
         }
 
-        /* แบบรูปคู่ */
         .cert-img-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
             width: 100%;
         }
-        .cert-img-grid .cert-img-wrapper {
-            height: 150px;
-        }
+        .cert-img-grid .cert-img-wrapper { height: 150px; }
 
-        /* แบบรูปเดี่ยว */
-        .cert-img-single {
-            width: 100%;
-        }
-        .cert-img-single .cert-img-wrapper {
-            height: 200px;
-        }
+        .cert-img-single { width: 100%; }
+        .cert-img-single .cert-img-wrapper { height: 200px; }
 
         .cert-img-wrapper {
             width: 100%;
@@ -210,7 +211,6 @@
         }
         .cert-img:hover { transform: scale(1.05); }
 
-        /* ฝั่งขวา: ข้อความบรรยาย */
         .activity-details { padding: 25px; }
         .activity-badge {
             display: inline-block;
@@ -243,24 +243,27 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">PORTFOLIO</div>
-        
-        <!-- ปุ่มเปิดเมนู -->
-        <button class="menu-btn" onclick="toggleMenu()">
-            <span>MENU</span>
-            <span>☰</span>
-        </button>
+    <div class="navbar-container">
+        <nav class="navbar">
+            <div class="logo">PORTFOLIO</div>
+            
+            <button class="menu-btn" onclick="toggleMenu()">
+                <span>MENU</span>
+                <span>☰</span>
+            </button>
+        </nav>
 
-        <!-- รายการเมนูดร็อปดาวน์ -->
+        <!-- แถบเมนูเต็มความกว้าง -->
         <div class="nav-links" id="navLinks">
-            <a href="index.html">หน้าแรก <span>›</span></a>
-            <a href="intro.html">คำนำ <span>›</span></a>
-            <a href="profile.html">ประวัติส่วนตัว <span>›</span></a>
-            <a href="education.html">การศึกษา <span>›</span></a>
-            <a href="activities.html" class="active-link">กิจกรรมและผลงาน <span>›</span></a>
+            <div class="nav-menu-inner">
+                <a href="index.html">หน้าแรก <span>›</span></a>
+                <a href="intro.html">คำนำ <span>›</span></a>
+                <a href="profile.html">ประวัติส่วนตัว <span>›</span></a>
+                <a href="education.html">การศึกษา <span>›</span></a>
+                <a href="activities.html" class="active-link">กิจกรรมและผลงาน <span>›</span></a>
+            </div>
         </div>
-    </nav>
+    </div>
 
     <div class="container">
         <h2 class="section-title">ACTIVITIES & CERTIFICATES</h2>
