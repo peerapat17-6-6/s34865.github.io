@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การศึกษา - PORTFOLIO</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #030712; color: #e2e8f0; min-height: 100vh; background-image: radial-gradient(circle at center, #0f172a 0%, #030712 100%); }
+        
+        .navbar { background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 240, 255, 0.3); padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 30px rgba(0, 240, 255, 0.1); }
+        .logo { font-size: 20px; font-weight: 900; letter-spacing: 2px; color: #fff; text-shadow: 0 0 10px #00f0ff; }
+        .menu-btn { font-size: 24px; cursor: pointer; background: none; border: none; color: #00f0ff; }
+        .nav-links { display: none; position: absolute; top: 100%; right: 15px; background: rgba(10, 15, 30, 0.95); width: 230px; border-radius: 8px; border: 1px solid #00f0ff; box-shadow: 0 0 20px rgba(0,240,255,0.2); backdrop-filter: blur(10px); }
+        .nav-links.active { display: block; }
+        .nav-links a { color: #cbd5e1; padding: 15px 20px; display: block; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        .nav-links a:hover { background: rgba(0, 240, 255, 0.1); color: #00f0ff; padding-left: 25px; }
+
+        .container { padding: 40px 15px; max-width: 850px; margin: 0 auto; position: relative; z-index: 1; }
+        
+        /* กรอบขอบไล่สี แดง - น้ำเงิน - ฟ้า (Red & Blue Gradient Glow) */
+        .tech-box-wrapper { 
+            position: relative; 
+            border-radius: 16px; 
+            padding: 2px; 
+            background: linear-gradient(135deg, #ff0055, #00f0ff, #0055ff, #ff0055); 
+            background-size: 300% 300%; 
+            animation: redBlueGlow 6s linear infinite; 
+        }
+        
+        .tech-box { 
+            background: rgba(10, 15, 30, 0.92); 
+            backdrop-filter: blur(12px); 
+            border-radius: 14px; 
+            padding: 40px 30px; 
+            position: relative; 
+            z-index: 2; 
+        }
+        
+        @keyframes redBlueGlow {
+            0% { background-position: 0% 50%; box-shadow: 0 0 20px rgba(255, 0, 85, 0.4); }
+            50% { background-position: 100% 50%; box-shadow: 0 0 25px rgba(0, 240, 255, 0.5); }
+            100% { background-position: 0% 50%; box-shadow: 0 0 20px rgba(255, 0, 85, 0.4); }
+        }
+
+        .section-title { font-size: 24px; color: #00f0ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; text-shadow: 0 0 10px rgba(0,240,255,0.5); display: flex; align-items: center; }
+        .section-title::before { content: '>> '; color: #ff0055; margin-right: 10px; animation: blink 1s infinite; text-shadow: 0 0 8px #ff0055; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Timeline Educational Cards */
+        .edu-list { display: flex; flex-direction: column; gap: 20px; }
+        
+        .edu-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-left: 4px solid #00f0ff;
+            padding: 20px 24px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            transition: 0.3s;
+        }
+        .edu-card:hover {
+            border-color: #00f0ff;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+            transform: translateY(-3px);
+        }
+
+        /* ไฮไลท์สำหรับมัธยมปลาย */
+        .edu-card.highlight-card {
+            border-left-color: #ff0055;
+            background: rgba(15, 23, 42, 0.85);
+            border-color: rgba(255, 0, 85, 0.3);
+        }
+        .edu-card.highlight-card:hover {
+            border-color: #ff0055;
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.3);
+        }
+
+        .edu-level { font-size: 12px; color: #ff0055; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 4px; }
+        .edu-school { font-size: 18px; color: #fff; font-weight: 600; }
+        .edu-program { font-size: 14px; color: #94a3b8; margin-top: 4px; }
+        
+        .gpax-badge {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid #00f0ff;
+            color: #00f0ff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(0,240,255,0.6);
+            box-shadow: 0 0 12px rgba(0,240,255,0.15);
+            white-space: nowrap;
+        }
+        .gpax-badge.gold {
+            background: rgba(250, 204, 21, 0.1);
+            border-color: #facc15;
+            color: #facc15;
+            text-shadow: 0 0 8px rgba(250, 204, 21, 0.6);
+            box-shadow: 0 0 12px rgba(250, 204, 21, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">PORTFOLIO</div>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">🌌 หน้าแรก</a>
+            <a href="intro.html">📖 คำนำ</a>
+            <a href="profile.html">💎 ประวัติส่วนตัว</a>
+            <a href="education.html">🎓 การศึกษา</a>
+            <a href="activities.html">✨ กิจกรรมและผลงาน</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="tech-box-wrapper">
+            <div class="tech-box">
+                <h2 class="section-title">EDUCATION RECORD</h2>
+                <div class="edu-list">
+                    
+                    <!-- ระดับมัธยมศึกษาตอนปลาย -->
+                    <div class="edu-card highlight-card">
+                        <div>
+                            <div class="edu-level">Senior High School (มัธยมศึกษาตอนปลาย)</div>
+                            <div class="edu-school">โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</div>
+                            <div class="edu-program">แผนการเรียน: Computer Science & Engineering (CSE)</div>
+                        </div>
+                        <div class="gpax-badge">GPAX 3.82</div>
+                    </div>
+
+                    <!-- ระดับมัธยมศึกษาตอนต้น -->
+                    <div class="edu-card">
+                        <div>
+                            <div class="edu-level">Junior High School (มัธยมศึกษาตอนต้น)</div>
+                            <div class="edu-school">โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</div>
+                        </div>
+                        <div class="gpax-badge">GPAX 3.92</div>
+                    </div>
+
+                    <!-- ระดับประถมศึกษา -->
+                    <div class="edu-card">
+                        <div>
+                            <div class="edu-level">Primary School (ประถมศึกษา)</div>
+                            <div class="edu-school">โรงเรียนบุญประทีปวิทยาคาร</div>
+                        </div>
+                        <div class="gpax-badge gold">GPAX 4.00</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }</script>
+</body>
+</html>
