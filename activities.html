@@ -8,15 +8,101 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #030712; color: #e2e8f0; min-height: 100vh; background-image: radial-gradient(circle at center, #0f172a 0%, #030712 100%); }
         
-        .navbar { background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 240, 255, 0.3); padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 30px rgba(0, 240, 255, 0.1); }
-        .logo { font-size: 20px; font-weight: 900; letter-spacing: 2px; color: #fff; text-shadow: 0 0 10px #00f0ff; }
-        .menu-btn { font-size: 24px; cursor: pointer; background: none; border: none; color: #00f0ff; }
-        .nav-links { display: none; position: absolute; top: 100%; right: 15px; background: rgba(10, 15, 30, 0.95); width: 230px; border-radius: 8px; border: 1px solid #00f0ff; box-shadow: 0 0 20px rgba(0,240,255,0.2); backdrop-filter: blur(10px); }
-        .nav-links.active { display: block; }
-        .nav-links a { color: #cbd5e1; padding: 15px 20px; display: block; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
-        .nav-links a:hover { background: rgba(0, 240, 255, 0.1); color: #00f0ff; padding-left: 25px; }
+        /* NAVBAR */
+        .navbar { 
+            background: rgba(3, 7, 18, 0.85); 
+            backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(0, 240, 255, 0.25); 
+            padding: 15px 30px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); 
+        }
+        .logo { 
+            font-size: 20px; 
+            font-weight: 800; 
+            letter-spacing: 2px; 
+            color: #ffffff; 
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); 
+        }
 
-        .container { padding: 40px 15px; max-width: 850px; margin: 0 auto; position: relative; z-index: 1; }
+        /* ปุ่มเปิดเมนูสไตล์ทางการ */
+        .menu-btn { 
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer; 
+            background: rgba(15, 23, 42, 0.8); 
+            border: 1px solid rgba(0, 240, 255, 0.4); 
+            color: #00f0ff; 
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+        }
+        .menu-btn:hover {
+            background: rgba(0, 240, 255, 0.15);
+            border-color: #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            color: #ffffff;
+        }
+
+        /* เมนูดร็อปดาวน์สไตล์เป็นทางการ */
+        .nav-links { 
+            display: none; 
+            position: absolute; 
+            top: calc(100% + 10px); 
+            right: 25px; 
+            background: rgba(10, 15, 30, 0.95); 
+            width: 240px; 
+            border-radius: 10px; 
+            border: 1px solid rgba(0, 240, 255, 0.3); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.15); 
+            backdrop-filter: blur(16px); 
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .nav-links.active { 
+            display: block; 
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .nav-links a { 
+            color: #94a3b8; 
+            padding: 14px 20px; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none; 
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+            transition: all 0.25s ease; 
+        }
+        .nav-links a:last-child { border-bottom: none; }
+        .nav-links a:hover { 
+            background: rgba(0, 240, 255, 0.08); 
+            color: #00f0ff; 
+            padding-left: 25px; 
+        }
+        .nav-links a.active-link {
+            color: #00f0ff;
+            background: rgba(0, 240, 255, 0.12);
+            font-weight: 600;
+            border-left: 3px solid #00f0ff;
+        }
+
+        .container { padding: 40px 20px; max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
         
         .section-title { 
             font-size: 26px; 
@@ -31,10 +117,10 @@
         .activity-list {
             display: flex;
             flex-direction: column;
-            gap: 35px;
+            gap: 30px;
         }
 
-        /* กรอบขอบไล่สีสำหรับแต่ละการ์ด (แยกแต่ละอัน) */
+        /* กรอบขอบไล่สี Red & Blue Glow แต่ละการ์ด */
         .tech-card-wrapper { 
             position: relative; 
             border-radius: 16px; 
@@ -54,51 +140,67 @@
             100% { background-position: 0% 50%; box-shadow: 0 0 15px rgba(255, 0, 85, 0.3); }
         }
 
-        /* เนื้อหาภายในการ์ดแต่ละใบ */
+        /* Layout ซ้าย-ขวา แบบในรูปตัวอย่าง */
         .activity-card {
             background: rgba(10, 15, 30, 0.92);
             backdrop-filter: blur(12px);
             border-radius: 14px;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            align-items: center;
         }
 
-        /* ส่วนแสดงรูปเดี่ยว/รูปคู่ */
+        @media (max-width: 820px) {
+            .activity-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ฝั่งซ้าย: รูปภาพ */
+        .card-media {
+            background: #000;
+            padding: 12px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        @media (max-width: 820px) {
+            .card-media {
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+            }
+        }
+
+        /* แบบรูปคู่ */
         .cert-img-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            background: #000;
-            padding: 12px;
-            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+            gap: 8px;
+            width: 100%;
         }
+        .cert-img-grid .cert-img-wrapper {
+            height: 150px;
+        }
+
+        /* แบบรูปเดี่ยว */
         .cert-img-single {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #000;
-            padding: 12px;
-            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+            width: 100%;
         }
-        @media (max-width: 600px) {
-            .cert-img-grid { grid-template-columns: 1fr; }
+        .cert-img-single .cert-img-wrapper {
+            height: 200px;
         }
 
         .cert-img-wrapper {
             width: 100%;
-            height: 220px;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
             border-radius: 8px;
             border: 1px solid rgba(0, 240, 255, 0.3);
-        }
-        .cert-img-single .cert-img-wrapper {
-            height: 260px;
-            max-width: 500px;
         }
         .cert-img {
             width: 100%;
@@ -108,6 +210,7 @@
         }
         .cert-img:hover { transform: scale(1.05); }
 
+        /* ฝั่งขวา: ข้อความบรรยาย */
         .activity-details { padding: 25px; }
         .activity-badge {
             display: inline-block;
@@ -123,8 +226,8 @@
             text-transform: uppercase;
         }
         .activity-title { font-size: 18px; color: #fff; font-weight: 700; margin-bottom: 8px; line-height: 1.4; }
-        .activity-org { font-size: 14px; color: #00f0ff; margin-bottom: 12px; font-weight: 500; }
-        .activity-desc { font-size: 14px; color: #94a3b8; line-height: 1.6; }
+        .activity-org { font-size: 13px; color: #00f0ff; margin-bottom: 12px; font-weight: 500; }
+        .activity-desc { font-size: 13.5px; color: #94a3b8; line-height: 1.6; }
         
         .hours-tag {
             display: inline-block;
@@ -142,13 +245,20 @@
 <body>
     <nav class="navbar">
         <div class="logo">PORTFOLIO</div>
-        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        
+        <!-- ปุ่มเปิดเมนู -->
+        <button class="menu-btn" onclick="toggleMenu()">
+            <span>MENU</span>
+            <span>☰</span>
+        </button>
+
+        <!-- รายการเมนูดร็อปดาวน์ -->
         <div class="nav-links" id="navLinks">
-            <a href="index.html">🌌 หน้าแรก</a>
-            <a href="intro.html">📖 คำนำ</a>
-            <a href="profile.html">💎 ประวัติส่วนตัว</a>
-            <a href="education.html">🎓 การศึกษา</a>
-            <a href="activities.html">✨ กิจกรรมและผลงาน</a>
+            <a href="index.html">หน้าแรก <span>›</span></a>
+            <a href="intro.html">คำนำ <span>›</span></a>
+            <a href="profile.html">ประวัติส่วนตัว <span>›</span></a>
+            <a href="education.html">การศึกษา <span>›</span></a>
+            <a href="activities.html" class="active-link">กิจกรรมและผลงาน <span>›</span></a>
         </div>
     </nav>
 
@@ -160,9 +270,11 @@
             <!-- การ์ดที่ 1: รางวัลชนะเลิศ Smart School -->
             <div class="tech-card-wrapper">
                 <div class="activity-card">
-                    <div class="cert-img-single">
-                        <div class="cert-img-wrapper">
-                            <img src="1st place.jpg" alt="เกียรติบัตรรางวัลชนะเลิศ Smart School" class="cert-img">
+                    <div class="card-media">
+                        <div class="cert-img-single">
+                            <div class="cert-img-wrapper">
+                                <img src="1st place.jpg" alt="เกียรติบัตรรางวัลชนะเลิศ Smart School" class="cert-img">
+                            </div>
                         </div>
                     </div>
                     <div class="activity-details">
@@ -180,12 +292,14 @@
             <!-- การ์ดที่ 2: โครงการเตรียมวิศวกรรม TIRA -->
             <div class="tech-card-wrapper">
                 <div class="activity-card">
-                    <div class="cert-img-grid">
-                        <div class="cert-img-wrapper">
-                            <img src="pic_20260416133914_0.jpg" alt="เกียรติบัตร TIRA" class="cert-img">
-                        </div>
-                        <div class="cert-img-wrapper">
-                            <img src="tirareceive.jpeg" alt="ภาพรับมอบเกียรติบัตร TIRA" class="cert-img">
+                    <div class="card-media">
+                        <div class="cert-img-grid">
+                            <div class="cert-img-wrapper">
+                                <img src="pic_20260416133914_0.jpg" alt="เกียรติบัตร TIRA" class="cert-img">
+                            </div>
+                            <div class="cert-img-wrapper">
+                                <img src="tirareceive.jpeg" alt="ภาพรับมอบเกียรติบัตร TIRA" class="cert-img">
+                            </div>
                         </div>
                     </div>
                     <div class="activity-details">
@@ -203,12 +317,14 @@
             <!-- การ์ดที่ 3: การแข่งขัน PLC BATTLE THAILAND 2025 -->
             <div class="tech-card-wrapper">
                 <div class="activity-card">
-                    <div class="cert-img-grid">
-                        <div class="cert-img-wrapper">
-                            <img src="IMG_20260413_141521.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025" class="cert-img">
-                        </div>
-                        <div class="cert-img-wrapper">
-                            <img src="Plc cer.png" alt="ภาพกิจกรรมการรับมอบ PLC" class="cert-img">
+                    <div class="card-media">
+                        <div class="cert-img-grid">
+                            <div class="cert-img-wrapper">
+                                <img src="IMG_20260413_141521.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025" class="cert-img">
+                            </div>
+                            <div class="cert-img-wrapper">
+                                <img src="Plc cer.png" alt="ภาพกิจกรรมการรับมอบ PLC" class="cert-img">
+                            </div>
                         </div>
                     </div>
                     <div class="activity-details">
@@ -226,6 +342,19 @@
         </div>
     </div>
 
-    <script>function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }</script>
+    <script>
+        function toggleMenu() { 
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active'); 
+        }
+
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const menuBtn = document.querySelector('.menu-btn');
+            if (!menuBtn.contains(event.target) && !navLinks.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
