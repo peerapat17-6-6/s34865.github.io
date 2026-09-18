@@ -8,40 +8,33 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #030712; color: #e2e8f0; min-height: 100vh; background-image: radial-gradient(circle at center, #0f172a 0%, #030712 100%); }
         
-        /* NAVBAR */
-        .navbar { 
-            background: rgba(3, 7, 18, 0.85); 
-            backdrop-filter: blur(12px); 
-            border-bottom: 1px solid rgba(0, 240, 255, 0.25); 
-            padding: 15px 30px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); 
-        }
-        .logo { 
-            font-size: 20px; 
-            font-weight: 800; 
-            letter-spacing: 2px; 
-            color: #ffffff; 
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); 
+        /* TOP NAVBAR */
+        .top-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            background: rgba(3, 7, 18, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.25);
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
-        /* ปุ่มเปิดเมนูสไตล์ทางการ */
-        .menu-btn { 
+        .menu-btn {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 14px;
             font-weight: 600;
             letter-spacing: 1px;
-            cursor: pointer; 
-            background: rgba(15, 23, 42, 0.8); 
-            border: 1px solid rgba(0, 240, 255, 0.4); 
-            color: #00f0ff; 
+            cursor: pointer;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            color: #00f0ff;
             padding: 8px 16px;
             border-radius: 6px;
             transition: all 0.3s ease;
@@ -54,57 +47,116 @@
             color: #ffffff;
         }
 
-        /* เมนูดร็อปดาวน์สไตล์เป็นทางการ */
-        .nav-links { 
-            display: none; 
-            position: absolute; 
-            top: calc(100% + 10px); 
-            right: 25px; 
-            background: rgba(10, 15, 30, 0.95); 
-            width: 240px; 
-            border-radius: 10px; 
-            border: 1px solid rgba(0, 240, 255, 0.3); 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.15); 
-            backdrop-filter: blur(16px); 
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
+        .logo { 
+            font-size: 20px; 
+            font-weight: 800; 
+            letter-spacing: 2px; 
+            color: #ffffff; 
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); 
         }
-        .nav-links.active { 
-            display: block; 
-            opacity: 1;
-            transform: translateY(0);
+
+        /* SIDEBAR OVERLAY */
+        .sidebar {
+            width: 280px;
+            background: rgba(6, 11, 25, 0.98);
+            backdrop-filter: blur(16px);
+            border-right: 1px solid rgba(0, 240, 255, 0.3);
+            height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: -285px;
+            z-index: 2000;
+            box-shadow: 5px 0 30px rgba(0, 0, 0, 0.8);
+            transition: left 0.35s ease-in-out;
         }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+        }
+
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: #ff0055;
+            font-size: 22px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
         .nav-links a { 
             color: #94a3b8; 
-            padding: 14px 20px; 
+            padding: 12px 16px; 
             display: flex;
             align-items: center;
             justify-content: space-between;
             text-decoration: none; 
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 8px;
+            border: 1px solid transparent;
             transition: all 0.25s ease; 
         }
-        .nav-links a:last-child { border-bottom: none; }
+
         .nav-links a:hover { 
             background: rgba(0, 240, 255, 0.08); 
             color: #00f0ff; 
-            padding-left: 25px; 
-        }
-        .nav-links a.active-link {
-            color: #00f0ff;
-            background: rgba(0, 240, 255, 0.12);
-            font-weight: 600;
-            border-left: 3px solid #00f0ff;
+            border-color: rgba(0, 240, 255, 0.2);
+            padding-left: 20px; 
         }
 
+        .nav-links a.active-link {
+            color: #ffffff;
+            background: rgba(0, 240, 255, 0.15);
+            border: 1px solid #00f0ff;
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+            font-weight: 600;
+        }
+
+        /* BACKDROP */
+        .overlay-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1500;
+            display: none;
+        }
+        .overlay-bg.active {
+            display: block;
+        }
+
+        /* MAIN CONTENT */
         .container { padding: 40px 20px; max-width: 850px; margin: 0 auto; position: relative; z-index: 1; }
         
-        /* กรอบขอบไล่สี แดง - น้ำเงิน - ฟ้า (Red & Blue Gradient Glow) */
         .tech-box-wrapper { 
             position: relative; 
             border-radius: 16px; 
@@ -120,8 +172,6 @@
             backdrop-filter: blur(12px); 
             border-radius: 14px; 
             padding: 35px 30px; 
-            position: relative; 
-            z-index: 2; 
         }
         
         @keyframes redBlueGlow {
@@ -130,11 +180,17 @@
             100% { background-position: 0% 50%; box-shadow: 0 0 20px rgba(255, 0, 85, 0.4); }
         }
 
-        .section-title { font-size: 24px; color: #00f0ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; text-shadow: 0 0 10px rgba(0,240,255,0.5); display: flex; align-items: center; }
-        .section-title::before { content: '>> '; color: #ff0055; margin-right: 10px; animation: blink 1s infinite; text-shadow: 0 0 8px #ff0055; }
-        @keyframes blink { 50% { opacity: 0; } }
+        .section-title { 
+            font-size: 24px; 
+            color: #00f0ff; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            margin-bottom: 25px; 
+            text-shadow: 0 0 10px rgba(0,240,255,0.5); 
+            display: flex; 
+            align-items: center; 
+        }
 
-        /* ส่วนเป้าหมายการศึกษา & โลโก้มหาวิทยาลัย */
         .target-card {
             display: flex;
             align-items: center;
@@ -147,22 +203,18 @@
         @media (max-width: 600px) {
             .target-card { flex-direction: column; text-align: center; }
         }
-        
-        .uni-logo-wrapper { position: relative; display: inline-block; }
+
         .uni-logo {
-            width: 110px;
+            width: 100px;
             height: auto;
             filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.6));
-            transition: transform 0.3s ease;
         }
-        .uni-logo:hover { transform: scale(1.05); }
 
         .target-info { flex: 1; }
         .target-tag { display: inline-block; background: rgba(255, 0, 85, 0.15); border: 1px solid #ff0055; color: #ff0055; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; }
-        .target-title { font-size: 20px; color: #fff; font-weight: 700; margin-bottom: 6px; text-shadow: 0 0 8px rgba(255,255,255,0.2); }
-        .target-sub { font-size: 14px; color: #00f0ff; font-weight: 500; line-height: 1.5; }
+        .target-title { font-size: 19px; color: #fff; font-weight: 700; margin-bottom: 6px; }
+        .target-sub { font-size: 13.5px; color: #00f0ff; font-weight: 500; line-height: 1.5; }
 
-        /* Timeline Educational Cards */
         .edu-list { display: flex; flex-direction: column; gap: 20px; }
         
         .edu-card {
@@ -189,14 +241,10 @@
             background: rgba(15, 23, 42, 0.85);
             border-color: rgba(255, 0, 85, 0.3);
         }
-        .edu-card.highlight-card:hover {
-            border-color: #ff0055;
-            box-shadow: 0 0 20px rgba(255, 0, 85, 0.3);
-        }
 
         .edu-level { font-size: 12px; color: #ff0055; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 4px; }
-        .edu-school { font-size: 18px; color: #fff; font-weight: 600; }
-        .edu-program { font-size: 14px; color: #94a3b8; margin-top: 4px; }
+        .edu-school { font-size: 17px; color: #fff; font-weight: 600; }
+        .edu-program { font-size: 13.5px; color: #94a3b8; margin-top: 4px; }
         
         .gpax-badge {
             background: rgba(0, 240, 255, 0.1);
@@ -204,10 +252,9 @@
             color: #00f0ff;
             padding: 8px 18px;
             border-radius: 20px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             text-shadow: 0 0 8px rgba(0,240,255,0.6);
-            box-shadow: 0 0 12px rgba(0,240,255,0.15);
             white-space: nowrap;
         }
         .gpax-badge.gold {
@@ -215,29 +262,33 @@
             border-color: #facc15;
             color: #facc15;
             text-shadow: 0 0 8px rgba(250, 204, 21, 0.6);
-            box-shadow: 0 0 12px rgba(250, 204, 21, 0.15);
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">PORTFOLIO</div>
-        
-        <!-- ปุ่มเปิดเมนู -->
-        <button class="menu-btn" onclick="toggleMenu()">
-            <span>MENU</span>
+    <header class="top-navbar">
+        <button class="menu-btn" onclick="toggleSidebar()">
             <span>☰</span>
+            <span>MENU</span>
         </button>
+        <div class="logo">PORTFOLIO</div>
+    </header>
 
-        <!-- รายการเมนูดร็อปดาวน์ -->
-        <div class="nav-links" id="navLinks">
+    <div class="overlay-bg" id="overlayBg" onclick="toggleSidebar()"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-title">PORTFOLIO</span>
+            <button class="close-btn" onclick="toggleSidebar()">✕</button>
+        </div>
+        <nav class="nav-links">
             <a href="index.html">หน้าแรก <span>›</span></a>
             <a href="intro.html">คำนำ <span>›</span></a>
             <a href="profile.html">ประวัติส่วนตัว <span>›</span></a>
             <a href="education.html" class="active-link">การศึกษา <span>›</span></a>
             <a href="activities.html">กิจกรรมและผลงาน <span>›</span></a>
-        </div>
-    </nav>
+        </nav>
+    </aside>
 
     <div class="container">
         <!-- กล่องเป้าหมายการเข้าศึกษา -->
@@ -245,9 +296,7 @@
             <div class="tech-box">
                 <h2 class="section-title">TARGET GOAL</h2>
                 <div class="target-card">
-                    <div class="uni-logo-wrapper">
-                        <img src="images (1).png" alt="KMUTNB Logo" class="uni-logo">
-                    </div>
+                    <img src="images (1).png" alt="KMUTNB Logo" class="uni-logo">
                     <div class="target-info">
                         <span class="target-tag">Target Program</span>
                         <h3 class="target-title">ภาควิชาวิศวกรรมเครื่องมือวัดและอัตโนมัติ (INAE)</h3>
@@ -297,18 +346,10 @@
     </div>
 
     <script>
-        function toggleMenu() { 
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active'); 
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlayBg').classList.toggle('active');
         }
-
-        document.addEventListener('click', function(event) {
-            const navLinks = document.getElementById('navLinks');
-            const menuBtn = document.querySelector('.menu-btn');
-            if (!menuBtn.contains(event.target) && !navLinks.contains(event.target)) {
-                navLinks.classList.remove('active');
-            }
-        });
     </script>
 </body>
 </html>
