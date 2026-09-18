@@ -55,7 +55,7 @@
             text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); 
         }
 
-        /* SIDEBAR OVERLAY (ซ่อนไว้ก่อน กดแล้วค่อยสไลด์ออกมา) */
+        /* SIDEBAR OVERLAY */
         .sidebar {
             width: 280px;
             background: rgba(6, 11, 25, 0.98);
@@ -67,14 +67,14 @@
             flex-direction: column;
             position: fixed;
             top: 0;
-            left: -285px; /* ซ่อนไว้ฝั่งซ้าย */
+            left: -285px;
             z-index: 2000;
             box-shadow: 5px 0 30px rgba(0, 0, 0, 0.8);
             transition: left 0.35s ease-in-out;
         }
 
         .sidebar.active {
-            left: 0; /* สไลด์ออกมา */
+            left: 0;
         }
 
         .sidebar-header {
@@ -266,7 +266,6 @@
     </style>
 </head>
 <body>
-    <!-- แถบด้านบนพร้อมปุ่มกดเปิดเมนู -->
     <header class="top-navbar">
         <button class="menu-btn" onclick="toggleSidebar()">
             <span>☰</span>
@@ -275,10 +274,8 @@
         <div class="logo">PORTFOLIO</div>
     </header>
 
-    <!-- พื้นหลังสีดำจางเวลากดเปิดเมนู -->
     <div class="overlay-bg" id="overlayBg" onclick="toggleSidebar()"></div>
 
-    <!-- เมนู Sidebar ฝั่งซ้าย (สไลด์ออกมาเมื่อกดปุ่ม) -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <span class="sidebar-title">PORTFOLIO</span>
@@ -293,7 +290,6 @@
         </nav>
     </aside>
 
-    <!-- เนื้อหาหลัก -->
     <div class="container">
         <h2 class="section-title">ACTIVITIES & CERTIFICATES</h2>
         
@@ -367,6 +363,28 @@
                             เข้าร่วมการแข่งขันประลองทักษะการเขียนโปรแกรมระบบควบคุมอัตโนมัติ (PLC) จัดขึ้นระหว่างวันที่ 13–14 ธันวาคม 2025 ณ ศูนย์ความเป็นเลิศทางด้านเทคโนโลยีเครื่องมือวัดและอัตโนมัติ คณะวิศวกรรมศาสตร์ มจพ. ปราจีนบุรี
                         </p>
                         <span class="hours-tag">🏆 Good Performance Prize</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- การ์ดที่ 4 (ใหม่) -->
+            <div class="tech-card-wrapper">
+                <div class="activity-card">
+                    <div class="card-media">
+                        <div class="cert-img-single">
+                            <div class="cert-img-wrapper">
+                                <img src="Agentic ai.jpg" alt="เกียรติบัตร Arduino Education Day Thailand 2025 - Agentic AI" class="cert-img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity-details">
+                        <span class="activity-badge">WORKSHOP / CERTIFICATE</span>
+                        <h3 class="activity-title">การเข้าร่วมเชิงปฏิบัติการ ARDUINO EDUCATION DAY THAILAND 2025</h3>
+                        <p class="activity-org">Arduino, novawise, iMAKE ร่วมกับ พิพิธภัณฑ์เทคโนโลยีสารสนเทศ (Futurium - NSM)</p>
+                        <p class="activity-desc">
+                            เข้าร่วมการอบรมเชิงปฏิบัติการในหัวข้อ <strong>Agentic AI</strong> ระหว่างวันที่ 26–27 พฤศจิกายน 2025 ณ ศูนย์นวัตกรรมแห่งอนาคต (Futurium) องค์การพิพิธภัณฑ์วิทยาศาสตร์แห่งชาติ (NSM) เพื่อเรียนรู้การประยุกต์ใช้ AI ในการตัดสินใจและทำงานร่วมกับระบบไมโครคอนโทรลเลอร์ Arduino
+                        </p>
+                        <span class="hours-tag">🤖 Topic: Agentic AI</span>
                     </div>
                 </div>
             </div>
