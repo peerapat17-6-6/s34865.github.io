@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>กิจกรรมและผลงาน - PORTFOLIO</title>
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #030712; color: #e2e8f0; min-height: 100vh; background-image: radial-gradient(circle at center, #0f172a 0%, #030712 100%); }
@@ -73,9 +77,7 @@
             transition: left 0.35s ease-in-out;
         }
 
-        .sidebar.active {
-            left: 0;
-        }
+        .sidebar.active { left: 0; }
 
         .sidebar-header {
             display: flex;
@@ -103,11 +105,7 @@
             line-height: 1;
         }
 
-        .nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+        .nav-links { display: flex; flex-direction: column; gap: 12px; }
 
         .nav-links a { 
             color: #94a3b8; 
@@ -150,12 +148,10 @@
             z-index: 1500;
             display: none;
         }
-        .overlay-bg.active {
-            display: block;
-        }
+        .overlay-bg.active { display: block; }
 
         /* MAIN CONTENT */
-        .container { padding: 40px 20px; max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+        .container { padding: 40px 20px 60px 20px; max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
         
         .section-title { 
             font-size: 26px; 
@@ -167,10 +163,19 @@
             text-shadow: 0 0 12px rgba(0,240,255,0.6); 
         }
 
-        .activity-list {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
+        /* SWIPER CONTAINER STYLES */
+        .swiper-container-wrapper {
+            position: relative;
+            padding: 0 50px;
+        }
+
+        @media (max-width: 600px) {
+            .swiper-container-wrapper { padding: 0; }
+        }
+
+        .swiper {
+            width: 100%;
+            padding-bottom: 50px !important;
         }
 
         .tech-card-wrapper { 
@@ -180,9 +185,7 @@
             background: linear-gradient(135deg, #ff0055, #00f0ff, #0055ff, #ff0055); 
             background-size: 300% 300%; 
             animation: redBlueGlow 6s linear infinite; 
-            transition: transform 0.3s ease;
         }
-        .tech-card-wrapper:hover { transform: translateY(-4px); }
 
         @keyframes redBlueGlow {
             0% { background-position: 0% 50%; box-shadow: 0 0 15px rgba(255, 0, 85, 0.3); }
@@ -191,13 +194,14 @@
         }
 
         .activity-card {
-            background: rgba(10, 15, 30, 0.92);
+            background: rgba(10, 15, 30, 0.95);
             backdrop-filter: blur(12px);
             border-radius: 14px;
             overflow: hidden;
             display: grid;
             grid-template-columns: 320px 1fr;
             align-items: center;
+            min-height: 280px;
         }
 
         @media (max-width: 820px) {
@@ -263,6 +267,39 @@
             font-size: 12px;
             font-weight: 600;
         }
+
+        /* SWIPER CUSTOM BUTTONS & PAGINATION */
+        .swiper-button-next, .swiper-button-prev {
+            color: #00f0ff !important;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            width: 44px !important;
+            height: 44px !important;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 18px !important;
+            font-weight: bold;
+        }
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            background: #00f0ff;
+            color: #000 !important;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
+        }
+
+        .swiper-pagination-bullet {
+            background: #94a3b8 !important;
+            opacity: 0.5;
+        }
+        .swiper-pagination-bullet-active {
+            background: #00f0ff !important;
+            opacity: 1;
+            box-shadow: 0 0 8px #00f0ff;
+            width: 24px !important;
+            border-radius: 10px !important;
+        }
     </style>
 </head>
 <body>
@@ -293,132 +330,134 @@
     <div class="container">
         <h2 class="section-title">ACTIVITIES & CERTIFICATES</h2>
         
-        <div class="activity-list">
+        <div class="swiper-container-wrapper">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
 
-            <!-- การ์ดที่ 1 -->
-            <div class="tech-card-wrapper">
-                <div class="activity-card">
-                    <div class="card-media">
-                        <div class="cert-img-single">
-                            <div class="cert-img-wrapper">
-                                <img src="1st place.jpg" alt="เกียรติบัตรรางวัลชนะเลิศ Smart School" class="cert-img">
+                    <!-- ใบที่ 1 -->
+                    <div class="swiper-slide">
+                        <div class="tech-card-wrapper">
+                            <div class="activity-card">
+                                <div class="card-media">
+                                    <div class="cert-img-single">
+                                        <div class="cert-img-wrapper">
+                                            <img src="1st place.jpg" alt="เกียรติบัตรรางวัลชนะเลิศ Smart School" class="cert-img">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="activity-details">
+                                    <span class="activity-badge">COMPETITION / 1ST PLACE</span>
+                                    <h3 class="activity-title">รางวัลชนะเลิศ การประกวดนวัตกรรมและเทคโนโลยี แก้ปัญหา Smart School</h3>
+                                    <p class="activity-org">โครงการ "ค่ายพัฒนานวัตกรรมและเทคโนโลยี" ครั้งที่ 5 ณ โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
+                                    <p class="activity-desc">
+                                        คิดค้นและพัฒนาผลงานนวัตกรรมเพื่อแก้ไขปัญหาภายในโรงเรียนตามแนวคิด Smart School จัดขึ้นระหว่างวันที่ 9–11 มกราคม พ.ศ. 2569
+                                    </p>
+                                    <span class="hours-tag">🥇 รางวัลชนะเลิศ (1st Place)</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="activity-details">
-                        <span class="activity-badge">COMPETITION / 1ST PLACE</span>
-                        <h3 class="activity-title">รางวัลชนะเลิศ การประกวดนวัตกรรมและเทคโนโลยี แก้ปัญหา Smart School</h3>
-                        <p class="activity-org">โครงการ "ค่ายพัฒนานวัตกรรมและเทคโนโลยี" ครั้งที่ 5 ณ โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
-                        <p class="activity-desc">
-                            คิดค้นและพัฒนาผลงานนวัตกรรมเพื่อแก้ไขปัญหาภายในโรงเรียนตามแนวคิด Smart School จัดขึ้นระหว่างวันที่ 9–11 มกราคม พ.ศ. 2569
-                        </p>
-                        <span class="hours-tag">🥇 รางวัลชนะเลิศ (1st Place)</span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- การ์ดที่ 2 -->
-            <div class="tech-card-wrapper">
-                <div class="activity-card">
-                    <div class="card-media">
-                        <div class="cert-img-grid">
-                            <div class="cert-img-wrapper">
-                                <img src="pic_20260416133914_0.jpg" alt="เกียรติบัตร TIRA" class="cert-img">
-                            </div>
-                            <div class="cert-img-wrapper">
-                                <img src="tirareceive.jpeg" alt="ภาพรับมอบเกียรติบัตร TIRA" class="cert-img">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="activity-details">
-                        <span class="activity-badge">CERTIFICATE / TRAINING</span>
-                        <h3 class="activity-title">โครงการพัฒนาหลักสูตรเตรียมวิศวกรรม ด้านเทคโนโลยีอิเล็กทรอนิกส์อัจฉริยะ</h3>
-                        <p class="activity-org">สมาคมการสร้างนวัตกรรมและหุ่นยนต์ (TIRA) ร่วมกับ กองทุนพัฒนาเทคโนโลยีเพื่อการศึกษา สำนักงานปลัดกระทรวงศึกษาธิการ</p>
-                        <p class="activity-desc">
-                            เข้าร่วมเป็นกลุ่มตัวอย่างการอบรมในรูปแบบออนไลน์และออนไซต์ (ชลบุรี) ฝึกฝนและเรียนรู้ทักษะพื้นฐานทางด้านเทคโนโลยีอิเล็กทรอนิกส์อัจฉริยะและการประยุกต์ใช้ในงานวิศวกรรม
-                        </p>
-                        <span class="hours-tag">⏱️ ระยะเวลาอบรม 30 ชั่วโมง</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- การ์ดที่ 3 -->
-            <div class="tech-card-wrapper">
-                <div class="activity-card">
-                    <div class="card-media">
-                        <div class="cert-img-grid">
-                            <div class="cert-img-wrapper">
-                                <img src="IMG_20260413_141521.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025" class="cert-img">
-                            </div>
-                            <div class="cert-img-wrapper">
-                                <img src="Plc cer.png" alt="ภาพกิจกรรมการรับมอบ PLC" class="cert-img">
+                    <!-- ใบที่ 2 -->
+                    <div class="swiper-slide">
+                        <div class="tech-card-wrapper">
+                            <div class="activity-card">
+                                <div class="card-media">
+                                    <div class="cert-img-grid">
+                                        <div class="cert-img-wrapper">
+                                            <img src="pic_20260416133914_0.jpg" alt="เกียรติบัตร TIRA" class="cert-img">
+                                        </div>
+                                        <div class="cert-img-wrapper">
+                                            <img src="tirareceive.jpeg" alt="ภาพรับมอบเกียรติบัตร TIRA" class="cert-img">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="activity-details">
+                                    <span class="activity-badge">CERTIFICATE / TRAINING</span>
+                                    <h3 class="activity-title">โครงการพัฒนาหลักสูตรเตรียมวิศวกรรม ด้านเทคโนโลยีอิเล็กทรอนิกส์อัจฉริยะ</h3>
+                                    <p class="activity-org">สมาคมการสร้างนวัตกรรมและหุ่นยนต์ (TIRA) ร่วมกับ กองทุนพัฒนาเทคโนโลยีเพื่อการศึกษา สำนักงานปลัดกระทรวงศึกษาธิการ</p>
+                                    <p class="activity-desc">
+                                        เข้าร่วมเป็นกลุ่มตัวอย่างการอบรมในรูปแบบออนไลน์และออนไซต์ (ชลบุรี) ฝึกฝนและเรียนรู้ทักษะพื้นฐานทางด้านเทคโนโลยีอิเล็กทรอนิกส์อัจฉริยะและการประยุกต์ใช้ในงานวิศวกรรม
+                                    </p>
+                                    <span class="hours-tag">⏱️ ระยะเวลาอบรม 30 ชั่วโมง</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="activity-details">
-                        <span class="activity-badge">COMPETITION / AWARD</span>
-                        <h3 class="activity-title">รางวัล GOOD PERFORMANCE PRIZE — PLC BATTLE THAILAND 2025</h3>
-                        <p class="activity-org">Center of Excellence on Instrumentation Technology and Automation (CEITA), มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ วิทยาเขตปราจีนบุรี ร่วมกับ Schneider Electric และ TIA</p>
-                        <p class="activity-desc">
-                            เข้าร่วมการแข่งขันประลองทักษะการเขียนโปรแกรมระบบควบคุมอัตโนมัติ (PLC) จัดขึ้นระหว่างวันที่ 13–14 ธันวาคม 2025 ณ ศูนย์ความเป็นเลิศทางด้านเทคโนโลยีเครื่องมือวัดและอัตโนมัติ คณะวิศวกรรมศาสตร์ มจพ. ปราจีนบุรี
-                        </p>
-                        <span class="hours-tag">🏆 Good Performance Prize</span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- การ์ดที่ 4 -->
-            <div class="tech-card-wrapper">
-                <div class="activity-card">
-                    <div class="card-media">
-                        <div class="cert-img-single">
-                            <div class="cert-img-wrapper">
-                                <img src="Agentic ai.jpg" alt="เกียรติบัตร Arduino Education Day Thailand 2025 - Agentic AI" class="cert-img">
+                    <!-- ใบที่ 3 -->
+                    <div class="swiper-slide">
+                        <div class="tech-card-wrapper">
+                            <div class="activity-card">
+                                <div class="card-media">
+                                    <div class="cert-img-grid">
+                                        <div class="cert-img-wrapper">
+                                            <img src="IMG_20260413_141521.jpg" alt="เกียรติบัตร PLC BATTLE THAILAND 2025" class="cert-img">
+                                        </div>
+                                        <div class="cert-img-wrapper">
+                                            <img src="Plc cer.png" alt="ภาพกิจกรรมการรับมอบ PLC" class="cert-img">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="activity-details">
+                                    <span class="activity-badge">COMPETITION / AWARD</span>
+                                    <h3 class="activity-title">รางวัล GOOD PERFORMANCE PRIZE — PLC BATTLE THAILAND 2025</h3>
+                                    <p class="activity-org">Center of Excellence on Instrumentation Technology and Automation (CEITA), มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ วิทยาเขตปราจีนบุรี ร่วมกับ Schneider Electric และ TIA</p>
+                                    <p class="activity-desc">
+                                        เข้าร่วมการแข่งขันประลองทักษะการเขียนโปรแกรมระบบควบคุมอัตโนมัติ (PLC) จัดขึ้นระหว่างวันที่ 13–14 ธันวาคม 2025 ณ ศูนย์ความเป็นเลิศทางด้านเทคโนโลยีเครื่องมือวัดและอัตโนมัติ คณะวิศวกรรมศาสตร์ มจพ. ปราจีนบุรี
+                                    </p>
+                                    <span class="hours-tag">🏆 Good Performance Prize</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="activity-details">
-                        <span class="activity-badge">WORKSHOP / CERTIFICATE</span>
-                        <h3 class="activity-title">การเข้าร่วมเชิงปฏิบัติการ ARDUINO EDUCATION DAY THAILAND 2025</h3>
-                        <p class="activity-org">Arduino, novawise, iMAKE ร่วมกับ พิพิธภัณฑ์เทคโนโลยีสารสนเทศ (Futurium - NSM)</p>
-                        <p class="activity-desc">
-                            เข้าร่วมการอบรมเชิงปฏิบัติการในหัวข้อ <strong>Agentic AI</strong> ระหว่างวันที่ 26–27 พฤศจิกายน 2025 ณ ศูนย์นวัตกรรมแห่งอนาคต (Futurium) องค์การพิพิธภัณฑ์วิทยาศาสตร์แห่งชาติ (NSM) เพื่อเรียนรู้การประยุกต์ใช้ AI ในการตัดสินใจและทำงานร่วมกับระบบไมโครคอนโทรลเลอร์ Arduino
-                        </p>
-                        <span class="hours-tag">🤖 Topic: Agentic AI</span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- การ์ดที่ 5 (ใหม่) -->
-            <div class="tech-card-wrapper">
-                <div class="activity-card">
-                    <div class="card-media">
-                        <div class="cert-img-single">
-                            <div class="cert-img-wrapper">
-                                <img src="PLC BBU.jpg" alt="เกียรติบัตรการอบรมพื้นฐานการควบคุมอัตโนมัติด้วย PLC" class="cert-img">
+                    <!-- ใบที่ 4 -->
+                    <div class="swiper-slide">
+                        <div class="tech-card-wrapper">
+                            <div class="activity-card">
+                                <div class="card-media">
+                                    <div class="cert-img-single">
+                                        <div class="cert-img-wrapper">
+                                            <img src="Agentic ai.jpg" alt="เกียรติบัตร Arduino Education Day Thailand 2025 - Agentic AI" class="cert-img">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="activity-details">
+                                    <span class="activity-badge">WORKSHOP / CERTIFICATE</span>
+                                    <h3 class="activity-title">การเข้าร่วมเชิงปฏิบัติการ ARDUINO EDUCATION DAY THAILAND 2025</h3>
+                                    <p class="activity-org">Arduino, novawise, iMAKE ร่วมกับ พิพิธภัณฑ์เทคโนโลยีสารสนเทศ (Futurium - NSM)</p>
+                                    <p class="activity-desc">
+                                        เข้าร่วมการอบรมเชิงปฏิบัติการในหัวข้อ <strong>Agentic AI</strong> ระหว่างวันที่ 26–27 พฤศจิกายน 2025 ณ ศูนย์นวัตกรรมแห่งอนาคต (Futurium) องค์การพิพิธภัณฑ์วิทยาศาสตร์แห่งชาติ (NSM) เพื่อเรียนรู้การประยุกต์ใช้ AI ในการตัดสินใจและทำงานร่วมกับระบบไมโครคอนโทรลเลอร์ Arduino
+                                    </p>
+                                    <span class="hours-tag">🤖 Topic: Agentic AI</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="activity-details">
-                        <span class="activity-badge">TRAINING / CERTIFICATE</span>
-                        <h3 class="activity-title">การอบรมเชิงปฏิบัติการ พื้นฐานการควบคุมอัตโนมัติด้วย Programmable Logic Controller (PLC)</h3>
-                        <p class="activity-org">คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ (KMUTNB) ร่วมกับ ศูนย์ CEITA และ โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
-                        <p class="activity-desc">
-                            ผ่านการอบรมเชิงปฏิบัติการพื้นฐานการควบคุมอัตโนมัติด้วย PLC ในกิจกรรมค่ายพัฒนาความเป็นเลิศผู้เรียนด้าน Robotic และ AI สำหรับนักเรียนแผนการเรียนวิทยาศาสตร์-คณิตศาสตร์ ระหว่างวันที่ 24–25 มกราคม พ.ศ. 2569
-                        </p>
-                        <span class="hours-tag">⚡ Automation & PLC Training</span>
+
+                    <!-- ใบที่ 5 -->
+                    <div class="swiper-slide">
+                        <div class="tech-card-wrapper">
+                            <div class="activity-card">
+                                <div class="card-media">
+                                    <div class="cert-img-single">
+                                        <div class="cert-img-wrapper">
+                                            <img src="PLC BBU.jpg" alt="เกียรติบัตรการอบรมพื้นฐานการควบคุมอัตโนมัติด้วย PLC" class="cert-img">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="activity-details">
+                                    <span class="activity-badge">TRAINING / CERTIFICATE</span>
+                                    <h3 class="activity-title">การอบรมเชิงปฏิบัติการ พื้นฐานการควบคุมอัตโนมัติด้วย Programmable Logic Controller (PLC)</h3>
+                                    <p class="activity-org">คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ (KMUTNB) ร่วมกับ ศูนย์ CEITA และ โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
+                                    <p class="activity-desc">
+                                        ผ่านการอบรมเชิงปฏิบัติการพื้นฐานการควบคุมอัตโนมัติด้วย PLC ในกิจกรรมค่ายพัฒนาความเป็นเลิศผู้เรียนด้าน Robotic และ AI สำหรับนักเรียนแผนการเรียนวิทยาศาสตร์-คณิตศาสตร์ ระหว่างวันที่ 24–25 มกราคม พ.ศ. 2569
+                                    </p>
+                                    <span class="hours-tag">⚡ Automation & PLC Training</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-        </div>
-    </div>
-
-    <script>
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('overlayBg').classList.toggle('active');
-        }
-    </script>
-</body>
-</html>
+                    
